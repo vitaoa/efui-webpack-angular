@@ -1,0 +1,11 @@
+{
+  "name": "efui-webpack-angular",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}

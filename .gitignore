@@ -1,0 +1,40 @@
+# Build system
+.idea
+.svn
+.git
+.tmp
+._*
+.cache
+.project
+.settings
+.db
+npm-debug.log
+manifest.json
+dist
+bundle.js
+
+# Mac OS X
+.DS_Store
+
+
+
+
+
+# Numerous always-ignore extensions
+.zip
+
+# Node & Bower
+/node_modules
+/app/bower_components
+/app/fonts/fontawesome*
+
+# Tests
+/build
+
+
+
+
+
+# Ignore docs files
+app/config.js
+app/config.*.js
