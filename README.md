@@ -20,3 +20,14 @@ Requires ```node```
         > import $ from 'jquery';
           var $ = require('jquery');
 
+    11. 通过 resolve.alias 来创建 import 或 require 的别名
+    
+        > resolve: {
+            alias: {
+                jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery')
+            }
+        }
+        
+          使用则直接 import 或 require 进来。
+        > import $ from 'jquery';
+          var $ = require('jquery');
