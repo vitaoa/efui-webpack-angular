@@ -14,6 +14,7 @@ require("../styles/popup.min.css");
 require("../styles/animation.min.css");
 require("../styles/ncss.min.css");
 require("../styles/plugin.min.css");
+require("../styles/sass.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);

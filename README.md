@@ -148,7 +148,11 @@ Requires ```node```
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
-            }
+            },
+            {
+                test: /\.s[c,a]ss$/,
+                loader: 'style-loader!css-loader!sass-loader'
+            },
         ]
         ```
             

@@ -43,6 +43,10 @@ module.exports = {
                 loader: 'style-loader!css-loader'
             },
             {
+                test: /\.s[c,a]ss$/,
+                loader: 'style-loader!css-loader!sass-loader'
+            },
+            {
                 test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
                 loader: 'file-loader?name=fonts/[name].[ext]' //将css中用到的字体全部提取存放到fonts目录下，fonts目录是相对output.path目录而言的
             },
