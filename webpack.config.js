@@ -21,7 +21,9 @@ module.exports = {
         alias: {//创建 import 或 require 的别名
             jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery'),
             angular: path.resolve(__dirname, 'app/bower_components/angular/angular'),
-            angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router')
+            angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router'),
+
+            appRoutes: path.resolve(__dirname, 'app/scripts/ev-app.routes')
         }
     },
     externals: {//防止将某些 import 的包打包到 bundle 中
