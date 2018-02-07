@@ -170,3 +170,16 @@ Requires ```node```
             loader: 'file-loader?name=fonts/[name].[ext]'  //将css中用到的字体全部提取存放到fonts目录下，fonts目录是相对output.path目录而言的
         }
         ```
+            
+    11. 打包图片小图片转换成base64,大图片自动转换成网络路径
+        
+        ````        
+        {
+            test: /\.(png|jpe?g|gif|ico)(\?\S*)?$/,
+            loader: 'url-loader',
+            query: {
+                limit: 8*1024, // 图片大小限制 单位b
+                name: '[path][name].[ext]' // 生成的文件的存放目录
+            }
+        },
+        ````
