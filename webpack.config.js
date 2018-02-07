@@ -19,7 +19,8 @@ module.exports = {
     },
     resolve: {//解析模块请求的选项（不适用于对 loader 解析）
         alias: {//创建 import 或 require 的别名
-            //jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery')
+            //jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery'),
+            angular: path.resolve(__dirname, 'app/bower_components/angular/angular')
         }
     },
     externals: {//防止将某些 import 的包打包到 bundle 中

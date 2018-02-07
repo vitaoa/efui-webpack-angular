@@ -1,5 +1,7 @@
 ﻿'use strict';
 
+require('angular');
+
 $(function () {
     angular.bootstrap(document, ['evApp']);
 });

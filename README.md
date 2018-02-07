@@ -37,3 +37,14 @@ Requires ```node```
     11. 直接在 html 中引入
         
         > &lt;script src="bower_components/jquery/dist/jquery.js"></script>
+        
+    11. 通过 resolve.alias 来创建 import 或 require 的别名
+    
+        > resolve: {
+            alias: {
+                angular: path.resolve(__dirname, 'app/bower_components/angular/angular')
+            }
+        }
+        
+          使用则直接 import 或 require 进来。
+        > require('angular');
