@@ -81,3 +81,54 @@ Requires ```node```
                     })
           }])
           ```
+          
+1. **loader转换器**
+
+    Webpack本身只能处理JavaScript模块，如果要处理其他类型的文件，就需要使用loader进行转换。
+    通过loader可以支持各种语言和预处理器编写模块，包括：                                        
+    ```
+    CoffeeScript
+    TypeScript
+    ESNext (Babel)
+    Sass
+    Less
+    Stylus
+    ```
+    
+    loader描述了webpack如何处理非JavaScript(non-JavaScript)模块，并且在bundle中引入这些依赖；
+        
+    例如：在require引入style.css文件时，就需要css-loader转换，require('style-loader!css-loader!./style.css')或者{test: /\.css$/,loader: 'style-loader!css-loader'}；
+    
+    css-loader是允许webpack识别.css的文件，style-loader是将webpack识别完的css文件中的内容，在编译完运行文件的时候，将这些css用style标签包起来嵌在head内。
+
+    11. **处理样式文件**
+
+        ```
+        处理普通的.css 文件，需要安装 css-loader style-loader
+        .less 文件，需要安装 less-loader
+        .sass 文件，需安装  sass-loader
+        ```
+        
+        ```
+        rules: [
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            }
+        ]
+        ```
+            
+    11. 处理样式中的woff等字体文件
+    
+        ````
+        添加一个url-loader，处理字体、图片之类的文件；
+        url-loader和file-loader 都是用于打包文件和图片，一般限制小图片转 base64 可以用 url-loader，其他情况都用 file-loader；
+        url-loader应该是在file-loader基础上加了一层过滤。
+        ````
+        
+        ```
+        {
+            test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
+            loader: 'file-loader?name=fonts/[name].[ext]'  //将css中用到的字体全部提取存放到fonts目录下，fonts目录是相对output.path目录而言的
+        }
+        ```

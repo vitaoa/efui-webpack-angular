@@ -1,8 +1,13 @@
 /**
  * Created by vita on 2018/1/29.
  */
+'use strict';
+
 
 const path = require("path");
+
+//路径定义
+var publicPath = '/';
 
 
 module.exports = {
@@ -15,6 +20,7 @@ module.exports = {
     //文件导出的配置
     output:{
         path:path.resolve(__dirname,'app'), //用来存放打包后文件的输出目录
+        publicPath: publicPath,
         filename:'bundle.js'
     },
     resolve: {//解析模块请求的选项（不适用于对 loader 解析）
@@ -28,5 +34,18 @@ module.exports = {
     },
     externals: {//防止将某些 import 的包打包到 bundle 中
         //"jquery": "window.$"
+    },
+    // 使用loader转换器
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
+                loader: 'file-loader?name=fonts/[name].[ext]' //将css中用到的字体全部提取存放到fonts目录下，fonts目录是相对output.path目录而言的
+            },
+        ]
     },
 }
