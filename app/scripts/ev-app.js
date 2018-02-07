@@ -7,7 +7,8 @@ $(function () {
 
 angular.module('evApp', ['ui.router'])
 
-    .config(["$stateProvider","$urlRouterProvider", function ($stateProvider,$urlRouterProvider){
+    .config(["$stateProvider","$urlRouterProvider","$locationProvider", function ($stateProvider,$urlRouterProvider,$locationProvider){
+        $locationProvider.hashPrefix('');
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state("index", { //导航用的名字，如<a ui-sref="login">login</a>里的login
@@ -19,7 +20,7 @@ angular.module('evApp', ['ui.router'])
                 }
             })
     }])
-    
+
     .run(function ($rootScope) {
         console.log($rootScope);
     });

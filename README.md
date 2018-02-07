@@ -49,6 +49,12 @@ Requires ```node```
           使用则直接 import 或 require 进来。
         > require('angular');
         
+    11. 版本注意
+        ```
+        Angular 1.6 版本更新后，使用ng-route大于1.6.0的版本时，地址中的 "/" 会自动被解析，而且还会在URL地址中加入#！。
+        在配置路由时添加如下代码即可：$locationProvider.hashPrefix('');
+        ```
+        
 1. **配置使用ui-router**
     
     11. 直接在 html 中引入（也可以通过别名引入，同angular）
