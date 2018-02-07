@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "server": "webpack --watch"
   },
   "devDependencies": {
     "css-loader": "^0.28.9",

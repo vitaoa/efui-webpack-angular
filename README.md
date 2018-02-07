@@ -82,6 +82,21 @@ Requires ```node```
           }])
           ```
           
+1. **相关的命令参数**
+
+    每次修改完文件进行编译时都需要写命令，很是繁琐，在命令最后加上--watch，当文件有变化时，就会自动编译：webpack --watch。
+    
+    在webpack执行命令之后可以添加一些参数，这些参数都有自己的作用，下面是参数列表：
+    ````
+    --watch //监听变动并自动打包
+    --progress //当前打包的进度条
+    --display-modules：打包的模块，依赖什么而打包也会列出来
+    --display-reasons：打包模块的原因，因为什么打包
+    --color //添加颜色
+    -p //压缩混淆脚本，容易报错
+    -d //生成map映射文件，告知哪些模块被最终打包到哪里了其中的
+    ````
+
 1. **loader转换器**
 
     Webpack本身只能处理JavaScript模块，如果要处理其他类型的文件，就需要使用loader进行转换。
@@ -101,7 +116,26 @@ Requires ```node```
     
     css-loader是允许webpack识别.css的文件，style-loader是将webpack识别完的css文件中的内容，在编译完运行文件的时候，将这些css用style标签包起来嵌在head内。
 
-    11. **处理样式文件**
+    11. loader的三种用法：
+    
+        1. require()        
+        2. 在配置文件webpack.config.js中通过module.loaders进行配置        
+        3. 在命令行中配置：可以通过--module-bind把Loader绑定到扩展名上，webpack --module-bind 'css=style-loader!css-loader'
+        
+    11. loader的参数
+        
+        loader可以传入query字符作为参数（像浏览器中那样），query字符串跟在 Loader后面。
+        
+        例如 `test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,file-loader?name=fonts/[name].[ext]`。
+         
+        或者：
+        `{
+            test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
+            loader: "file-loader",
+            query: { name: '[name][hash].[ext]' }
+        }`
+        
+    11. 处理样式文件
 
         ```
         处理普通的.css 文件，需要安装 css-loader style-loader
