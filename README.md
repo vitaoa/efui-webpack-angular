@@ -31,3 +31,9 @@ Requires ```node```
           使用则直接 import 或 require 进来。
         > import $ from 'jquery';
           var $ = require('jquery');
+
+1. **angular引入**
+    
+    11. 直接在 html 中引入
+        
+        > &lt;script src="bower_components/jquery/dist/jquery.js"></script>
