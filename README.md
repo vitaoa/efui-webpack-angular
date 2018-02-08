@@ -99,7 +99,7 @@ Requires ```node```
 
 1. **loader转换器**
 
-    Webpack本身只能处理JavaScript模块，如果要处理其他类型的文件，就需要使用loader进行转换。
+    Webpack本身只能处理JavaScript模块，如果要处理其他类型的文件，就需要使用loader进行转换，**并自动生成处理后的文件**。
     通过loader可以支持各种语言和预处理器编写模块，包括：                                        
     ```
     CoffeeScript
@@ -129,11 +129,17 @@ Requires ```node```
         例如 `test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,file-loader?name=fonts/[name].[ext]`。
          
         或者：
-        `{
+        ```
+        {
             test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
             loader: "file-loader",
-            query: { name: '[name][hash].[ext]' }
-        }`
+            query: {
+                publicPath:'./', //设置路径是相对output.path的
+                outputPath:'fonts/', //将css中用到的字体全部提取存放到fonts目录下
+                name: '[name].[ext]'
+            }
+        }
+        ```
         
     11. 处理样式文件
 
@@ -167,19 +173,21 @@ Requires ```node```
         ```
         {
             test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
-            loader: 'file-loader?name=fonts/[name].[ext]'  //将css中用到的字体全部提取存放到fonts目录下，fonts目录是相对output.path目录而言的
+            loader: 'file-loader?name=fonts/[name].[ext]'
         }
         ```
             
-    11. 打包图片小图片转换成base64,大图片自动转换成网络路径
+    11. 处理小图片转换成base64,大图片自动转换成网络路径
         
         ````        
         {
             test: /\.(png|jpe?g|gif|ico)(\?\S*)?$/,
             loader: 'url-loader',
             query: {
-                limit: 8*1024, // 图片大小限制 单位b
-                name: '[path][name].[ext]' // 生成的文件的存放目录
+                publicPath:'./', //设置路径是相对output.path的
+                outputPath:'images/', //将css中用到的超过限制的图片全部提取存放到images目录下
+                limit: 6*1024, // 图片大小限制 单位b
+                name: '[name].[ext]' // 生成的文件的存放目录
             }
         },
         ````
