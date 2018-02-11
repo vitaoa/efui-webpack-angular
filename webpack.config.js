@@ -5,6 +5,7 @@
 
 
 const path = require("path");
+const webpack = require("webpack");
 
 //路径定义
 var publicPath = '/';
@@ -67,4 +68,14 @@ module.exports = {
             },
         ]
     },
+    plugins:[
+        new webpack.HotModuleReplacementPlugin(),
+    ],
+    //对webpack-dev-server进行配置
+    devServer:{
+        contentBase:"./app/", // 本地服务器在哪个目录搭建页面
+        inline:true, // 用来支持webpack-dev-server自动刷新的配置
+        hot:true, // 启动webpack热模块替换特性
+        port:8080 //端口号(默认8080)
+    }
 }

@@ -191,3 +191,34 @@ Requires ```node```
             }
         },
         ````
+        
+1. **webpack-dev-server配置**
+    每次修改文件，是将文件打包保存在内存中并没有写在磁盘里，这种打包得到的文件和项目根目录中的index.html位于同一级
+   
+    11. 通过devServer对webpack-dev-server进行配置：
+   
+        ````
+        devServer:{
+            contentBase:"./app/", // 本地服务器在哪个目录搭建页面，项目根目录中的index.html目录
+            inline:true, // 用来支持webpack-dev-server自动刷新的配置
+            hot:true, // 启动webpack热模块替换特性
+            port:8080 //端口号(默认8080)
+        } 
+        ````
+    11. 为了方便，可以直接在packjson中对webpack-dev-server的启动进行设置：
+   
+        ````
+        "dev": "webpack-dev-server --inline"
+        ````
+   11. 填坑：
+   
+        使用webpack-dev-server时，开启了inline和hot，但是热更新无效，原因是，没有引入这个插件HotModuleReplacementPlugin，需要如下声明：
+        new webpack.HotModuleReplacementPlugin();
+       
+        ````
+        plugins:[
+            new webpack.HotModuleReplacementPlugin(),
+        ]
+        ````
+
+
