@@ -154,8 +154,7 @@ Requires ```node```
         * expanded：没有缩进的、扩展的css代码。            
         * compact：简洁格式的css代码。            
         * compressed：压缩后的css代码。
-          
-        
+             
         ```
         rules: [
             {
@@ -168,7 +167,6 @@ Requires ```node```
             },
         ]
         ```
-        
             
     11. 处理样式中的woff等字体文件
     
@@ -232,7 +230,7 @@ Requires ```node```
 
 1. **extract-text-webpack-plugin配置**
 
-    使用extract-text-webpack-plugin插件将css单独打包成一个文件。
+    使用extract-text-webpack-plugin插件将css单独打包成一个文件。**webpack-dev-server热替换时，对extract-text-webpack-plugin抽离的css无效，建议开发环境下不用**
     
     ````
     const ExtractTextPlugin = require("extract-text-webpack-plugin"); 
@@ -253,5 +251,22 @@ Requires ```node```
         ]
     }),
     ````
+
+1. **构建生产和开发环境分离**
+    通过npm scripts设置是否开发环境（development）：
+    * 安装cross-env：npm install cross-env --save-dev；
+    * 在NODE_ENV=xxxxxxx前面添加cross-env就可以了，通过process.env.NODE_ENV来访问。
     
+    开发模式下：不使用extract-text-webpack-plugin插件。用到了以下插件：
+    ````
+    webpack-dev-server
+    ````
+    
+    生产模式下：主要涉及导出目录、代码混淆、去除冗余代码等相关配置。用到了以下插件：
+    ````
+    DefinePlugin：定义环境变量
+    webpack.LoaderOptionsPlugin：去除调试代码，压缩代码
+    webpack.optimize.UglifyJsPlugin：针对JS的混淆配置
+    CopyWebpackPlugin：复制手动引入的资源文件到指定目录
+    ````
 
