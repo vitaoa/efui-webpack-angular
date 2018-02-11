@@ -6,6 +6,7 @@
 
 const path = require("path");
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 //路径定义
 var publicPath = '/';
@@ -45,7 +46,18 @@ module.exports = {
             },
             {
                 test: /\.s[c,a]ss$/,
-                loader: 'style-loader!css-loader!sass-loader'
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',// creates style nodes from JS strings
+                    use: [
+                        {loader:'css-loader'},
+                        {
+                            loader:'sass-loader',
+                            options: {
+                                outputStyle : 'compact' //输出css的格式两个常用选项:compact({}行), compressed(压缩一行)
+                            }
+                        }
+                    ]
+                }),
             },
             {
                 test: /\.(woff2?|svg|eot|ttf|otf)(\?.*)?$/,
@@ -70,12 +82,16 @@ module.exports = {
     },
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin({ // 所有js文件中通过require引入的css都会被打包成相应文件名字的css
+            filename: "[name].css",
+            allChunks: true
+        })
     ],
     //对webpack-dev-server进行配置
     devServer:{
         contentBase:"./app/", // 本地服务器在哪个目录搭建页面
         inline:true, // 用来支持webpack-dev-server自动刷新的配置
         hot:true, // 启动webpack热模块替换特性
-        port:8080 //端口号(默认8080)
+        port:8888 //端口号(默认8080)
     }
 }

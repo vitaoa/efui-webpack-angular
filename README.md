@@ -149,6 +149,13 @@ Requires ```node```
         .sass 文件，需安装  sass-loader
         ```
         
+        SASS提供四个编译风格的选项：        
+        * nested：嵌套缩进的css代码，它是默认值。            
+        * expanded：没有缩进的、扩展的css代码。            
+        * compact：简洁格式的css代码。            
+        * compressed：压缩后的css代码。
+          
+        
         ```
         rules: [
             {
@@ -157,10 +164,11 @@ Requires ```node```
             },
             {
                 test: /\.s[c,a]ss$/,
-                loader: 'style-loader!css-loader!sass-loader'
+                loader: 'style-loader!css-loader!sass-loader?outputStyle=compact'
             },
         ]
         ```
+        
             
     11. 处理样式中的woff等字体文件
     
@@ -193,6 +201,7 @@ Requires ```node```
         ````
         
 1. **webpack-dev-server配置**
+
     每次修改文件，是将文件打包保存在内存中并没有写在磁盘里，这种打包得到的文件和项目根目录中的index.html位于同一级
    
     11. 通过devServer对webpack-dev-server进行配置：
@@ -210,7 +219,7 @@ Requires ```node```
         ````
         "dev": "webpack-dev-server --inline"
         ````
-   11. 填坑：
+    11. 填坑：
    
         使用webpack-dev-server时，开启了inline和hot，但是热更新无效，原因是，没有引入这个插件HotModuleReplacementPlugin，需要如下声明：
         new webpack.HotModuleReplacementPlugin();
@@ -221,4 +230,28 @@ Requires ```node```
         ]
         ````
 
+1. **extract-text-webpack-plugin配置**
+
+    使用extract-text-webpack-plugin插件将css单独打包成一个文件。
+    
+    ````
+    const ExtractTextPlugin = require("extract-text-webpack-plugin"); 
+    new ExtractTextPlugin({ // 所有js文件中通过require引入的css都会被打包成相应文件名字的css
+        filename: "[name].css",
+        allChunks: true
+    })
+    use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',// creates style nodes from JS strings
+        use: [
+            {loader:'css-loader'},
+            {
+                loader:'sass-loader',
+                options: {
+                    outputStyle : 'compact' //输出css的格式两个常用选项:compact({}行), compressed(压缩一行)
+                }
+            }
+        ]
+    }),
+    ````
+    
 
