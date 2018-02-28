@@ -1,20 +1,15 @@
 ﻿'use strict';
+var $ = require('jquery');
+require('angular');
 require('appRoutes');
+require('angularUiRouter');
 
 // css 文件引入
 
-require("../styles/reset.min.css");
-require("../styles/efui.min.css");
-require("../styles/main.min.css");
-require("../styles/nav.min.css");
-require("../styles/sidebar.min.css");
-require("../styles/prettyprint.min.css");
-require("../styles/button.min.css");
-require("../styles/popup.min.css");
-require("../styles/animation.min.css");
-require("../styles/ncss.min.css");
-require("../styles/plugin.min.css");
-require("../styles/sass.scss");
+require("../styles/base.scss");
+require("../styles/layout.scss");
+require("../styles/nav.scss");
+require("../styles/component.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);

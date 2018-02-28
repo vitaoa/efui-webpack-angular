@@ -1,0 +1,84 @@
+/* ============ docs-header ============ */
+.docs-header {
+  color: #b9c8e0;
+  background-color: #2F486F;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .15)
+}
+
+.docs-header h1 {
+  color: #fff;
+  font-size: 20px;
+  margin: 0 0 1.6rem 0
+}
+
+.docs-header h2 {
+  color: #fff;
+  font-size: 20px;
+  margin: 0 0 1.6rem 0
+}
+
+.docs-header p {
+  font-weight: 300;
+  line-height: 1.5
+}
+
+.docs-header .container {
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box
+}
+
+@media (min-width: 768px) {
+  .docs-header {
+    font-size: 24px
+  }
+
+  .docs-header h1 {
+    font-size: 64px;
+    line-height: 1.5
+  }
+
+  .docs-header h2 {
+    font-size: 36px;
+    line-height: 1.5
+  }
+}
+
+
+/* ============ feature-list ============ */
+.feature-list {
+  padding: 30px 15px;
+  overflow: hidden;
+  box-sizing: border-box
+}
+
+.feature-list-item {
+  border-radius: 3px;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 15px;
+  text-align: center
+}
+
+.feature-list div ~ div {
+  margin-top: 15px
+}
+
+.feature-desc {
+  text-align: center;
+  line-height: 20px
+}
+
+@media (min-width: 768px) {
+  .feature-list {
+    margin: 60px 0
+  }
+
+  .feature-list div ~ div {
+    margin-top: 0
+  }
+
+  .feature-desc {
+    text-align: left
+  }
+}

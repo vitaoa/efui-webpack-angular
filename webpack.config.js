@@ -11,13 +11,32 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const isDev = process.env.NODE_ENV == "development"; // 是开发环境还是生产环境(请看package.json的script）
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
 
 //路径定义
 const publicPath = '/';
 
 //定义插件
 const plugins=[
-
+    new HtmlWebpackPlugin({
+        "title": 'EFUI - Easy Fast front-end UI frame',
+        "date" :'2018.1',
+        'Designed':'',
+        'Coded':'Vita',
+        "template": path.resolve(__dirname,'app/demo.html'), // 模板名
+        "filename": 'index.html', // 生成的文件名
+        "favicon": '../favicon.ico',
+        "hash": false, // 是否加上hash
+        "xhtml": true, // 是否用<tag />表示自闭合
+        // "chunks": ["common"], // 添加进去的js chunk
+        "chunksSortMode": "dependency", // chunk排序方式
+        "minify": false
+    }),
+    new CopyWebpackPlugin([{
+        from: __dirname + '/app/partials',
+        to: __dirname + '/dist/partials'
+    }])
 ];
 
 
@@ -37,9 +56,8 @@ if (!isDev) {
         },
         //文件导出的配置
         output:{
-            path:path.resolve(__dirname,'app'), //用来存放打包后文件的输出目录
-            publicPath: publicPath,
-            filename:'bundle.js'
+            path:path.resolve(__dirname,'dist'), //用来存放打包后文件的输出目录
+            filename:'[name].js'
         },
         resolve: {//解析模块请求的选项（不适用于对 loader 解析）
             alias: {//创建 import 或 require 的别名
@@ -51,7 +69,7 @@ if (!isDev) {
             }
         },
         externals: {//防止将某些 import 的包打包到 bundle 中
-            //"jquery": "window.$"
+            // "jquery": "window.$"
         },
         // 使用loader转换器
         module: {

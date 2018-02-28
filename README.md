@@ -270,3 +270,22 @@ Requires ```node```
     CopyWebpackPlugin：复制手动引入的资源文件到指定目录
     ````
 
+
+1. **html-webpack-plugin配置**
+
+    ````
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    plugins: [new HtmlWebpackPlugin()]
+    ````
+
+
+1. **copy-webpack-plugin配置**
+
+    ````
+    const CopyWebpackPlugin = require('copy-webpack-plugin');    
+    new CopyWebpackPlugin([{
+        from: __dirname + '/app/partials',
+        to: __dirname + '/dist/partials'
+    }])
+    ````
+
