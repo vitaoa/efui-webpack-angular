@@ -6,10 +6,10 @@ require('angularUiRouter');
 
 // css 文件引入
 
-require("../styles/base.scss");
-require("../styles/layout.scss");
-require("../styles/nav.scss");
-require("../styles/component.scss");
+require("../styles/_base.scss");
+require("../styles/_layout.scss");
+require("../styles/_navbar.scss");
+require("../styles/_component.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);
