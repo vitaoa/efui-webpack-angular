@@ -29,14 +29,29 @@ const plugins=[
         "favicon": '../favicon.ico',
         "hash": false, // 是否加上hash
         "xhtml": true, // 是否用<tag />表示自闭合
-        // "chunks": ["common"], // 添加进去的js chunk
-        "chunksSortMode": "dependency", // chunk排序方式
+        //"chunks": ['jquery',  'app'], // 添加进去的js chunk
+        // "chunksSortMode": "dependency", // chunk排序方式
+        "chunksSortMode": function (chunk1, chunk2) {
+            var order = ['jquery', 'angular', 'app'];
+            var order1 = order.indexOf(chunk1.names[0]);
+            var order2 = order.indexOf(chunk2.names[0]);
+            return order1 - order2;
+        },
         "minify": false
     }),
     new CopyWebpackPlugin([{
         from: __dirname + '/app/partials',
         to: __dirname + '/dist/partials'
-    }])
+    }]),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //     names: ['vendor', 'angular'],
+    //     filename: 'js/[name].bundle.js'
+    // }),
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+    })
 ];
 
 
@@ -125,13 +140,17 @@ if (!isDev) {
         context: path.resolve(__dirname,'app/scripts'),
         //入口文件配置
         entry: {
-            "app": "./ev-app.js"
+            app: "./ev-app.js",
+            // jquery: ['jquery'],
+            // angular: ['angular', 'angularUiRouter']
         },
         //文件导出的配置
         output:{
             path:path.resolve(__dirname,'app'), //用来存放打包后文件的输出目录
             publicPath: publicPath,
-            filename:'bundle.js'
+            library: "EFUI",// 组件名称
+            filename: "[name].js",
+            chunkFilename: "[id].js"
         },
         resolve: {//解析模块请求的选项（不适用于对 loader 解析）
             alias: {//创建 import 或 require 的别名
@@ -139,11 +158,17 @@ if (!isDev) {
                 angular: path.resolve(__dirname, 'app/bower_components/angular/angular'),
                 angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router'),
 
-                appRoutes: path.resolve(__dirname, 'app/scripts/ev-app.routes')
+                appRoutes: path.resolve(__dirname, 'app/scripts/ev-app.routes'),
+                jqueryPrettify: path.resolve(__dirname, 'app/scripts/jquery.prettify'),
+                jqueryCollapse: path.resolve(__dirname, 'app/scripts/jquery.collapse'),
+                jquerySlider: path.resolve(__dirname, 'app/scripts/jquery.slider'),
+                efui: path.resolve(__dirname, 'app/scripts/efui')
             }
         },
         externals: {//防止将某些 import 的包打包到 bundle 中
-            //"jquery": "window.$"
+            // "jquery": "window.$",
+            // "angular": "angular",
+            // "angularUiRouter": "angularUiRouter"
         },
         // 使用loader转换器
         module: {
