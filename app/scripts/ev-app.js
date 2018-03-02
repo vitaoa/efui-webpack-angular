@@ -1,7 +1,4 @@
 ﻿'use strict';
-var $ = require('jquery');
-require('angular');
-require('angularUiRouter');
 
 require('appRoutes');
 require('jqueryPrettify');
@@ -214,5 +211,6 @@ angular.module('evApp', ['evApp.routes'])
                     'width': _o_p.width()
                 });
             }
+
         })
     });

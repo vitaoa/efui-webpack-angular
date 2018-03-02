@@ -54,6 +54,17 @@ Requires ```node```
         Angular 1.6 版本更新后，使用ng-route大于1.6.0的版本时，地址中的 "/" 会自动被解析，而且还会在URL地址中加入#！。
         在配置路由时添加如下代码即可：$locationProvider.hashPrefix('');
         ```
+
+1. **ProvidePlugin**
+
+    使用ProvidePlugin加载的模块在使用时将不再需要import和require进行引入，使用语法：
+    ````
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+    })
+    ````
+
         
 1. **配置使用ui-router**
     
@@ -253,6 +264,7 @@ Requires ```node```
     ````
 
 1. **构建生产和开发环境分离**
+
     通过npm scripts设置是否开发环境（development）：
     * 安装cross-env：npm install cross-env --save-dev；
     * 在NODE_ENV=xxxxxxx前面添加cross-env就可以了，通过process.env.NODE_ENV来访问。
@@ -270,14 +282,12 @@ Requires ```node```
     CopyWebpackPlugin：复制手动引入的资源文件到指定目录
     ````
 
-
 1. **html-webpack-plugin配置**
 
     ````
     const HtmlWebpackPlugin = require('html-webpack-plugin');
     plugins: [new HtmlWebpackPlugin()]
     ````
-
 
 1. **copy-webpack-plugin配置**
 
@@ -289,3 +299,40 @@ Requires ```node```
     }])
     ````
 
+1. **打包**
+    
+    项目打包策略遵循以下几点原则：    
+    * 选择合适的打包粒度，生成的单文件大小不要超过500KB    
+    * 充分利用浏览器的并发请求，同时保证并发数不超过6  
+    * 尽可能让浏览器命中304，频繁改动的业务代码不要与公共代码打包  
+    * 避免加载太多用不到的代码，层级较深的页面进行异步加载  
+     
+    基于以上原则，我选择的打包策略如下：    
+    * 第三方库如jquery、angular、angular-ui打包为一个文件
+    * 公共组件如弹窗、菜单等打包为一个文件
+    * 工具类、项目通用基类打包为一个文件
+       
+    11. 第三方库的打包
+    
+        配置文件的写法:
+    
+            entry: {
+                vendor: ['jquery', 'angular', 'angularUiRouter']
+            },
+            resolve: {
+                alias: {
+                    jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery'),
+                    angular: path.resolve(__dirname, 'app/bower_components/angular/angular'),
+                    angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router'),
+                }
+            },
+            
+        为了把第三方库拆分出来，我们还需要用webpack的CommonsChunkPlugin插件来把它提取一下，这样他就不会与业务代码打包到一起了。代码：
+        
+            new webpack.optimize.CommonsChunkPlugin('vendor'),
+    
+
+    
+        
+        
+        

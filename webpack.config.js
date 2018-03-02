@@ -27,9 +27,10 @@ const plugins=[
         "template": path.resolve(__dirname,'app/demo.html'), // 模板名
         "filename": 'index.html', // 生成的文件名
         "favicon": '../favicon.ico',
+        "inject": true,
         "hash": false, // 是否加上hash
         "xhtml": true, // 是否用<tag />表示自闭合
-        //"chunks": ['jquery',  'app'], // 添加进去的js chunk
+        "chunks": ['vendor','app'], // 添加进去的js chunk
         // "chunksSortMode": "dependency", // chunk排序方式
         "chunksSortMode": function (chunk1, chunk2) {
             var order = ['jquery', 'angular', 'app'];
@@ -43,17 +44,16 @@ const plugins=[
         from: __dirname + '/app/partials',
         to: __dirname + '/dist/partials'
     }]),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //     names: ['vendor', 'angular'],
-    //     filename: 'js/[name].bundle.js'
-    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor'],
+        filename: '[name].bundle.js'
+    }),
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
-    })
+    }),
 ];
-
 
 if (!isDev) {
     console.log("-----------------正在使用生产模式构建工程------------------");
@@ -141,14 +141,12 @@ if (!isDev) {
         //入口文件配置
         entry: {
             app: "./ev-app.js",
-            // jquery: ['jquery'],
-            // angular: ['angular', 'angularUiRouter']
+            vendor: ['jquery', 'angular', 'angularUiRouter']
         },
         //文件导出的配置
         output:{
             path:path.resolve(__dirname,'app'), //用来存放打包后文件的输出目录
             publicPath: publicPath,
-            library: "EFUI",// 组件名称
             filename: "[name].js",
             chunkFilename: "[id].js"
         },
