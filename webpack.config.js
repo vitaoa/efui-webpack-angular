@@ -13,6 +13,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const isDev = process.env.NODE_ENV == "development"; // 是开发环境还是生产环境(请看package.json的script）
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
+const CleanWebpackPlugin = require('clean-webpack-plugin'); //清除文件
 
 //路径定义
 const publicPath = '/';
@@ -61,13 +62,22 @@ if (!isDev) {
         filename: "[name].css",
         allChunks: true
     }));
+    plugins.push(new CleanWebpackPlugin(
+        ['dist/'], //匹配删除的文件
+        {
+            root: __dirname, //根目录
+            verbose: true, //开启在控制台输出信息
+            dry: false //启用删除文件
+        }
+    ));
 
     module.exports = {
         //基础目录，入口起点（entry）会相对于此目录查找
         context: path.resolve(__dirname,'app/scripts'),
         //入口文件配置
         entry: {
-            "app": "./ev-app.js"
+            app: "./ev-app.js",
+            vendor: ['jquery', 'angular', 'angularUiRouter']
         },
         //文件导出的配置
         output:{
@@ -76,11 +86,9 @@ if (!isDev) {
         },
         resolve: {//解析模块请求的选项（不适用于对 loader 解析）
             alias: {//创建 import 或 require 的别名
-                jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery'),
-                angular: path.resolve(__dirname, 'app/bower_components/angular/angular'),
-                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router'),
-
-                appRoutes: path.resolve(__dirname, 'app/scripts/ev-app.routes')
+                jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery.min'),
+                angular: path.resolve(__dirname, 'app/bower_components/angular/angular.min'),
+                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router.min')
             }
         },
         externals: {//防止将某些 import 的包打包到 bundle 中
@@ -152,18 +160,12 @@ if (!isDev) {
         },
         resolve: {//解析模块请求的选项（不适用于对 loader 解析）
             alias: {//创建 import 或 require 的别名
-                jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery'),
-                angular: path.resolve(__dirname, 'app/bower_components/angular/angular'),
-                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router'),
-
-                appRoutes: path.resolve(__dirname, 'app/scripts/ev-app.routes'),
-                jqueryPrettify: path.resolve(__dirname, 'app/scripts/jquery.prettify'),
-                jqueryCollapse: path.resolve(__dirname, 'app/scripts/jquery.collapse'),
-                jquerySlider: path.resolve(__dirname, 'app/scripts/jquery.slider'),
-                efui: path.resolve(__dirname, 'app/scripts/efui')
+                jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery.min'),
+                angular: path.resolve(__dirname, 'app/bower_components/angular/angular.min'),
+                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router.min')
             }
         },
-        externals: {//防止将某些 import 的包打包到 bundle 中
+        externals: {//防止将某些 import 的包打包到 bundle 中，必须在html页面里面添加。
             // "jquery": "window.$",
             // "angular": "angular",
             // "angularUiRouter": "angularUiRouter"

@@ -12,7 +12,7 @@ Requires ```node```
         
         > &lt;script src="bower_components/jquery/dist/jquery.js">&lt;/script>
         
-          需要 import 或 require 进来的话，就在 externals 中把它配置为全局，不会打包。（目测不需要用？）
+          需要 import 或 require 进来的话，就在 externals 中把它配置为全局，不会打包。（**必须在html页面里面添加**）
         > externals: {
               jquery: 'window.$'
           }
@@ -299,6 +299,19 @@ Requires ```node```
     }])
     ````
 
+1. **clean-webpack-plugin配置**
+    ````
+    const CleanWebpackPlugin = require('clean-webpack-plugin');
+    new CleanWebpackPlugin(
+        ['dist/',],　 //匹配删除的文件
+        {
+            root: __dirname,       　　　　　　　　　　//根目录
+            verbose:  true,        　　　　　　　　　　//开启在控制台输出信息
+            dry:      false        　　　　　　　　　　//启用删除文件
+        }
+    )
+    ````
+
 1. **打包**
     
     项目打包策略遵循以下几点原则：    
@@ -331,7 +344,7 @@ Requires ```node```
         
             new webpack.optimize.CommonsChunkPlugin('vendor'),
     
-
+    11. 公共组件的打包
     
         
         

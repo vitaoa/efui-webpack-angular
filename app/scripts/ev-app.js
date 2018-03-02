@@ -1,10 +1,17 @@
 ﻿'use strict';
 
-require('appRoutes');
-require('jqueryPrettify');
-require('jqueryCollapse');
-require('jquerySlider');
-require('efui');
+require("./ev-app.routes");
+require("./jquery.prettify");
+require("./jquery.collapse");
+require("./jquery.slider");
+require('./efui');
+
+// require.ensure([],function(){
+//     require("./jquery.prettify.js");
+//     require("./jquery.collapse.js");
+//     require("./jquery.slider.js");
+//     require('./efui.js');
+// },"efuicomponent");
 
 // css 文件引入
 
