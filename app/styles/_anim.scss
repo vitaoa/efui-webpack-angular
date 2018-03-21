@@ -1,6 +1,7 @@
 /* ============ Animations ============ */
 // Layout
 @import "mixins/clearfix";
+@import "mixins/prefixer";
 @import "variables/variables";
 
 [class*="list-col-"]{@include clearfix;
@@ -36,30 +37,21 @@
 }
 
 /*transition*/
-.list-item{position: relative;transition:all 0.15s ease-out 0.05s;top:0;
-    &:hover{top:-10px;transition:all .01s cubic-bezier(0,0,.33,1.02) .05s;}
+.list-item{position: relative;top:0;@include prefixer(transition, all 0.15s ease-out 0.05s, ("webkit","ms","moz","o"));
+    &:hover{top:-10px;@include prefixer(transition, all .01s cubic-bezier(0,0,.33,1.02) .05s, ("webkit","ms","moz","o"));}
 }
 
 /*transform*/
 .i-pop-close{/*position: absolute;top:-16px;right:-16px;*/position: relative;
     display: block;background: #eee;width:40px;height:40px;border-radius: 50%;transition: all ease 0.6s;
     &:before,&:after{ content: ''; display: block; width: 2px; height: 18px; background: #363461; position: absolute; left: 50%; top: 50%;
-        -webkit-transform: translate(-50%, -50%) rotate(45deg);
-        -ms-transform: translate(-50%, -50%) rotate(45deg);
-        -o-transform: translate(-50%, -50%) rotate(45deg);
-        transform: translate(-50%, -50%) rotate(45deg);
+        @include prefixer(transform, translate(-50%, -50%) rotate(45deg), ("webkit","ms","moz","o"));
     }
     &:after{
-        -webkit-transform: translate(-50%, -50%) rotate(-45deg);
-        -ms-transform: translate(-50%, -50%) rotate(-45deg);
-        -o-transform: translate(-50%, -50%) rotate(-45deg);
-        transform: translate(-50%, -50%) rotate(-45deg);
+        @include prefixer(transform, translate(-50%, -50%) rotate(-45deg), ("webkit","ms","moz","o"));
     }
     &:hover{
-        -webkit-transform: rotate(-180deg);
-        -ms-transform: rotate(-180deg);
-        -o-transform: rotate(-180deg);
-        transform: rotate(-180deg);
+        @include prefixer(transform, rotate(-180deg), ("webkit","ms","moz","o"));
     }
 
 }
