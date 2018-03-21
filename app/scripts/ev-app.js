@@ -23,6 +23,7 @@ require("../styles/_sidebar.scss");
 require("../styles/_fonticons.scss");
 require("../styles/_prettyprint.scss");
 require("../styles/_button.scss");
+require("../styles/_anim.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);

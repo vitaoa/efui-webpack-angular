@@ -1,0 +1,32 @@
+<div class="docs-header">
+	<div class="container animation-scale-up" id="docs-con">
+		<h2>{{docsTit}}</h2>
+		<p>{{docsMsg}}</p>		
+	</div>
+</div>
+<div class="container">
+
+	<div class="row main-container clearfix">
+
+		<div class="col-xs-12 col-sm-3 col-md-3" id="sidebar">
+			<div class="sidebar-menu sidebar-slide">
+				<section class="sidebar-slide-overlay">
+						<dl>
+							<dt><a href="javascript:;">基本动画</a></dt>
+							<dd ui-sref-active="active"><a ui-sref="animation.pages({pageid: 'transition'})">过渡</a></dd>
+							<dd ui-sref-active="active"><a ui-sref="animation.pages({pageid: 'transform'})">变换</a></dd>
+							<dd ui-sref-active="active"><a ui-sref="animation.pages({pageid: 'animation'})">动画</a></dd>
+						</dl>
+						<!--<dl>-->
+							<!--<dt><a href="javascript:;">App实例</a></dt>-->
+							<!--<dd ui-sref-active="active"><a ui-sref="animation.pages({pageid: 'app-login'})">登录</a></dd>-->
+						<!--</dl>-->
+				</section>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-9 col-md-9">
+			<div ui-view></div>
+		</div>
+
+	</div>
+</div>

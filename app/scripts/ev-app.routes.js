@@ -12,6 +12,18 @@
                         $scope.docsMsg = "EFUI为一款轻量级前端UI框架，通俗易懂的写法及模块式的拼装方便自由扩展，简单易用，轻量快捷。";
                     }
                 })
+                .state('animation', {
+                    url: "/animation",
+                    templateUrl: "partials/animation/index.html",
+                    controller: function($scope, $location) {
+                        $scope.docsTit = "css 动画";
+                        $scope.docsMsg = "CSS3 Transitions, Transforms和Animation使用简介与应用展示";
+                    }
+                })
+                .state('animation.pages', {
+                    url: "/:pageid",
+                    templateUrl: function($paramid){return 'partials/animation/'+$paramid.pageid+'.html';}
+                })
                 .state('standard', {
                     url: "/standard",
                     templateUrl: "partials/standard/index.html",

@@ -135,7 +135,8 @@
     border: 1px solid #eee;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
-    padding: 0 15px 15px
+    padding: 0 15px 15px;
+    & + .example-visualize{margin-top:20px;}
 }
 
 .example-demo:before {
@@ -155,7 +156,8 @@
 .example-visualize {
     padding: 39px 19px 14px;
     border: 1px solid #e8e8e8;
-    position: relative
+    position: relative;
+    & + .example-demo{margin-top:20px;}
 }
 
 .example-visualize:before {
