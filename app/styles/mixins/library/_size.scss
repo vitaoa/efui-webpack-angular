@@ -1,0 +1,27 @@
+
+/// @example scss
+///   .second-element {
+///     @include size(auto, 10em);
+///   }
+///
+///   // CSS Output
+///   .second-element {
+///     width: auto;
+///     height: 10em;
+///   }
+@mixin size($width,$height: $width) {
+  @if _is-size($height) {
+    height: $height;
+  } @else {
+    @error "`#{$height}` is not a valid length for the `$height` argument " +
+           "in the `size` mixin.";
+  }
+
+  @if _is-size($width) {
+    width: $width;
+  } @else {
+    @error "`#{$width}` is not a valid length for the `$width` argument " +
+           "in the `size` mixin.";
+  }
+}
+

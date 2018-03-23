@@ -1,4 +1,4 @@
-
+//https://github.com/twbs/bootstrap-sass
 //================ Media queries breakpoints ================
 //
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
@@ -104,3 +104,13 @@ $headings-font-family:    inherit !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
+
+
+
+
+$_efui-defaults: (
+        "contrast-switch-dark-color": #000,
+        "contrast-switch-light-color": #fff,
+        "global-font-file-formats": ("ttf", "woff", "svg"),
+);
+$efui: () !default;

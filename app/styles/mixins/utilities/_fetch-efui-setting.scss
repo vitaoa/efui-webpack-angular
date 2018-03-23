@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/// Return  setting.
+///
+/// @argument {string} $setting
+///
+/// @return {boolean | color | list | number | string}
+///
+/// @example scss
+///   _fetch-bourbon-setting(rails-asset-pipeline)
+///
+/// @access private
+
+@function _fetch-efui-setting($setting) {
+  @return map-get(map-merge($_efui-defaults, $efui), $setting);
+}

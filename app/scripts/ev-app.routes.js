@@ -2,7 +2,7 @@
     angular.module('evApp.routes', ['ui.router'])
         .config(["$stateProvider","$urlRouterProvider","$locationProvider", function ($stateProvider,$urlRouterProvider,$locationProvider){
             $locationProvider.hashPrefix('');
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/animation/transition');
             $stateProvider
                 .state("index", { //导航用的名字，如<a ui-sref="login">login</a>里的login
                     url: '/',    //访问路径

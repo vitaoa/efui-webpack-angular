@@ -110,7 +110,7 @@ if (!isDev) {
                             {
                                 loader:'sass-loader',
                                 options: {
-                                    outputStyle : 'compact' //输出css的格式两个常用选项:compact({}行), compressed(压缩一行)
+                                    outputStyle : '' //输出css的格式两个常用选项:compact({}行), compressed(压缩一行)
                                 }
                             }
                         ]

@@ -1,6 +1,6 @@
 
 // Layout
-@import "mixins/clearfix";
+@import "mixins/library";
 @import "variables/variables";
 
 /* ============ Reset ============ */
@@ -168,11 +168,9 @@ a:active {
     color: #999;
 }
 
-@font-face {
-    font-family: fontico;
-    src: url(../fonts/ico.eot);
-    src: url(../fonts/ico.eot?#iefix) format('embedded-opentype'), url(../fonts/ico.woff) format('woff'), url(../fonts/ico.ttf) format('truetype'), url(../fonts/ico.svg#glyphicons_halflingsregular) format('svg')
-}
+
+
+@include font-face("fontico","../fonts/ico",("eot","woff","ttf","svg"));
 
 /* ============ Common ============ */
 

@@ -1,0 +1,23 @@
+
+//.animation {
+//  @include prefixer(animation, name 2s ease, ("webkit","ms","moz","o"));
+//}
+
+//dropDown
+@include keyframes(dropDown,("webkit","ms","moz","o")) {
+   0% {
+     #{prefixerAttr(transform, $current-prefix)}: translateY(-30px);
+     opacity: 0;
+   }
+   100% {
+     #{prefixerAttr(transform, $current-prefix)}: translateY(0);
+     opacity: 1;
+   }
+ }
+
+
+//progressBar
+@include keyframes(progressBar,("webkit","ms","moz","o")) {
+  0%{width:0}
+  100%{width:100%}
+}

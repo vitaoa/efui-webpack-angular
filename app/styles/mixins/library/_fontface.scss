@@ -1,0 +1,36 @@
+
+/// @example scss
+///   @include font-face(
+///     "source-sans-pro",
+///     "fonts/source-sans-pro-regular",
+///     ("woff2", "woff")
+///   ) {
+///     font-style: normal;
+///     font-weight: 400;
+///   }
+///
+///   // CSS Output
+///   @font-face {
+///     font-family: "source-sans-pro";
+///     src: url("fonts/source-sans-pro-regular.woff2") format("woff2"),
+///          url("fonts/source-sans-pro-regular.woff") format("woff");
+///     font-style: normal;
+///     font-weight: 400;
+///   }
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $file-formats: _fetch-bourbon-setting("global-font-file-formats"),
+  $asset-pipeline: _fetch-bourbon-setting("rails-asset-pipeline")
+) {
+  @font-face {
+    font-family: $font-family;
+    src: _font-source-declaration(
+                    $font-family,
+                    $file-path,
+                    $asset-pipeline,
+                    $file-formats
+    );
+    @content;
+  }
+}
