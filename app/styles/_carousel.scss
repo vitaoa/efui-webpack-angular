@@ -1,0 +1,47 @@
+/* ============ Carousel ============ */
+
+@import "mixins/prefixer";
+@import "mixins/library";
+@import "mixins/utilities/directional-property";
+
+
+.block-item{@include size(530px,259px);border-radius: 10px;overflow:hidden;text-align: center;background:#f0f2ff;font-family: 'PingFang_Heavy';
+    .block-item-txt{line-height:61px;font-size: 20px;color:#fff;font-family: 'PingFang_Medium';}
+    [class*="circle-"]{@include inline-block;margin: 0 50px;
+        @include size(150px,150px);border-radius: 50%;position: relative;z-index: 1;top:24px;
+        &:before,&:after{display: none;}
+        &:before{position: absolute;top: 0; bottom: 0;left: 0; right: 0;
+            @include gradient-horizontal(#32d3ac, #2ab3d4, 0%,100%);
+            content: '';border-radius: 50%;
+        }
+        &:after{position: absolute;top: 4px; bottom: 4px;left: 4px; right: 4px;
+            background:#f0f2ff;content: '';border-radius: 50%;
+        }
+        p{font-size: 20px;color:#555;position: relative;z-index: 2;top:35px;
+            span{display: block;font-size: 36px;}
+        }
+        .dif-line{display: block;@include size(1px,73px);background:#d0d4f2;position: absolute;top:50%;margin-top:-36px;right:-51px;}
+    }
+}
+.block-item-txt{@include gradient-horizontal(#32d3ac, #2ab3d4, 0%,100%);border-top-left-radius: 10px;border-top-right-radius:10px;}
+
+.switch-block{position: relative;margin: 6px 0 32px;height: 260px;
+    .list{width:100%;height: 100%;overflow: hidden;position: absolute;left: 0;}
+    li{position: absolute;top: 0;left: 50%;margin-left:-265px;list-style: none;@include opacity(50);transition: all 0.3s ease-out;}
+    .li-1{z-index: 1;}
+    .li-2{z-index: 3;@include opacity(100);
+        [class*="circle-"]{
+            &:before,&:after{display: block;}
+            p{
+                span{color:#d03231;}
+            }
+            .dif-line{background:#e1e4ff;}
+        }
+    }
+    .li-3{z-index: 2;}
+    .li-1{left:0;margin-left:0;
+        @include prefixer(transform, translate(-38px,0) scale(0.77), ("webkit","ms","moz","o"));}
+    .li-2{/*.transform(translate(0,0) scale(1));*/}
+    .li-3{left:auto;margin-left: 0;right:0;
+        @include prefixer(transform, translate(38px,0) scale(0.77), ("webkit","ms","moz","o"));}
+}

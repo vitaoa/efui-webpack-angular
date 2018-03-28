@@ -5,6 +5,8 @@ require("./jquery.prettify");
 require("./jquery.collapse");
 require("./jquery.slider");
 require('./efui');
+require('./rotary');
+require('./carousel');
 
 // require.ensure([],function(){
 //     require("./jquery.prettify.js");
@@ -25,6 +27,7 @@ require("../styles/_prettyprint.scss");
 require("../styles/_button.scss");
 require("../styles/_anim.scss");
 require("../styles/_rotary.scss");
+require("../styles/_carousel.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);

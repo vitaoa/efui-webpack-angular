@@ -28,7 +28,7 @@
 						</li>
 						<li class="lottery-unit lottery-btn">
 							<a href="">
-								今天还剩 <span id="rotaryTimes">1</span> 次抽奖机会
+								今天还剩 <span id="rotaryTimes">3</span> 次抽奖机会
 								<b>开始抽奖</b>
 							</a>
 							<div class="mask"></div>
@@ -63,11 +63,167 @@
         </div>
 	</li>
 </ol>
-<script type="text/javascript">
-	// require(['plugin'],function(){
-	// 	$('.picswitch').Picswitch({
-	// 		interval:1000,
-	// 		setIndex:0
-	// 	});
-	// });
-</script>
+
+<!--弹出层-未中奖-->
+<div class="PopupLayer notWinning dn">
+	<div class="popup-tb">
+		<div class="popup-tb-cell">
+			<div class="PopupBox">
+				<div class="PopupCon al-c">
+					<i class="pop-status01"></i>
+					<div class="status-txt">
+						您今天还剩 <span class="c-red">0</span> 次抽奖机会！
+					</div>
+					<p>交易越多，中奖机率越大！</p>
+					<div class="btn-group al-c">
+						<a href="javascript:;" class="btn btn-default">确认</a>
+					</div>
+				</div>
+				<a href="javascript:;" class="PopupCloseBtn"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹出层-未中奖 差一点点，再接再励-->
+<div class="PopupLayer noprivilege dn">
+	<div class="popup-tb">
+		<div class="popup-tb-cell">
+			<div class="PopupBox">
+				<div class="PopupCon al-c">
+					<i class="pop-status01"></i>
+					<div class="status-txt">
+						很遗憾
+						<p>差一点点，再接再励</p>
+					</div>
+					<div class="btn-group al-c">
+						<a href="javascript:;" class="btn btn-default">确认</a>
+					</div>
+				</div>
+				<a href="javascript:;" class="PopupCloseBtn"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹出层-中奖-->
+<div class="PopupLayer getWinning dn">
+	<div class="popup-tb">
+		<div class="popup-tb-cell">
+			<div class="PopupBox">
+				<i class="fragment-pic"></i>
+				<div class="PopupCon al-c">
+					<div class="current-prize">
+						<div class="status-gift2 dn">
+							<i class="prize-gift2"></i>
+							<div class="status-txt">
+								<span class="c-red">恭喜您获得50元话费</span>
+							</div>
+						</div>
+						<div class="status-gift3 dn">
+							<i class="prize-gift3"></i>
+							<div class="status-txt">
+								<span class="c-red">恭喜您获得 <br>1个月爱奇艺黄金VIP会员</span>
+							</div>
+						</div>
+						<div class="status-gift5 dn">
+							<i class="prize-gift5"></i>
+							<div class="status-txt">
+								<span class="c-red">恭喜您获得100M流量包</span>
+							</div>
+						</div>
+						<div class="status-gift7 dn">
+							<i class="prize-gift7"></i>
+							<div class="status-txt">
+								<span class="c-red">恭喜您获得30元微信红包</span>
+							</div>
+						</div>
+					</div>
+					<div class="btn-group al-c">
+						<a href="javascript:;" class="btn btn-default">确认</a>
+					</div>
+				</div>
+				<a href="javascript:;" class="PopupCloseBtn"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹出层-抽奖记录-->
+<div class="PopupLayer drawRecord dn">
+	<div class="popup-tb">
+		<div class="popup-tb-cell">
+			<div class="PopupBox">
+				<div class="PopupCon al-c">
+					<div class="pop-title">我的中奖记录</div>
+					<div class="winningrecord">
+						<div class="m-content-rule">
+							<ul>
+								<li>
+									<div class="record-item">
+										<i class="prizepic-0"></i>
+										<span>100美元赠金</span>
+										<p>2018.04.01 10:00:00</p>
+									</div>
+								</li>
+								<li>
+									<div class="record-item">
+										<i class="prizepic-3"></i>
+										<span>1个月爱奇艺黄金VIP会员</span>
+										<p>2018.04.01 10:00:00</p>
+									</div>
+								</li>
+								<li>
+									<div class="record-item">
+										<i class="prizepic-2"></i>
+										<span>50元话费</span>
+										<p>2018.04.01 10:00:00</p>
+									</div>
+								</li>
+								<li>
+									<div class="record-item">
+										<i class="prizepic-5"></i>
+										<span>100M流量包</span>
+										<p>2018.04.01 10:00:00</p>
+									</div>
+								</li>
+								<li>
+									<div class="record-item">
+										<i class="prizepic-0"></i>
+										<span>100美元赠金</span>
+										<p>2018.04.01 10:00:00</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<a href="javascript:;" class="PopupCloseBtn"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹出层-登录-->
+<div class="PopupLayer popLogin dn">
+	<div class="popup-tb">
+		<div class="popup-tb-cell">
+			<div class="PopupBox">
+				<div class="PopupCon al-c">
+					<div class="pop-title">登入个人账号</div>
+					<div class="login-form">
+						<div class="from-group">
+							<span class="icon-user"></span><input type="text" placeholder="请输入账户号码">
+						</div>
+						<div class="from-group">
+							<span class="icon-phone"></span><input type="text" placeholder="请输入手机号码">
+						</div>
+						<div class="from-group">
+							<span class="icon-vcode"></span><input type="text" placeholder="请输入图片验证码">
+						</div>
+					</div>
+					<div class="btn-group al-c">
+						<a href="javascript:;" class="btn btn-default">提 交</a>
+					</div>
+				</div>
+				<a href="javascript:;" class="PopupCloseBtn"></a>
+			</div>
+		</div>
+	</div>
+</div>
