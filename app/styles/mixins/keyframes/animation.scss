@@ -21,3 +21,35 @@
   0%{width:0}
   100%{width:100%}
 }
+
+//scaleOut
+@include keyframes(scaleOut,("webkit")) {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+//dotFlash
+@include keyframes(dotFlash,("webkit","ms","moz","o")) {
+    0%{box-shadow:0 0 10px 2px rgba(191,2,2,.8);}
+    50%{box-shadow:0 0 10px 2px rgba(191,2,2,.3);}
+    100%{box-shadow:0 0 10px 2px rgba(191,2,2,.8);}
+}
+
+//dotSwitch
+@include keyframes(dotSwitch,("webkit","ms","moz","o")) {
+    0%{background:#727af6;}
+    50%{background:#e0e2ff;}
+}
+@include keyframes(dotSwitch2-1,("webkit","ms","moz","o")) {
+    0%{background:#727af6;}
+    50%{background:#e0e2ff;}
+}
+@include keyframes(dotSwitch2-2,("webkit","ms","moz","o")) {
+    0%{background:#e0e2ff;}
+    50%{background:#727af6;}
+}

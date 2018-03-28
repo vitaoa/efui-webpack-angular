@@ -1,0 +1,48 @@
+/* ============ Rotary ============ */
+
+@import "mixins/library";
+
+.rotary-draw{background: #eee;border-radius: 10px;
+    @include size(1160px,719px);max-width:100%;margin: 0 auto;position: relative;
+    .flash-light{
+        display: block;position: absolute;top:25px;left:30px;width:auto;height:658px;right:30px;
+        &.flashing{background-position: right center;}
+    }
+    .btn-group{position: absolute;bottom:22px;left:0;right:0;
+        .btn{@include size(198px,44px);line-height:44px;font-size: 20px;}
+    }
+    .rotary-con{padding: 62px 50px 30px 78px;
+        ul{@include clearfix();
+            li{float: left;}
+        }
+        .lottery-unit{@include size(326px,186px);max-width:30%;margin-right:14px;margin-bottom:10px;
+            /*background:#eee;*/@include gradient-vertical(#fae9e5, #e8cc91, 0%,100%);
+            @include box-shadow(0 6px 10px transparentize(#000, 0.5));border-radius: 10px;
+            color:#292a32;font-size: 20px;position: relative;text-align: center;
+            &.active{
+                .mask{display:none;}
+            }
+            &.lottery-btn{background:#e8cc91;}
+        }
+        [class*="lottery-unit-"]{font-family: 'PingFang_Heavy';}
+        .mask{@include size(100%,100%);position:absolute;left:0;top:0;display: none;background:transparentize(#000, 0.5);
+            &.over{display: block;}
+        }
+        .lottery-btn{font-size: 16px;color:#555;
+            a{display: block;padding-top: 33px;padding-bottom: 50px;}
+            span{font-size: 20px;color:#e0482a;font-family: 'PingFang_Heavy';}
+            b{color:#d44225;font-size: 44px;display: block;padding-top: 7px;}
+        }
+    }
+    [class*="gift"]{
+        background-repeat: no-repeat;display:block;@include size(150px,94px);margin:25px auto 3px;}
+    .gift0{background-position: 0 0;}
+    .gift1{background-position: 50% 0;}
+    .gift2{background-position: 100% 0;}
+    .gift4{background-position: 100% 100%;}
+    .gift5{background-position: 50% 100%;}
+    .gift6{background-position: 0 100%;}
+    .gift3{background-position: 100% 50%;}
+    .gift7{background-position: 0 50%;}
+}
+

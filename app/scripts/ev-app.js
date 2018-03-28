@@ -24,6 +24,7 @@ require("../styles/_fonticons.scss");
 require("../styles/_prettyprint.scss");
 require("../styles/_button.scss");
 require("../styles/_anim.scss");
+require("../styles/_rotary.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);
