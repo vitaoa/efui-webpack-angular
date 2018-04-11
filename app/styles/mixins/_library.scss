@@ -1,3 +1,4 @@
+@import "library/prefixer";
 @import "library/fontface";
 @import "library/clearfix";
 @import "library/size";
@@ -10,4 +11,8 @@
 @import "library/inline-block";
 @import "library/opacity";
 @import "library/rgba-background";
+@import "library/directional-property";
+@import "library/hide-text";
+@import "library/bullet-style";
+
 

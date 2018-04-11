@@ -1,0 +1,15 @@
+<div class="container-fluid pt25">
+    <div class=" col-sm-offset-3 col-sm-6 pt25">
+        <div class=" col-sm-offset-3 col-sm-6">
+            <form name="loginForm" ng-submit="login()">
+                <div class="input-group mb10">
+                    <span class="f-head"></span><input type="text" autocomplete="false" name="username" placeholder="用户名" ng-model="login.username" id="username" ng-pattern="/^\D{4,}/" class="i-text" required>
+                </div>
+                <div ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+                    <small class="al-c c-red" ng-show="loginForm.username.$error.pattern">请输入正确的用户名</small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt20" ng-disabled="loginForm.$invalid">登录</button>
+            </form>
+        </div>
+    </div>
+</div>

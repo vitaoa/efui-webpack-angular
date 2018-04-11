@@ -11,10 +11,9 @@
 
 @function _contains-falsy($list) {
   @each $item in $list {
-    @if not $item {
-      @return true;
+    @if not($item) {
+      @return true; //null
     }
   }
-
   @return false;
 }

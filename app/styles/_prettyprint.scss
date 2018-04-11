@@ -5,7 +5,7 @@
 
 .prettyprint {
     margin-bottom: 20px;
-    padding: 8px;
+    padding: 25px 8px;
     background-color: #333;
     color: #fff;
     border: 1px solid #e1e1e8;
@@ -24,7 +24,7 @@
         font-size: 12px
     }
     &.linenums {
-        box-shadow: inset 32px 0 0 #333, inset 33px 0 0 #777;
+        box-shadow: inset 32px 0 0 #333, inset 33px 0 0 #777;white-space:normal;
         li * {
             font-size: 14px;
             font-family: cursive
@@ -74,11 +74,12 @@
 
 pre ol.linenums {
     list-style: decimal outside none;
-    font-family: 宋体;
+    font-family: 宋体;padding-left: 2em;
     li {
         padding-left: 12px;
         color: #bbb;
-        line-height: 18px
+        line-height: 18px;
+        list-style: inherit;
     }
 }
 

@@ -12,6 +12,23 @@
                         $scope.docsMsg = "EFUI为一款轻量级前端UI框架，通俗易懂的写法及模块式的拼装方便自由扩展，简单易用，轻量快捷。";
                     }
                 })
+                .state('login', {
+                    url: "/login",
+                    templateUrl: "partials/login/index.html",
+                    controller: function($scope) {
+                        $scope.submitted = false;
+                        $scope.login = function() {
+                            if ($scope.loginForm.$valid && $scope.login.username == 'vvvv'){
+                                window.sessionStorage.setItem("loginSessionState",true);
+                                var href = '/';
+                                location.href = href;
+                            } else {
+                                window.sessionStorage.setItem("loginSessionState",false);
+                                $scope.loginForm.submitted = true;
+                            }
+                        }
+                    }
+                })
                 .state('animation', {
                     url: "/animation",
                     templateUrl: "partials/animation/index.html",
@@ -58,15 +75,18 @@
                 })
                 .state('component.pages', {
                     url: "/:pageid",
-                    templateUrl: function($routeParams){return 'partials/component/'+$routeParams.pageid+'.html'}
+                    templateUrl: function($routeParams){return 'partials/component/'+$routeParams.pageid+'.html'},
+                    controller:function ($scope) {
+                        $scope.checkboxAll = function (obj,parent) {
+                            !$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', true);
+                            !!$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', false);
+                        };
+                    }
                 })
                 .state('plugin', {
                     url: "/plugin",
                     templateUrl: "partials/plugin/index.html",
-                    controller: function($scope, $location) {
-                        $scope.docsTit = "插件";
-                        $scope.docsMsg = "基于jQuery库的插件介绍";
-                    }
+                    controller: 'pluginController'
                 })
                 .state('plugin.pages', {
                     url: "/:pageid",
@@ -132,6 +152,14 @@
                                 ]
                             }
                         ];
+                        $scope.dataToggle = function () {
+                            $(this).dataToggle({
+                                show:true
+                            });
+                        };
+                        $scope.testClick = function (o) {
+                            $(o).alertWhileClick();
+                        }
                     }
                 })
                 .state('skills.pages', {

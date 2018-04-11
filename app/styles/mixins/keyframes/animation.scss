@@ -53,3 +53,218 @@
     0%{background:#e0e2ff;}
     50%{background:#727af6;}
 }
+
+
+//multi-chain-dot
+@include keyframes(multi-chain-dot-1,("webkit","ms","moz","o")) {
+  0% {    top: -2px;    left: 0;    opacity: 1;}
+  1% {    top: -2px;    left: 0;    opacity: 1;  }
+  20% {    top: -4px;    left: 64px;  }
+  40% {    top: 38px;    left: 94px;  }
+  73% {    top: 38px;    left: 150px;    opacity: 1;  }
+  80% {    top: 38px;    left: 150px;    opacity: 1;  }
+  100% {    top: 38px;    left: 150px;    opacity: 1;  }
+}
+@include keyframes(multi-chain-dot-2,("webkit","ms","moz","o")) {
+  0% {
+    top: 18px;
+    left: 0;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+    top: 18px;
+    left: 0;
+  }
+
+  20% {
+    top: 18px;
+    left: 57px;
+  }
+
+  40% {
+    top: 38px;
+    left: 88px;
+  }
+
+  73% {
+    top: 38px;
+    left: 150px;
+    opacity: 1;
+  }
+
+  80% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+}
+
+@include keyframes(multi-chain-dot-3,("webkit","ms","moz","o")) {
+  0% {
+    top: 38px;
+    left: 0;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+    top: 38px;
+    left: 0;
+  }
+
+  73% {
+    top: 38px;
+    left: 150px;
+    opacity: 1;
+  }
+
+  80% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+}
+@include keyframes(multi-chain-dot-4,("webkit","ms","moz","o")) {
+  0% {
+    top: 58px;
+    left: 0;
+    opacity: 0;
+  }
+
+  5% {
+    top: 58px;
+    left: 0;
+    opacity: 1;
+  }
+
+  20% {
+    top: 58px;
+    left: 58px;
+  }
+
+  40% {
+    top: 38px;
+    left: 92px;
+  }
+
+  73% {
+    top: 38px;
+    left: 150px;
+    opacity: 1;
+  }
+
+  80% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+}
+@include keyframes(multi-chain-dot-5,("webkit","ms","moz","o")) {
+  0% {
+    top: 78px;
+    left: 0;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+    top: 78px;
+    left: 0;
+  }
+
+  20% {
+    top: 78px;
+    left: 63px;
+  }
+
+  40% {
+    top: 38px;
+    left: 95px;
+  }
+
+  73% {
+    top: 38px;
+    left: 150px;
+    opacity: 1;
+  }
+
+  80% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 38px;
+    left: 150px;
+    opacity: 0;
+  }
+}
+
+
+
+@include keyframes(numtransy-0,("webkit","ms","moz","o")) {
+  //0%{transform: translateY(0);}
+  //100%{transform: translateY(-96px);}
+}
+@include keyframes(numtransy-1,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-32px);}
+}
+@include keyframes(numtransy-2,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-64px);}
+}
+@include keyframes(numtransy-3,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-96px);}
+}
+@include keyframes(numtransy-4,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-128px);}
+}
+@include keyframes(numtransy-5,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-160px);}
+}
+@include keyframes(numtransy-6,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-192px);}
+}
+@include keyframes(numtransy-7,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-224px);}
+}
+@include keyframes(numtransy-8,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-256px);}
+}
+@include keyframes(numtransy-9,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-288px);}
+}
+@include keyframes(numtransy-10,("webkit","ms","moz","o")) {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(-320px);}
+}
+

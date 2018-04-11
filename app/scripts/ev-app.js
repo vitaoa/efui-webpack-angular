@@ -1,12 +1,17 @@
 ﻿'use strict';
 
 require("./ev-app.routes");
+require("./ev-app.controller");
 require("./jquery.prettify");
 require("./jquery.collapse");
 require("./jquery.slider");
 require('./efui');
+require('./lib/jQueryRotate');
 require('./rotary');
 require('./carousel');
+require('./countTo');
+require('./dataToggle');
+require('./skill');
 
 // require.ensure([],function(){
 //     require("./jquery.prettify.js");
@@ -28,12 +33,13 @@ require("../styles/_button.scss");
 require("../styles/_anim.scss");
 require("../styles/_rotary.scss");
 require("../styles/_carousel.scss");
+require("../styles/_popup.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);
 });
 
-angular.module('evApp', ['evApp.routes'])
+angular.module('evApp', ['evApp.routes','evApp.controller'])
     /* 缓存模板templateUrl */
     .run(["$templateCache", function($templateCache) {
         $templateCache.put("hello.html", "<div><h1>Hi 我是林炳文~~~6666</h1></div>");
@@ -195,12 +201,13 @@ angular.module('evApp', ['evApp.routes'])
             //console.log("$locationChangeSuccess");
             $rootScope.path = _vpath != -1 ? $location.path().substring(0, _vpath + 1) : $location.path();
         });
+        $rootScope.loginFlag = false;
         $rootScope.$on("$viewContentLoaded", function(event, next) {
-            console.log("$viewContentLoaded");
-
-            next && $('pre').each(function() {
+            if (window.sessionStorage.getItem("loginSessionState")) {
+                $rootScope.loginFlag = window.sessionStorage.getItem("loginSessionState");
+            }
+            $('pre').each(function() {
                 var _p_class = $(this).parent().get(0).className;
-                $(this).html($(this).html().replace(/</g, '&lt;').replace(/>/g, '&gt;'));
                 !(/\bhtml\b/.test(_p_class)) && $(this).addClass("prettyprint linenums") && prettyPrint();
             });
 

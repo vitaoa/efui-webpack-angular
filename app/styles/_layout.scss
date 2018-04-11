@@ -1,8 +1,9 @@
 
 /* ============ Layout ============ */
 // Layout
-@import "mixins/grid-framework";
 @import "variables/variables";
+@import "mixins/library";
+@import "mixins/layout";
 
 
 .container {

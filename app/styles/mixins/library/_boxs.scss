@@ -4,6 +4,7 @@
 ///   // CSS Output
 @mixin box-shadow($shadow...) {
   -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+  -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
 }
 

@@ -1,8 +1,6 @@
 /* ============ Carousel ============ */
 
-@import "mixins/prefixer";
 @import "mixins/library";
-@import "mixins/utilities/directional-property";
 
 
 .block-item{@include size(530px,259px);border-radius: 10px;overflow:hidden;text-align: center;background:#f0f2ff;font-family: 'PingFang_Heavy';
@@ -27,9 +25,9 @@
 
 .switch-block{position: relative;margin: 6px 0 32px;height: 260px;
     .list{width:100%;height: 100%;overflow: hidden;position: absolute;left: 0;}
-    li{position: absolute;top: 0;left: 50%;margin-left:-265px;list-style: none;@include opacity(50);transition: all 0.3s ease-out;}
+    li{position: absolute;top: 0;left: 50%;margin-left:-265px;list-style: none;@include opacity(.5);transition: all 0.3s ease-out;}
     .li-1{z-index: 1;}
-    .li-2{z-index: 3;@include opacity(100);
+    .li-2{z-index: 3;@include opacity(1);
         [class*="circle-"]{
             &:before,&:after{display: block;}
             p{

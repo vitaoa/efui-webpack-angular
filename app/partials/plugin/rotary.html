@@ -26,7 +26,7 @@
 							<p>30元微信红包</p>
 							<div class="mask"></div>
 						</li>
-						<li class="lottery-unit lottery-btn">
+						<li class="lottery-unit lottery-btn" ng-click="squareDraw('#lottery')">
 							<a href="">
 								今天还剩 <span id="rotaryTimes">3</span> 次抽奖机会
 								<b>开始抽奖</b>
@@ -59,7 +59,13 @@
 		</div>
         <div class="pt10 pb10">转盘抽奖</div>
         <div class="example-visualize">
-
+			<div class="rotary-draw2">
+				<div class="rotary-con">
+					<i class="lightning"></i>
+					<span src="../static/img/activity201803/rotary-img.png" alt="" class="rotary-img" id="rotary-img"></span>
+					<a href="javascript:;" class="rotary-btn" id="rotary-btn"><span>（<b id="lotterynumber">520</b>次）</span></a>
+				</div>
+			</div>
         </div>
 	</li>
 </ol>
