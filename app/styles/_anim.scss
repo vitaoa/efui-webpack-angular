@@ -164,3 +164,15 @@
 .numtransy8{@include prefixer(animation, numtransy-8 1s linear, ("webkit","ms","moz","o"));transition: 1s;}
 .numtransy9{@include prefixer(animation, numtransy-9 1s linear, ("webkit","ms","moz","o"));transition: 1s;}
 .numtransy10{@include prefixer(animation, numtransy-10 1s linear, ("webkit","ms","moz","o"));transition: 1s;}
+
+.title__heading > span,
+.title__effect {@include inline-block();padding: .2em 0;}
+.hero-section__words{@include inline-block();position: relative;overflow: hidden;white-space: nowrap;
+    @include prefixer(animation,wordsplay 3s linear,("webkit","ms","moz","o"));transition: 1s;
+    //&:after {content: '';background-color: #333;
+    //    @include size(2px,100%);
+    //    position: absolute;top: 0;right: 0;
+    //}
+}
+
+

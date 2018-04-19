@@ -80,7 +80,11 @@ ol{
     &.hanja{
         @include style-bullets(korean-hanja-informal,none);
     }
+    &.decimal{
+        @include style-bullets(decimal,none);
+    }
 }
+
 
 /* ============ input ============ */
 .radio-group{
@@ -305,33 +309,34 @@ ol{
     background: #f5f5f5;
     color: #333;
     margin-bottom: 35px;
+    line-height:1.8;
     .html{
         pre{background:#fff;}
     }
-}
-
-.example-desc > ul {
+    & > ul {
     padding-bottom: 1em;
     padding-top: 1em;
-    background: #fefefe
-}
-
-.example-desc > ul > li {
-    margin-bottom: .5em
-}
-
-.example-desc > ol {
-    padding-bottom: 1em;
-    padding-top: 1em;
-    background: #fefefe
-}
-
-.example-desc > ol > li {
-    margin: .5em
+    background: #fefefe;
+    & > li {
+            margin-bottom: .5em
+        }
+    }
+    & > ol {
+        padding-bottom: 1em;
+        padding-top: 1em;
+        background: #fefefe;
+        & > li {
+            margin: .5em
+        }
+        &.decimal > li{
+            margin: .5rem 0 .5rem 32px;
+        }
+        &.hanja{margin:0 1em;padding-left: 2.5em;}
+    }
 }
 
 .exm-t1 {
-    font-size: 14px;
+    font-size: 16px;
     color: #333
 }
 

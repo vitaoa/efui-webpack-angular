@@ -1,50 +1,74 @@
-<ol>
-	<li>
-        <div class="pt10 pb10">自动左右轮播</div>
-		<div class="example-visualize">
-            <div class="switch-block box">
-                <div class="list">
-                    <ul>
-                        <li class="li-3">
-                            <div class="block-item">
-                                <p class="block-item-txt">2017年11月3日 非农就业数据公布</p>
-                                <div class="circle-l">
-                                    <p>收益率<span>369%</span></p>
-                                    <i class="dif-line"></i>
-                                </div>
-                                <div class="circle-r">
-                                    <p>单手盈利达<span>$1845</span></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="li-2">
-                            <div class="block-item">
-                                <p class="block-item-txt">2018年2月2日 非农就业数据公布</p>
-                                <div class="circle-l">
-                                    <p>收益率<span>369%</span></p>
-                                    <i class="dif-line"></i>
-                                </div>
-                                <div class="circle-r">
-                                    <p>单手盈利达<span>$1845</span></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="li-1">
-                            <div class="block-item">
-                                <p class="block-item-txt">2017年10月6日 非农就业数据公布</p>
-                                <div class="circle-l">
-                                    <p>收益率<span>369%</span></p>
-                                    <i class="dif-line"></i>
-                                </div>
-                                <div class="circle-r">
-                                    <p>单手盈利达<span>$1845</span></p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-		</div>
-	</li>
-</ol>
 
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+
+<div class="mlist">
+    <div class="mtit"><span>目录</span></div>
+    <div class="mcon">
+        <ol>
+            <li><a href="">自动左右轮播</a></li>
+            <li><a href="">纯图片左右切换</a></li>
+        </ol>
+    </div>
+</div>
+<div class="mswitch">
+    <div class="pt10 pb10">自动左右轮播</div>
+    <div class="example-visualize">
+        <div class="switch-block box" data-ng-init='carouselLeftRight({objName:".switch-block",cArr: ["li-3","li-2","li-1"],speed:3000})'>
+            <div class="list">
+                <ul>
+                    <li class="li-3">
+                        <div class="block-item">
+                            <p class="block-item-txt">2017年11月3日 非农就业数据公布</p>
+                            <div class="circle-l">
+                                <p>收益率<span>369%</span></p>
+                                <i class="dif-line"></i>
+                            </div>
+                            <div class="circle-r">
+                                <p>单手盈利达<span>$1845</span></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="li-2">
+                        <div class="block-item">
+                            <p class="block-item-txt">2018年2月2日 非农就业数据公布</p>
+                            <div class="circle-l">
+                                <p>收益率<span>369%</span></p>
+                                <i class="dif-line"></i>
+                            </div>
+                            <div class="circle-r">
+                                <p>单手盈利达<span>$1845</span></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="li-1">
+                        <div class="block-item">
+                            <p class="block-item-txt">2017年10月6日 非农就业数据公布</p>
+                            <div class="circle-l">
+                                <p>收益率<span>369%</span></p>
+                                <i class="dif-line"></i>
+                            </div>
+                            <div class="circle-r">
+                                <p>单手盈利达<span>$1845</span></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mswitch">
+    <div class="pt10 pb10">纯图片左右切换</div>
+    <div class="example-visualize">
+        <div class="picswitch" data-ng-init='carouselLeftRight({objName:".picswitch",cArr: ["li-4","li-5","li-6"],speed:3000})'>
+            <ul class="clearfix">
+                <li class="li-4"><img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiICB3aWR0aD0iMTUwcHgiIGhlaWdodD0iMTAwcHgiIHZpZXdCb3g9IjAgMCAxNTAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KCTxkZWZzIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NjJmMGVmNGJhIHRleHR7CglmaWxsOiNFREY1RkI7Cglmb250LXdlaWdodDogYm9sZDsKCWZvbnQtZmFtaWx5OiBBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTsKCWZvbnQtc2l6ZTogMTJwdAp9CgpdXT48L3N0eWxlPgoJPC9kZWZzPgoJPGcgaWQ9ImhvbGRlcl8xNTYyZjBlZjRiYSI+CgkJPHJlY3QgeD0iMCIgeT0iMCIgZmlsbD0iI0QyREFFMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMDAiLz4KCQk8dGV4dCB4PSIzOSIgeT0iNTUiPjE1MCBYIDEwMDwvdGV4dD4KCTwvZz4KPC9zdmc+" /></li>
+                <li class="li-5"><img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiICB3aWR0aD0iMTUwcHgiIGhlaWdodD0iMTAwcHgiIHZpZXdCb3g9IjAgMCAxNTAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KCTxkZWZzIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NjJmMGVmNGJhIHRleHR7CglmaWxsOiNFREY1RkI7Cglmb250LXdlaWdodDogYm9sZDsKCWZvbnQtZmFtaWx5OiBBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTsKCWZvbnQtc2l6ZTogMTJwdAp9CgpdXT48L3N0eWxlPgoJPC9kZWZzPgoJPGcgaWQ9ImhvbGRlcl8xNTYyZjBlZjRiYSI+CgkJPHJlY3QgeD0iMCIgeT0iMCIgZmlsbD0iI0QyREFFMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMDAiLz4KCQk8dGV4dCB4PSIzOSIgeT0iNTUiPjE1MCBYIDEwMDwvdGV4dD4KCTwvZz4KPC9zdmc+" /></li>
+                <li class="li-6"><img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiICB3aWR0aD0iMTUwcHgiIGhlaWdodD0iMTAwcHgiIHZpZXdCb3g9IjAgMCAxNTAgMTAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KCTxkZWZzIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgkJPHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1NjJmMGVmNGJhIHRleHR7CglmaWxsOiNFREY1RkI7Cglmb250LXdlaWdodDogYm9sZDsKCWZvbnQtZmFtaWx5OiBBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTsKCWZvbnQtc2l6ZTogMTJwdAp9CgpdXT48L3N0eWxlPgoJPC9kZWZzPgoJPGcgaWQ9ImhvbGRlcl8xNTYyZjBlZjRiYSI+CgkJPHJlY3QgeD0iMCIgeT0iMCIgZmlsbD0iI0QyREFFMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMDAiLz4KCQk8dGV4dCB4PSIzOSIgeT0iNTUiPjE1MCBYIDEwMDwvdGV4dD4KCTwvZz4KPC9zdmc+" /></li>
+            </ul>
+        </div>
+    </div>
+</div>

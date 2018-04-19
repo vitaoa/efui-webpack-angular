@@ -268,3 +268,46 @@
   100%{transform: translateY(-320px);}
 }
 
+
+@include keyframes(wordsplay,("webkit","ms","moz","o")) {
+  0%{width:0;}
+  30%{width:3em;}
+  60%{width:6em;}
+  90%{width:9em;}
+  100%{width:9em;}
+}
+
+@include keyframes(coinStep3-1,("webkit","ms","moz","o")){
+  0%{left:-139px;top:-36px;opacity: 1;}
+  33%{left:-35px;top:-62px;}
+  66%{left:157px;top:-124px;}
+}
+@include keyframes(coinStep3-2,("webkit","ms","moz","o")){
+  0%{left:-35px;top:-62px;opacity: 1;}
+  33%{left:140px;top:-124px;opacity: 0;}
+  66%{left:-139px;top:-36px;opacity: 0;}
+}
+@include keyframes(coinStep3-3,("webkit","ms","moz","o")){
+  0%{left:-35px;top:-70px;opacity: 0;}
+  32%{opacity: 0;}
+  33%{opacity: 1;}
+  66%{left:116px;top:-120px;opacity: 1;}
+  67%{opacity: 0;}
+}
+@include keyframes(coinStep3-4,("webkit","ms","moz","o")){
+  0%{left:18px;top:-66px;opacity: 0;}
+  32%{opacity: 0;}
+  33%{opacity: 1;}
+  66%{left:-135px;top:-132px;opacity: 1;}
+  67%{opacity: 0;}
+}
+@include keyframes(coinStep3-5,("webkit","ms","moz","o")){
+  0%{left:35px;top:-57px;opacity: 1;}
+  33%{left:140px;top:-124px;opacity: 0;}
+  66%{left:-139px;top:-36px;opacity: 0;}
+}
+@include keyframes(coinStep3-6,("webkit","ms","moz","o")){
+  0%{left:140px;top:-124px;opacity: 0;}
+  33%{left:-139px;top:-36px;opacity: 0;}
+  66%{left:24px;top:-70px;opacity: 1;}
+}

@@ -43,3 +43,9 @@
     .li-3{left:auto;margin-left: 0;right:0;
         @include prefixer(transform, translate(38px,0) scale(0.77), ("webkit","ms","moz","o"));}
 }
+.picswitch{width:150px;margin: 0 auto;overflow: hidden;
+    ul{width:450px;
+        li{float: left;}
+    }
+}
+

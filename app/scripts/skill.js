@@ -5,7 +5,7 @@
     'use strict';
 
     $.fn.extend({
-        alertWhileClick: function () {
+        testClick: function () {
             console.log($(this));
         }
     });

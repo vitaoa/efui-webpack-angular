@@ -1,74 +1,90 @@
-<ol>
-	<li>
-        <div class="pt10 pb10">九宫格抽奖</div>
-		<div class="example-visualize">
-			<div class="rotary-draw" id="lottery">
-				<i class="flash-light"></i>
-				<div class="rotary-con">
-					<ul>
-						<li class="lottery-unit lottery-unit-0">
-							<i class="gift0"></i>
-							<p>100美元赠金</p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-1">
-							<i class="gift1"></i>
-							<p>小米电视65英寸</p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-2">
-							<i class="gift2"></i>
-							<p>50元话费</p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-7">
-							<i class="gift7"></i>
-							<p>30元微信红包</p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-btn" ng-click="squareDraw('#lottery')">
-							<a href="">
-								今天还剩 <span id="rotaryTimes">3</span> 次抽奖机会
-								<b>开始抽奖</b>
-							</a>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-3">
-							<i class="gift3"></i>
-							<p class="m-line2">1个月爱奇艺<span>黄金VIP会员</span></p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-6">
-							<i class="gift6"></i>
-							<p>差一点点，再接再励</p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-5">
-							<i class="gift5"></i>
-							<p>100M流量包</p>
-							<div class="mask"></div>
-						</li>
-						<li class="lottery-unit lottery-unit-4">
-							<i class="gift4"></i>
-							<p>差一点点，再接再励</p>
-							<div class="mask"></div>
-						</li>
-					</ul>
-				</div>
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">九宫格抽奖</a></li>
+			<li><a href="">转盘抽奖</a></li>
+		</ol>
+	</div>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">九宫格抽奖</div>
+	<div class="example-visualize">
+		<div class="rotary-draw" id="lottery" data-ng-init='squareDrawInit("#lottery",["gift2","gift3","gift5","gift7"])'>
+			<i class="flash-light"></i>
+			<div class="rotary-con">
+				<ul>
+					<li class="lottery-unit lottery-unit-0">
+						<i class="gift0"></i>
+						<p>100美元赠金</p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-1">
+						<i class="gift1"></i>
+						<p>小米电视65英寸</p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-2">
+						<i class="gift2"></i>
+						<p>50元话费</p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-7">
+						<i class="gift7"></i>
+						<p>30元微信红包</p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-btn">
+						<a href="">
+							今天还剩 <span id="rotaryTimes">3</span> 次抽奖机会
+							<b>开始抽奖</b>
+						</a>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-3">
+						<i class="gift3"></i>
+						<p class="m-line2">1个月爱奇艺<span>黄金VIP会员</span></p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-6">
+						<i class="gift6"></i>
+						<p>差一点点，再接再励</p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-5">
+						<i class="gift5"></i>
+						<p>100M流量包</p>
+						<div class="mask"></div>
+					</li>
+					<li class="lottery-unit lottery-unit-4">
+						<i class="gift4"></i>
+						<p>差一点点，再接再励</p>
+						<div class="mask"></div>
+					</li>
+				</ul>
 			</div>
 		</div>
-        <div class="pt10 pb10">转盘抽奖</div>
-        <div class="example-visualize">
-			<div class="rotary-draw2">
-				<div class="rotary-con">
-					<i class="lightning"></i>
-					<span src="../static/img/activity201803/rotary-img.png" alt="" class="rotary-img" id="rotary-img"></span>
-					<a href="javascript:;" class="rotary-btn" id="rotary-btn"><span>（<b id="lotterynumber">520</b>次）</span></a>
-				</div>
+	</div>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">转盘抽奖</div>
+	<div class="example-visualize">
+		<div class="rotary-draw2" data-ng-init="rotaryDrawInit('#rotary-btn')">
+			<div class="rotary-con">
+				<i class="lightning"></i>
+				<span src="../static/img/activity201803/rotary-img.png" alt="" class="rotary-img" id="rotary-img"></span>
+				<a href="javascript:;" class="rotary-btn" id="rotary-btn"><span>（<b id="lotterynumber">520</b>次）</span></a>
 			</div>
-        </div>
-	</li>
-</ol>
+		</div>
+	</div>
+</div>
 
 <!--弹出层-未中奖-->
 <div class="PopupLayer notWinning dn">

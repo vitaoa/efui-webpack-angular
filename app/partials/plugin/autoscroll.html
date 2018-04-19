@@ -1,35 +1,103 @@
-<link rel="stylesheet" type="text/css" href="assets/css/plugin-auto.min.css"/>
-<ol>
-	<li>
-		<h3 class="mb15">自动淡入淡出显示</h3>
-		<div class="example-demo">
-			<div class="example-visualize">
-				<div class="infos-play">
-					<div class="info-item">
-						<p class="p1">白银<i class="f-arrow_down"></i>16.8060</p>
-						<p class="p2">SSL<span>0.086(0.36%)</span></p>
-					</div>
-					<div class="up info-item">
-						<p class="p1">伦敦金<i class="f-arrow_up"></i>16.8060</p>
-						<p class="p2">LLG<span>0.086(0.36%)</span></p>
-					</div>
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">上下无缝滚动</a></li>
+			<li><a href="">上下逐条滚动</a></li>
+			<li><a href="">淡入淡出切换显示</a></li>
+		</ol>
+	</div>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">向上无缝滚动 <small class="c-999">鼠标放上去停止滚动，移开继续滚动</small></div>
+	<div class="example-visualize">
+		<div class="marqueeScrollWrapper">
+			<div id="winnersListUp" class="winners-list marqueeScrollUp" data-ng-init="marqueeScrollUp({cArr: ['winnersListUp','winnersListUp1','winnersListUp2'],speed:20})">
+				<div id="winnersListUp1">
+					<ul>
+						<li>1分钟前  150****3013  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+						<li>2分钟前  133****9632  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+						<li>3分钟前  186****8562  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+						<li>4分钟前  188****7461  领取了  <b>200</b>美元+<b>100</b>元微信红包</li>
+						<li>5分钟前  157****8560  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+						<li>6分钟前  185****3140  领取了  <b>200</b>美元+<b>1000</b>元微信红包</li>
+						<li>7分钟前  139****9527  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+					</ul>
 				</div>
-				<script type="text/javascript">
-					//信息轮播
-					var curIndex = 0;
-				    var timeInterval = 3000; 
-				    var _obj = $(".infos-play .info-item"); 
-					setInterval(changeinfos,timeInterval); 
-				    function changeinfos() { 
-				       if (curIndex == _obj.length-1) { 
-				         curIndex = 0; 
-				       } else { 
-				         curIndex += 1; 
-				       } 
-				       _obj.eq(curIndex).fadeIn().siblings().fadeOut(); 
-				    } 
-				</script>
+				<div id="winnersListUp2"></div>
 			</div>
 		</div>
-	</li>
-</ol>
+	</div>
+	<div class="pt10 pb10">向左无缝滚动 <small class="c-999">鼠标放上去停止滚动，移开继续滚动</small></div>
+	<div class="example-visualize">
+		<div class="marqueeScrollWrapper">
+			<div id="winnersListLeft" class="winners-list marqueeScrollLeft" data-ng-init="marqueeScrollLeft({cArr: ['winnersListLeft','winnersListLeft1','winnersListLeft2'],speed:20})">
+				<div id="winnersListLeft1">
+					<ul>
+						<li>1分钟前  150****3013  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+						<li>2分钟前  133****9632  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+						<li>3分钟前  186****8562  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+						<li>4分钟前  188****7461  领取了  <b>200</b>美元+<b>100</b>元微信红包</li>
+						<li>5分钟前  157****8560  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+						<li>6分钟前  185****3140  领取了  <b>200</b>美元+<b>1000</b>元微信红包</li>
+						<li>7分钟前  139****9527  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+					</ul>
+				</div>
+				<div id="winnersListLeft2"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="mswitch">
+	<div class="pt10 pb10">向上逐条滚动 <small class="c-999">鼠标放上去停止滚动，移开继续滚动</small></div>
+	<div class="example-visualize">
+		<div class="winners-list eachOneScrollUp" data-ng-init="eachOneScrollUp('.eachOneScrollUp',3000)">
+			<ul>
+				<li>1分钟前  150****3013  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+				<li>1分钟前  133****9632  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+				<li>1分钟前  186****8562  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+				<li>1分钟前  188****7461  领取了  <b>200</b>美元+<b>100</b>元微信红包</li>
+				<li>2分钟前  157****8560  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+				<li>2分钟前  185****3140  领取了  <b>200</b>美元+<b>1000</b>元微信红包</li>
+				<li>5分钟前  139****9527  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+			</ul>
+		</div>
+	</div>
+	<div class="pt10 pb10">向左逐条滚动 <small class="c-999">鼠标放上去停止滚动，移开继续滚动</small></div>
+	<div class="example-visualize">
+		<div class="winners-list eachOneScrollLeft" data-ng-init="eachOneScrollLeft('.eachOneScrollLeft',3000)">
+			<ul>
+				<li>1分钟前  150****3013  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+				<li>1分钟前  133****9632  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+				<li>1分钟前  186****8562  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+				<li>1分钟前  188****7461  领取了  <b>200</b>美元+<b>100</b>元微信红包</li>
+				<li>2分钟前  157****8560  领取了  <b>200</b>美元+<b>500</b>元微信红包</li>
+				<li>2分钟前  185****3140  领取了  <b>200</b>美元+<b>1000</b>元微信红包</li>
+				<li>5分钟前  139****9527  领取了  <b>200</b>美元+<b>200</b>元微信红包</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="mswitch">
+	<div class="pt10 pb10">自动淡入淡出切换显示</div>
+	<div class="example-visualize">
+		<div class="infos-play" data-ng-init="infosPlayAuto(0,'.infos-play .info-item',3000)">
+			<div class="info-item">
+				<p class="p1">白银<i class="f-arrow_down"></i>16.8060</p>
+				<p class="p2">SSL<span>0.086(0.36%)</span></p>
+			</div>
+			<div class="up info-item">
+				<p class="p1">伦敦金<i class="f-arrow_up"></i>16.8060</p>
+				<p class="p2">LLG<span>0.086(0.36%)</span></p>
+			</div>
+		</div>
+	</div>
+</div>

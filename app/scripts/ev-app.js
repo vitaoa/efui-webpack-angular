@@ -34,6 +34,7 @@ require("../styles/_anim.scss");
 require("../styles/_rotary.scss");
 require("../styles/_carousel.scss");
 require("../styles/_popup.scss");
+require("../styles/_plugin.scss");
 
 $(function () {
     angular.bootstrap(document, ['evApp']);

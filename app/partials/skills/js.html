@@ -1,9 +1,19 @@
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
 <div class="mlist">
 	<div class="mtit"><span>目录</span></div>
 	<div class="mcon">
 		<ol>
 			<li>
+				<a href="">函数调用</a>
+			</li>
+			<li>
 				<a href="">立即执行函数</a>
+			</li>
+			<li>
+				<a href="">容易混淆的client-*,scroll-*,offset-*</a>
 			</li>
 			<li>
 				<a href="">namespace命名空间</a>
@@ -31,6 +41,62 @@
 			</li>
 			<li>
 				<a href="">JS赋值运算</a>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<div class="pt10 pb10">函数调用</div>
+	<div class="example-desc">
+		<div class="exm-t2">
+			<p>js里函数调用有4种模式：方法调用、正常函数调用、构造器函数调用、apply/call 调用；</p>
+			<p>无论哪种函数调用除了你声明时定义的形参外，还会自动添加2个形参，分别是 this 和 arguments；</p>
+			<p>this 的值，在上面4种调用模式下，分别会绑定不同的值：</p>
+		</div>
+		<ol class="decimal mt10">
+			<li>方法调用：(函数是一个对象的属性)
+				<div class="html">
+					<pre>var a = {
+    v : 0,
+    f : function(xx) {
+        this.v = xx;
+    }
+}
+a.f(5);</pre>
+					这个时候，上面函数里的 this 就绑定的是这个对象 a。所以 this.v 可以取到对象 a 的属性 v。
+				</div>
+			</li>
+			<li>正常函数调用：
+				<div class="html">
+					<pre>function f(xx) {
+    this.x = xx;
+}
+f(5);</pre>
+					这个时候，函数 f 里的 this 绑定的是全局对象，如果是在浏览器运行的解释器中，一般来说是 window 对象，如果 window 没有 x 属性，就给 window 对象添加了一个 x 属性，同时赋值。
+				</div>
+			</li>
+			<li>构造器函数调用：
+				<div class="html">
+					<pre>function a(xx) {
+    this.m = xx;
+}
+var b = new a(5);</pre>
+					如果你在一个函数前面带上 new 关键字来调用，那么 js 会创建一个 prototype 属性是此函数的一个新对象，同时在调用这个函数的时候，把 this 绑定到这个新对象上。
+					<span class="c-red">在 jslint 里，它会要求你写的所有构造函数，也就是一旦它发现你用了 new 关键字，那么后面那个函数的首字母必须大写。</span>
+				</div>
+			</li>
+			<li>apply/call 调用：
+				<div class="html">
+					<pre>function a(xx) {
+    this.b = xx;
+}
+var o = {};
+a.apply(o, [5]);
+alert(a.b);    // undefined
+alert(o.b);    // 5</pre>
+					每个函数都拥有 apply()、call() 这个方法，可以用来设置 this 的值。
+					<span class="c-red">因为在 js 里所有的函数都有一个共同的 prototype，也就是传说中的 Function.prototype, 这个原型里有两个神奇的方法，一个就是这里的 apply ，另一个就是让题主疑惑的 call</span>
+				</div>
 			</li>
 		</ol>
 	</div>
@@ -110,6 +176,49 @@ var fn=function(a){
 }(12345678)</pre>
 	</div>
 </div>
+<div class="mswitch">
+	<div class="pt10 pb10"></div>
+	<div class="example-desc">
+		分析：
+		<div class="html">
+			<pre>offsetWidth offsetHeight offsetLeft offsetTop
+clientWidth clientHeight clientLeft clientTop
+scrollWidth scrollHeight scrollLeft scrollTop</pre>
+		</div>
+		<ol class="hanja">
+			<li>宽度：
+				<ol class="decimal">
+					<li>width：原本内容区宽度（width） - 滚动条宽度</li>
+					<li>offsetWidth：width + 滚动条宽度 + padding + border</li>
+					<li>clientWidth：width + padding</li>
+					<li>scrollWidth：clientWidth + 溢出部分</li>
+				</ol>
+			</li>
+			<li>高度：
+				<ol class="decimal">
+					<li>height：原本内容区高度（height）- 滚动条高度</li>
+					<li>offsetHeight：height + padding + border</li>
+					<li>clientHeight：height + padding </li>
+					<li>scollHeight：clientHeight + 溢出部分</li>
+				</ol>
+			</li>
+			<li>left、top：(#wrap为参照原点，设置了position:relative)
+				<ol class="decimal">
+					<li>offsetLeft(即元素#inner的x坐标)：(#wrap.width - #inner.offsetWidth)/2</li>
+					<li>offsetTop(即元素#inner的y坐标)：style.marginTop</li>
+					<li>clientLeft(即 border-left-width)：style.borderLeftWidth</li>
+					<li>clientTop(即 border-top-width)：style.borderTopWidth</li>
+					<li>scrollLeft：水平方向滚动条</li>
+					<li>scrollTop：滚动条离#inner border-top内侧的位置，一开始为0</li>
+				</ol>
+			</li>
+			<li>结论：
+				<p class="c-red">scrollWidth & scrollHeight：如果没有溢出时，这些属性与clientWidth和clientHeight是相等的</p>
+			</li>
+		</ol>
+	</div>
+</div>
+
 <div class="mswitch">
 	<h3 class="mb10">二、namespace命名空间 </h3>
 	<div class="example-demo">

@@ -96,6 +96,7 @@
                     url: "/skills",
                     templateUrl: "partials/skills/index.html",
                     controller: function($scope, $location) {
+                        console.log(navigator.userAgent);
                         $scope.docsTit = "进阶";
                         $scope.docsMsg = "前端技能进阶";
                         $scope.menulist = [
@@ -158,8 +159,8 @@
                             });
                         };
                         $scope.testClick = function (o) {
-                            $(o).alertWhileClick();
-                        }
+                            $(o).testClick();
+                        };
                     }
                 })
                 .state('skills.pages', {
