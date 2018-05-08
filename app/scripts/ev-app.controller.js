@@ -128,4 +128,73 @@
                 tab.onmouseover=function() {clearInterval(MyMar)};
                 tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
             }
+        }])
+        .controller('componentController', ['$scope' ,function($scope) {
+            $scope.docsTit = "组件";
+            $scope.docsMsg = "基本组件、web组件";
+            $scope.checkboxAll = function (obj,parent) {
+                !$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', true);
+                !!$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', false);
+            };
+            $scope.formatPhone = function (id) {
+                $(id).formatPhone();
+            };
+            $scope.formatCertificate = function (id) {
+                $(id).formatCertificate();
+            };
+            $scope.mobilePhoneVerify = function (id) {
+                $(id).mobilePhoneVerify();
+            };
+            $scope.vCodeVerify = function (id) {
+                $(id).vCodeVerify();
+            };
+            $scope.passwordVerify = function (id) {
+                $(id).passwordVerify();
+            };
+            //mobilePhone
+            $scope.mobilePhoneKeyup = function (id) {
+                $(id).mobilePhoneKeyup();
+            };
+            $scope.mobilePhoneFocus = function (id) {
+                $(id).mobilePhoneFocus();
+            };
+            $scope.mobilePhoneBlur = function (id) {
+              $(id).mobilePhoneBlur();
+            };
+            //checkCode
+            $scope.checkCodeKeyup = function (id) {
+                $(id).checkCodeKeyup();
+            };
+            $scope.checkCodeFocus = function (id) {
+                $(id).checkCodeFocus();
+            };
+            $scope.checkCodeBlur = function (id) {
+                $(id).checkCodeBlur();
+            };
+            //password
+            $scope.passwordKeyup = function (id) {
+                if($.type(id) === 'array'){
+                    var arg = id.slice(1);
+                    $(id[0]).passwordKeyup.apply($(id[0]),arg);
+                }
+                else{
+                    $(id).passwordKeyup();
+                }
+            };
+            $scope.passwordFocus = function (id) {
+                $(id).passwordFocus();
+            };
+            $scope.passwordBlur = function (id) {
+                $(id).passwordBlur();
+            };
+            $scope.showPasswordRaw = function(id){
+                $(id).toggleClass('eye eye-show');
+                $('[id|="passwordRaw"],[id|="passwordRaw2"]').toggle();
+            };
+            $scope.submitInit = function (id) {
+                $(id).submitInit();
+            };
+        }])
+        .controller('skillController', ['$scope' ,function($scope) {
+
         }]);

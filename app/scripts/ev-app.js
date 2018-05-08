@@ -12,6 +12,7 @@ require('./carousel');
 require('./countTo');
 require('./dataToggle');
 require('./skill');
+require('./component');
 
 // require.ensure([],function(){
 //     require("./jquery.prettify.js");

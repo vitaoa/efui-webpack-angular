@@ -68,20 +68,17 @@
                 .state('component', {
                     url: "/component",
                     templateUrl: "partials/component/index.html",
-                    controller: function($scope, $location) {
-                        $scope.docsTit = "组件";
-                        $scope.docsMsg = "基本组件、web组件";
-                    }
+                    controller: 'componentController'
                 })
                 .state('component.pages', {
                     url: "/:pageid",
                     templateUrl: function($routeParams){return 'partials/component/'+$routeParams.pageid+'.html'},
-                    controller:function ($scope) {
-                        $scope.checkboxAll = function (obj,parent) {
-                            !$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', true);
-                            !!$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', false);
-                        };
-                    }
+                    // controller:function ($scope) {
+                    //     $scope.checkboxAll = function (obj,parent) {
+                    //         !$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', true);
+                    //         !!$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', false);
+                    //     };
+                    // }
                 })
                 .state('plugin', {
                     url: "/plugin",
