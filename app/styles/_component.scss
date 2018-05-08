@@ -260,6 +260,19 @@ ol{
     border: 1px solid #e8e8e8;
     position: relative;
     & + .example-demo{margin-top:20px;}
+
+    & > ol {
+        padding-bottom: 1em;
+        padding-top: 1em;
+        background: #fefefe;
+        & > li {
+            margin: .5em
+        }
+        &.decimal > li{
+            margin: .5rem 0 .5rem 32px;
+        }
+        &.hanja{margin:0 1em;padding-left: 2.5em;}
+    }
 }
 
 .example-visualize:before {
@@ -962,4 +975,3 @@ div[id^=scrollBar] {
     background: #ccc;
     border-radius: 4px
 }
-

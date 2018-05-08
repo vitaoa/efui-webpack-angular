@@ -1,10 +1,17 @@
+// Layout
+@import "mixins/library";
+@import "variables/variables";
+
 /* ============ Fonticons ============ */
 
-@font-face {
-    font-family: fontico;
-    src: url(../fonts/ico.eot);
-    src: url(../fonts/ico.eot?#iefix) format('embedded-opentype'), url(../fonts/ico.woff) format('woff'), url(../fonts/ico.ttf) format('truetype'), url(../fonts/ico.svg#glyphicons_halflingsregular) format('svg')
-}
+@include font-face("fontico","../fonts/ico",("eot","woff","ttf","svg"),false);
+@include font-face("PingFang_Heavy","../fonts/PingFang_Heavy",("eot","woff","ttf","svg"),false);
+
+//@font-face {
+//    font-family: fontico;
+//    src: url(../fonts/ico.eot);
+//    src: url(../fonts/ico.eot?#iefix) format('embedded-opentype'), url(../fonts/ico.woff) format('woff'), url(../fonts/ico.ttf) format('truetype'), url(../fonts/ico.svg#glyphicons_halflingsregular) format('svg')
+//}
 
 [class*=" f-"], [class^=f-] {
     font-family: fontico;
