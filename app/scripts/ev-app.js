@@ -13,6 +13,8 @@ require('./countTo');
 require('./dataToggle');
 require('./skill');
 require('./component');
+require('./photoswipe');
+require('./photoswipe-ui-default');
 
 // require.ensure([],function(){
 //     require("./jquery.prettify.js");
