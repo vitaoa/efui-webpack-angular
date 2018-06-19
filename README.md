@@ -4,6 +4,9 @@ Mobile-friendly Angular based web app for the efui Platform
 
 Requires ```node```
 
+### webstorm安装markdown插件
+1. setttings -> plugins -> Browse repositories -> markdown support
+1. setttings -> file types -> 找到markdwon，添加对应的后缀*.md
 
 ### webpack构建配置
 1. **jQuery引入**
@@ -93,7 +96,7 @@ Requires ```node```
           }])
           ```
           
-1. **相关的命令参数**
+1. **webpack相关的命令参数**
 
     每次修改完文件进行编译时都需要写命令，很是繁琐，在命令最后加上--watch，当文件有变化时，就会自动编译：webpack --watch。
     
@@ -107,6 +110,7 @@ Requires ```node```
     -p //压缩混淆脚本，容易报错
     -d //生成map映射文件，告知哪些模块被最终打包到哪里了其中的
     ````
+    
 
 1. **loader转换器**
 
@@ -156,8 +160,8 @@ Requires ```node```
 
         ```
         处理普通的.css 文件，需要安装 css-loader style-loader
-        .less 文件，需要安装 less-loader
-        .sass 文件，需安装  sass-loader
+        .less 文件，需要安装 less,less-loader
+        .sass 文件，需安装  node-sass,sass-loader
         ```
         
         SASS提供四个编译风格的选项：        
@@ -171,6 +175,10 @@ Requires ```node```
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.less$/,
+                loader: "style-loader!css-loader!less-loader"
             },
             {
                 test: /\.s[c,a]ss$/,
@@ -262,6 +270,11 @@ Requires ```node```
         ]
     }),
     ````
+
+1. **mini-css-extract-plugin**
+    
+    webpack4.X使用mini-css-extract-plugin来单独打包css
+
 
 1. **构建生产和开发环境分离**
 

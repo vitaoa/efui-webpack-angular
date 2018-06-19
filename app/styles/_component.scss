@@ -77,12 +77,13 @@
 
 /* ============ bullet ============ */
 ol{
-    &.hanja{
+    &.hanja{margin-top: 10px;
         @include style-bullets(korean-hanja-informal,none);
     }
-    &.decimal{
+    &.decimal{margin-top: 10px;
         @include style-bullets(decimal,none);
     }
+    li{margin-top: 10px;}
 }
 
 

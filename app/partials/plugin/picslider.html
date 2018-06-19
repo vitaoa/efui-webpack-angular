@@ -4,7 +4,7 @@
 		<div class="example-demo">
 			<div class="example-visualize">
 				<div class="panel-plugin">
-					<div class="picswitch">
+					<div class="picswitch" ng-init="sliderLeftRight('.picswitch')">
 					  	<span class="arrow-btn arrow-prev f-arrow_left"></span>
 						<span class="arrow-btn arrow-next f-arrow_right"></span>
 						<div class="picswitch-itmes">
@@ -20,11 +20,3 @@
 		</div>
 	</li>
 </ol>
-<script type="text/javascript">
-	require(['plugin'],function(){
-		$('.picswitch').Picswitch({
-			interval:1000,
-			setIndex:0
-		});
-	});
-</script>

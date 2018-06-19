@@ -32,10 +32,7 @@
                 .state('animation', {
                     url: "/animation",
                     templateUrl: "partials/animation/index.html",
-                    controller: function($scope, $location) {
-                        $scope.docsTit = "css 动画";
-                        $scope.docsMsg = "CSS3 Transitions, Transforms和Animation使用简介与应用展示";
-                    }
+                    controller: 'animationController'
                 })
                 .state('animation.pages', {
                     url: "/:pageid",
@@ -92,73 +89,7 @@
                 .state('skills', {
                     url: "/skills",
                     templateUrl: "partials/skills/index.html",
-                    controller: function($scope, $location) {
-                        console.log(navigator.userAgent);
-                        $scope.docsTit = "进阶";
-                        $scope.docsMsg = "前端技能进阶";
-                        $scope.menulist = [
-                            {
-                                "firstName": "技能进阶",
-                                "likes": [
-                                    {
-                                        'title':"javascript","url":"js"
-                                    },
-                                    {
-                                        'title':"模块化开发","url":"module"
-                                    },
-                                    {
-                                        'title':"正则表达式","url":"regex"
-                                    },
-                                    {
-                                        'title':"seo","url":"seo"
-                                    },
-//					        	{
-//					        		'title':"json","url":"json"
-//					        	},
-//					        	{
-//					        		'title':"ajax","url":"ajax"
-//					        	},
-                                    {
-                                        'title':"jquery","url":"jquery"
-                                    },
-                                    {
-                                        'title':"css3","url":"css3"
-                                    },
-                                    {
-                                        'title':"html5","url":"html5"
-                                    },
-                                    {
-                                        'title':"NodeJs","url":"nodejs"
-                                    }
-                                ]
-                            },
-                            {
-                                "firstName": "试题清单",
-                                "likes": [
-                                    {
-                                        'title':"javascript",
-                                        'submenu':[
-                                            {'name':"概念题",'url':"note-js01"}
-                                        ]
-                                    },
-                                    {
-                                        'title':"css",
-                                        'submenu':[
-                                            {'name':"概念题",'url':"note-css01"}
-                                        ]
-                                    }
-                                ]
-                            }
-                        ];
-                        $scope.dataToggle = function () {
-                            $(this).dataToggle({
-                                show:true
-                            });
-                        };
-                        $scope.testClick = function (o) {
-                            $(o).testClick();
-                        };
-                    }
+                    controller: 'skillsController'
                 })
                 .state('skills.pages', {
                     url: "/:pageid",

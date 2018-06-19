@@ -1,0 +1,94 @@
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">简介</a></li>
+			<li><a href="">与传统图片格式对比</a></li>
+			<li><a href="">与图标字体(icon font)对比</a></li>
+			<li><a href="">svg sprites与png sprites对比</a></li>
+			<li><a href="">浏览器兼容性</a></li>
+		</ol>
+	</div>
+</div>
+
+
+<div class="mswitch">
+	<b class="pt10 pb10">简介</b>
+	<ol class="decimal">
+		<li>SVG是一种可缩放矢量图形（英语：Scalable Vector Graphics，SVG），基于可扩展标记语言（XML），用于描述二维矢量图形的图形格式。</li>
+		<li>SVG由W3C制定，是一个开放标准。</li>
+		<li>简单的理解：它是图形的另一种格式例如它和常见的图片格式.png、.jpg、.gif等是一类。</li>
+	</ol>
+	<div class="example-visualize al-c mt15">
+		<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+		  <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+		    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+		    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+		  <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+		    C22.32,8.481,24.301,9.057,26.013,10.047z" transform="rotate(239.945 20 20)">
+		    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animateTransform>
+		    </path>
+		</svg>
+	</div>
+</div>
+<div class="mswitch">
+	<div class="pt10 pb10">与传统图片格式对比</div>
+	<ol class="decimal">
+		<li><b>是一种可缩放矢量图形</b>
+			<p>SVG提供的功能集涵盖了嵌套转换、裁剪路径、Alpha通道、滤镜效果等能力，它还具备了传统图片没有的矢量功能，在任何高清设备都很高清。</p>
+		</li>
+		<li><b>可读性好，有利于SEO与无障碍</b>
+			<p>由于SVG采用的是XML语法，图形的里面的文本内容可以直接被浏览器，搜索引擎SEO和无障碍读屏软件读取，设置title与desc标签即可。</p>
+			<div class="html">
+				<pre>&lt;svg xmlns="http://www.w3.org/2000/svg">
+	&lt;title>&lt;/title>
+	&lt;desc>&lt;/desc>
+&lt;/svg></pre>
+			</div>
+		</li>
+	</ol>
+</div>
+
+
+<div class="mswitch">
+	<div class="pt10 pb10">与图标字体(icon font)对比</div>
+	<ol class="decimal">
+		<li><b>清晰度：渲染方式不同</b>
+			<p>icon font采用的是字体渲染，浏览器将其视为文字进行抗锯齿优化，有时得到的效果并没有想象中那么锐利，尤其是在不同系统下对文字进行抗锯齿的算法不同，可能会导致显示效果不同。</p>
+			<p>SVG使用的是图形渲染，不依赖于分辨率, 因此图形不会因为放大而显示出明显的锯齿边缘。</p>
+		</li>
+		<li>
+			Icon Font 作为一种字体，Icon 显示的大小和位置可能要受到font-size、line-height、word-spacing等等 CSS 属性的影响。 Icon 所在容器的 CSS 样式可能对 Icon 的位置产生影响，调整起来很不方便。
+		</li>
+		<li>使用上存在不便。首先，加载一个包含数百图标的 Icon Font，却只使用其中几个图标，非常浪费加载时间。 自己制作 Icon Font 以及把多个 Icon Font 中用到的图标整合成一个 Font 也非常不方便。</li>
+		<li>为了实现最大程度的浏览器支持，可能要提供至少四种不同类型的字体文件。包括TTF、WOFF、EOT 以及一个使用 SVG 格式定义的字体。</li>
+		<li>某些浏览器下font-face有跨域问题</li>
+		<li>
+			<b>SVG可以做到多元素支持，支持彩色图标</b>
+			<p>对于图标的每个部分可以有不同的颜色：用不同的颜色填充每个path，也就是通过设置fill属性和stroke属性来控制填充颜色和边线的颜色。</p>
+		</li>
+		<li><b>Inline SVG</b>
+			<p>Inline SVG，就是直接把 SVG 写入 HTML 中，作为 HTML 文档的一部分，不需要单独请求。临时需要修改某个图标的形状也比较方便</p>
+		</li>
+	</ol>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">svg sprites与png sprites对比</div>
+	<ol class="decimal">
+		<li><b>SVG不需要设置位置(background-position)</b></li>
+		<li><b>SVG放大缩小一样清晰</b></li>
+	</ol>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">浏览器兼容性</div>
+	<ol class="decimal">
+	
+	</ol>
+</div>
+

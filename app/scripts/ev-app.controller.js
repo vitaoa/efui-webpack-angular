@@ -3,6 +3,25 @@
  */
 
     angular.module('evApp.controller', [])
+        .controller('animationController',['$scope',function ($scope) {
+	        $scope.docsTit = "css 动画";
+	        $scope.docsMsg = "CSS3 Transitions, Transforms和Animation使用简介与应用展示";
+	        $scope.baseCanvas = function (id) {
+                  $(id).baseCanvas();
+	        };
+	        $scope.circleCanvas=function (id) {
+		        $(id).circleCanvas();
+	        };
+	        $scope.circleLineCanvas=function (id) {
+              $(id).circleLineCanvas();
+	        };
+	        $scope.circleRoundCanvas=function (id) {
+                $(id).circleRoundCanvas();
+	        };
+	        $scope.canvasBezier=function (id) {
+              $(id).canvasBezier();
+	        };
+        }])
         .controller('pluginController', ['$scope' ,function($scope) {
             $scope.docsTit = "插件";
             $scope.docsMsg = "基于jQuery库的插件介绍";
@@ -127,7 +146,7 @@
                 var MyMar=setInterval(Marquee,speed);
                 tab.onmouseover=function() {clearInterval(MyMar)};
                 tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
-            }
+            };
             $scope.initPhotoSwipeFromDOM = function(gallerySelector) {
                 console.log(gallerySelector);
 
@@ -329,6 +348,18 @@
                     openPhotoSwipe(hashData.pid, galleryElements[ hashData.gid - 1 ], true, true);
                 }
             };
+            $scope.downTime =function (time,id) {
+	            var countTime = function () {
+		            $(id).DownTime(time);
+	            };
+	            setTimeout(function () {
+		            countTime();
+		            setInterval(countTime,1000);
+	            },0);
+            };
+            $scope.sliderLeftRight =function (e) {
+                $(e).sliderLeftRight();
+            };
         }])
         .controller('componentController', ['$scope' ,function($scope) {
             $scope.docsTit = "组件";
@@ -396,6 +427,72 @@
                 $(id).submitInit();
             };
         }])
-        .controller('skillController', ['$scope' ,function($scope) {
-
+        .controller('skillsController', ['$scope' ,function($scope) {
+            $scope.docsTit = "进阶";
+            $scope.docsMsg = "前端技能进阶";
+            $scope.menulist = [
+                {
+                    "firstName": "技能进阶",
+                    "likes": [
+                        {
+                            'title':"javascript","url":"js"
+                        },
+                        {
+                            'title':"模块化开发","url":"module"
+                        },
+                        {
+                            'title':"正则表达式","url":"regex"
+                        },
+                        {
+                            'title':"seo","url":"seo"
+                        },
+//					        	{
+//					        		'title':"json","url":"json"
+//					        	},
+//					        	{
+//					        		'title':"ajax","url":"ajax"
+//					        	},
+                        {
+                            'title':"jquery","url":"jquery"
+                        },
+                        {
+                            'title':"css3","url":"css3"
+                        },
+                        {
+                            'title':"html5","url":"html5"
+                        },
+                        {
+                            'title':"mobile-web","url":"mobile-web"
+                        },
+                        {
+                            'title':"NodeJs","url":"nodejs"
+                        }
+                    ]
+                },
+                {
+                    "firstName": "试题清单",
+                    "likes": [
+                        {
+                            'title':"javascript",
+                            'submenu':[
+                                {'name':"概念题",'url':"note-js01"}
+                            ]
+                        },
+                        {
+                            'title':"css",
+                            'submenu':[
+                                {'name':"概念题",'url':"note-css01"}
+                            ]
+                        }
+                    ]
+                }
+            ];
+            $scope.dataToggle = function () {
+                $(this).dataToggle({
+                    show:true
+                });
+            };
+            $scope.testClick = function (o) {
+                $(o).testClick();
+            };
         }]);

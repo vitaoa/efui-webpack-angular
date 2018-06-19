@@ -1,0 +1,83 @@
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">基本概念</a></li>
+			<li><a href="">arc绘制圆形/圆环</a></li>
+			<li><a href="">贝塞尔曲线</a></li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<b class="pt10 pb10">两个基本概念</b>
+			<div class="example-desc">
+				<ol class="decimal">
+					<li>Canvas 的左上角是（0，0）；</li>
+					<li>基于左上角往右 X 为正，往下 Y 为正，反之为负；
+						<div class="html">
+							<pre>fillRect(0, 0, 200, 200)</pre>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<div class="example-visualize al-c">
+				<canvas id="canvas" width="400" height="300" style="background:#000;" ng-init="baseCanvas('#canvas')">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
+		</li>
+		<li>
+		
+		</li>
+	</ol>
+</div>
+
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<div class="pt10 pb10">6个圆组成的八卦图</div>
+			<div class="example-visualize al-c">
+				<canvas id="myCanvas" width="400" height="300" ng-init="circleCanvas('#myCanvas')">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
+			<div class="example-desc">
+				<p><b>语法：</b>context.arc(x,y,r,sAngle,eAngle,counterclockwise);</p>
+				<div class="al-c">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADSCAYAAAAG/i8ZAAASa0lEQVR4Xu2dX8gWRRvG5z34wI7sPQisM6MTDQL1SD3wT0qgCGFFoBGkYpBCH/p+R3nQgYKCwvdBBooKEoooeiIGUWmCGXyUgqAiSAZFHr4JgYIHb1yLW+u6uzOzz9z3zjxzLcSLPbPz57rv394zs7MzEzMzMzOGFxWgAk4KTBAYJ52YiAoUChAYOgIV8FCAwHiIFX3SiQlj2MMWNROBEZXXIXMXJ0eapquEo8yj/rfoQzTcW4Wq+jthsxqMwFglEkrg46i+UNWBqINQz88lfyEZUsuWwAxtMRdntaWxRRgCE8zKBCaYlD0zssHg0q0qi27Ky+X/udShZ/PG7TYCM7RF+zqr630EJqiFCUxQOXtk5ur49axd77MN+ssIxgG/k/EIjJNMgolcHX8UYGww9K2DoCyxZk1ghrZMm7NW/79Lt6qtHS4wuKQZWqdIyicwQxnC1lVqmvqt1tUWNbomAqr5+ExvD6VVROUSmIiMwarErwCBid9GrGFEChCYiIzBqsSvAIGJ30asYUQKEJiIjMGqxK8AgYnfRqxhRAoQmIiMwarErwCBid9G3TX834QxH3NbBi0zEhgtpaXKITBSyjbmS2BU5RYojMAIiNqeJYFRlVugMAIjICqBURVVtTACoyo3I4yq3AKFERgBURlhVEVVLYzAqMrNCKMqt0BhBEZAVEYYVVFVCyMwqnIzwqjKLVAYgREQlRFGVVTVwgiMqtyMMKpyCxRGYAREZYRRFVW1MAKjKjcjjKrcAoURGAFRGWFURVUtjMCoys0Ioyq3QGEERkBURhhVUVULIzCqcjPCqMotUBiBERCVEUZVVNXCCIyq3IwwqnILFEZgBERlhFEVVbUwGzDcyDyoORhhgso5QGahgGnaHL2tOW2HylbTu26WPoBkoxRJYEZRL4Z7u4CpH5nhAkA1je0YDJejOmLQKGAdCExAMQfJqg2YrvNluhzd1oj6Uef19DbIbPlH/juBidxA1up1AVPebDtFuUzXdCZN1xHmLt24MeuaERirR0aewGcM0+cQJxswPr9HLqVL9QiMi0oRppmoOf9M05Pct3vkGzF800eoo2+VCIyvYsrpHz16ZG7evGkePHhg/vjjD4N/T09Pm+3btz9Vk2eAqTszgLJFmPqAv61L17cLp6ydRHEERkLVnnnevn3bXLx40dy4ccPcvXvX4N+AY+7cuebFF180zz//vJk1a5aZnJw0Bw8e7AamqQ62MUodhDJ9iEmCnprEdhuBGdAi9+/fN5cuXTIXLlwo/uJasWKFWbJkiZk3b14BCv5r9v0JN2DKqFJGmK4xB3Jsm11zeQHqCuSAmo9aNIEZVUHP+9GlOnfunDlx4oS5evWqWbNmjVm2bJlZvXp1KxydRdhmyWwvGavTxCjINoivprEB4juG8tRyiOQERkn1e/fumb1795rTp08XEWTjxo1m/fr1RRdrpMs2S1Yfl9giTFd619/KSFUHcKSGxnEzgRG2A8Yhu3fvLrpcH330kdm8eXMxHgl2+QATrNB8MyIwQrYHKFNTU+b69etmx44dZsuWLcWgPfhFYIJL2pUhgQksN8YoiCjHjh0zn3zySRFRRu52ddWRwAS2YHd2BCag3IcPHzaffvppMTYBNCIRpV5fAhPQgvasCIxdI2sKvFDEIB4D+yNHjhSDerWLwKhJXcxlzDSuqVCtQ9KF4UXje++9ZzZt2lREFfWLwKhKTmBGkHvXrl3FWAVRBe9TBrkIjKrsBKan3OiC3blzx5w5c6bfC8ee5T5zG4EJpaRTPgTGSaZ/EmG88tZbb5k5c+aYo0ePys6AudSNwLioFCwNgfGQEmu/1q1bZ5YvX27279/vcadgUgIjKO6zWRMYR7kRWTD7hbFKNLCg7gTG0YJhkhEYBx0By6pVq8ybb75pMNCP6iIwquYgMBa58eZ+7dq1ZsGCBXFFlrLeBIbAqCpgKQyzYYDm7NmzMVXrn7oQGFW7MMJ0yI2xyqlTp8yVK1eGnw1rqyeBITCqCrQUho+73n77bfPTTz+FXY4funEEJrSinfkxwjTIg0H+woULzWeffTbcG3xXNyAwrkoFSUdgGmTEi0l85AVgor8IjKqJCExNbnxvj6nja9euxTtuqdaZwBAYVQUqhaErNn/+fHP+/HmzaNGioarhVy6B8dNrxNSMMBUBsTne48ePzaFDh0aUVfF2AqMoNr+H+VtsfIP/+uuvxz8rVncPAkNgVBV4UhgG+itXrjTbtm0bovj+ZRKY/tr1uJNdMmOKqIJVyD///HMaA30O+nu4ephbCIwxxfctixcvLrZFSu5ihFE1WfbAlGOXJKMLXIXAEBhNBTAzhu2QBtnAIkRDCUwIFZ3zyDrCYBUy3ujfunUr7vViXeYkMM7OHiJh1sDgrT6+y8dxE8leBEbVdFkDgw/D8L3Lhg0bVEUPWhiBCSqnLbNsgcEyGBxWhI0tRPc+hgV8z0nxSZ8yMC6HNFU92EcXm+f3/D1bYE6ePFl8RanyJWUfQ7veEwswfQ6I7QNMk6MrHm2eLTDoiuHkr61bt/Z81nTc1sd56pEoNWBKOWynknVFjK42d52zSWDC+3A9x5deesl8//33MrtW2pzGxfjjDEzbCc9tp6O56CXvMkUJWUYYvKzEgB8vK0UuX2BcTitue4rG0iXzjTD1NrdF5foZnF0GU4g0WQKDc1wuX75cHMwqchGYf2S1RQfXbpivpiKGzTTCfPjhh+a1116TW5nsO4axRZiumbYYIoxLe0sHrkaM6lHoTXnYToCuQ8EII/OYwHcvOE4Py/lVrr5P0SoobXnEAIzvQL7alraHhW9EcR3zjWjwLLtkogP+JoO4GtN3mhVlpQhM04PABRCbs0cZYVyNb2vcQL/jhSXWjz18+FCvBq6apQ6Mb/2bIo3r5IENMCHrNkeYroY3hVCf/qfCU6BLK3wshjHMjz/+KCRpQ7Y+wDTVqkuzmCKMDzAus2Rt08xNYzpXjbusXvfjBt2fBqZ6Q5OR2n53ESpEgwK4+JdffmkOHjyY9oLLqg6xANNmX5tvuIxhbL5T+uUoD2NbPZ9oHi7C1Cs7UMi0MYUVyphOVlkSY6tMiN9jASZEW4bMIzgwbX3LpvAoFTIDCIp3MOiWJbWVUmMvb+KZ/5vagdgTtS7QoPUXA8Z1FijSCIPuGN70J7ENbMcDou5sSDqow/V4mOUNTF0wWxetTWB0MXhZFZj497NJZv5rvS2qBPU2iNf/45n29g8eYepVsw3clEyJb/fxaXKy3/CXg8+GmUlGmBGciMA0i8cu2QhOJXArNiGZN2+e3DIl1zr3Asb2PqWtcFv0sE1XuzYqQLpxGfT/LUXis2T4Lgkrx6P4TNz7PUwAh4w9C04rx2UhbKIIaNavXx9XxVpqk91asosXL5oDBw7wxWUk7qm+EHbEdmcHzCBLY0Y0UuftiXfJcB7PF198kcx5PNkBgxmyyclJ3cWXBKZVgeeee85MT0/L79wTyAbZAQPd1Jf3BzJWYzYJR5h79+4VZ/KIfSouoHuWwMBIO3fujP+EZBeDJwxMigthswQmmrl/FyBsaRIGZv/+/eaXX35JaplSlsCIb4Jhc/KQvycMjOjecCE1ruSVJTDoOy9dutT8/vvvQrIqZpswMBhLYtYSX8CmcmUJDIzz8ssvF+9isCwj6StRYLBiHC8tcdRISle2wOAz5UWLFslsFavpAYkCgzV9N27cSO67pGyBUd2MXBKgRIFBdMF/Uawh87BPtsCUx11gPIMj+5K9EgQmZe2zBQaA4An3xhtvpN0tSxAYzFJ+9dVXSe6rkDUwWLmMvvS3336bbICJbiM/ByUxQ4mdR9esWeOQOq4kWQMzFstkEoswqU/pZw8Mjx3XfYLv2rXLYAyT6iYk2QODJ97ChQtNsoP/hCJMOdi/du2azEFWCuxnDww0xhINvMDE0y+5KyFgsPHIr7/+mty7l6pPEBhjin3KymXm4icqhyYyEWDwHRJWV4gdkxha15b8CMwTYTDFjPNitm3bpiR9oGISAQYrk3/44Yckp5IZYRp8tYwyqS0GTGFa+f79+8UyJEzfp752jxGmAg/GMBj8i519GSioPJVNAhEG0RugpL55InQnMBXvQz8bmzIcOXJE7zi/USGKHBh8VYmpe6xKTm582GAbAlMTBW//EWkw9ZmEgSMGBg8gTNkjsqSy75jt+UVgGhRCFwIfNSXxci1iYPAJxZ9//plWF9dCDIFpEKh8MiLSRL/8PFJg8PkEIksykdoWWp78TmBahCpnzaKf2YkQmGS0c4SE08qOQuHdwalTp8yVK1fiHc9EBgyWv6xatcp88MEH6b3TcvALRhiLSOiH//bbb8ULtygnASICBl1Z7MSPKeQkxn8OgNSTEBgH0TAJgCvKg2QjAgY64aGS1HssB/uzS+YpEp6cWGu2YsWK+F6+RQLM1NRUsfQFY74oI7GnzduSM8I4Cln2zZcvX24wtonmigAYwPLdd9+Zb775Ju39ERyMSmAcRCqTINJUux1RPEkHBAZ64NMI/I12jOdhX5ekBMZFpUqa0kkQceAkg+84MxAwaD8eHnPmzDFHjx4d624YxzCekDQlx5P1zp075syZM8N+PTgAMFig+s477xQrkA8dOhRAzXSyYIQZwVZ4m43vZ/bt2zfcVk3KwGCXHayAwN/oV0GMYFsO+gXEQ5blHsELFiwYpmuiBAy6ops3by6iKo7YS/27lr7uwAjTV7nKfejPw5kAD17Y4ctNtUsBGBykiyX6eCggsgw+blMT99mCCExA8UvHmjt3bgEO/opfgsBgrAJQ8Ff9QSAuXL8CCEw/3VrvQtcFq3TxJMbujnA40elnAWDQBgCyZ8+eYoyGMYtoGwLbQDI7AiOkLrpneKF3/fp1s2PHDrNlyxaZrkxAYMoN9j7//HOzePHi4gWtSpQUsoFEtgRGQtVKngAHEefSpUtm06ZNxVgnqBMGAAZdLrxLOXbsWLH8BxEl10G9zR0IjE2hQL/DKffu3WtOnz5dfLb77rvvmvfff3/0rk5PYBBNUJfjx48X39vjvRJOlg4KcyDtYsqGwChbA+MD7BuAFb1Xr14tZtTK/3o91T2AQbTDMYVYJIkJiiVLlhQRD7voc4zi5ggExk0nkVTYrwtdtcuXL5uvv/66WJOFLhEcGfDgaW994rcAg4gGQPAXYKIcQLF69WqzbNmyApKcp4f7GpTA9FVO4L4qQHfv3i0cfnp6uoAGm3LAweH0k5OTfzv77hf2mI3/31DAhm4W8gAkSAPoXnnllQIQgJjSacUC8gbJksAEkVEuE4Bw8+ZN8+DBgwII/BsQPXz4sCh06l//MSdfOFGABKBmz55tXn31VXaxhExCYISEVcvWYwyjVqcxLojApG5cAqNqQQKjKrdAYQRGQNT2LAmMqtwChREYAVEJjKqoqoURGFW5GWFU5RYojMAIiMoIoyqqamEERlVuRhhVuQUKIzACojLCqIqqWhiBUZWbEUZVboHCCIyAqIwwqqKqFkZgVOVmhFGVW6AwAiMgKiOMqqiqhREYVbkZYVTlFiiMwAiIygijKqpqYQRGVW5GGFW5BQojMAKiMsKoiqpaGIFRlZsRRlVugcIIjICojDCqoqoWRmBU5WaEUZVboDACIyAqI4yqqKqFERhVuRlhVOUWKIzACIjKCKMqKgsbXwUYYcbXtmyZgAIERkBUZjm+ChCY8bUtWyagAIEREJVZjq8CBGZ8bcuWCShAYAREHSzLiQljZmYGKz6HggnMUFaGc1evLkevpy3vK+8pQan/Rbqme6tlVX8nbFZvIDBWiQQSNEWCrujgEjnaHN+lLJf8BWRIMUsCM4TVXJy4Wi+bQ9siTD1y1POz5T+ERpGWSWCGMEwfYOr1bOo+ueZLYHpbncD0lm6EG10du6sI16jgUpZrXiM0eVxuJTBDWNLFiW31cnVy26C/nBjggN+mePE7gXGSKXAibWBsMLjCF1iGFLMjMENYzQWYahqX9G3tcIHBJc0QOkVYJoEZyij1rpLLTFa1rraoUaa1wcD3MF4eQGC85GLi3BUgMLl7ANvvpQCB8ZKLiXNXgMDk7gFsv5cCBMZLLibOXQECk7sHsP1eChAYL7mYOHcFCEzuHsD2eylAYLzkYuLcFSAwuXsA2++lAIHxkouJc1eAwOTuAWy/lwIExksuJs5dAQKTuwew/V4KEBgvuZg4dwUITO4ewPZ7KUBgvORi4twVIDC5ewDb76UAgfGSi4lzV4DA5O4BbL+XAgTGSy4mzl0BApO7B7D9XgoQGC+5mDh3Bf4CyjwOMCwIkfYAAAAASUVORK5CYII=" alt="">
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="pt10 pb10">匀速直线运动</div>
+			<div class="example-visualize al-c">
+				<canvas id="myCanvas2" width="400" height="300" ng-init="circleLineCanvas('#myCanvas2')">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
+		</li>
+		<li>
+			<div class="pt10 pb10">匀速圆周运动</div>
+			<div class="example-visualize al-c">
+				<canvas id="myCanvas3" width="400" height="400" ng-init="circleRoundCanvas('#myCanvas3')">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
+		</li>
+	</ol>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">对话气泡</div>
+	<div class="example-visualize" style="background: #eee;">
+		<canvas id="canvasBezier" width="500" height="300" style="background: #ccc;" ng-init="canvasBezier('#canvasBezier')"></canvas>
+	</div>
+</div>
+
+

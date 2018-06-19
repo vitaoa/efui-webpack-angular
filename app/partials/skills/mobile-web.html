@@ -1,0 +1,43 @@
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li>
+				<a href="">移动web开发之像素和DPR</a>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<h3 class="mb10">移动web开发之像素和DPR</h3>
+	<div class="example-demo">
+		<ol class="hanja">
+			<li>像素分类：
+				<ol class="decimal">
+					<li><b>设备像素(device independent pixels): </b>设备屏幕的物理像素，任何设备的物理像素的数量都是固定的</li>
+					<li><b>CSS像素(CSS pixels): </b>又称为逻辑像素，是为web开发者创造的，在CSS和javascript中使用的一个抽象的层，每一个CSS声明和几乎所有的javascript属性都使用CSS像素，因此实际上从来用不上设备像素 ，<span class="c-red">唯一的例外是screen.width/height</span></li>
+				</ol>
+			</li>
+			<li>像素缩放：
+				<ol class="decimal">
+					<li><b>桌面端：</b>css的1个像素往往都是对应着电脑屏幕的1个物理像素，一个CSS像素等于一个设备像素。</li>
+					<li><b>手机端：</b>由于屏幕尺寸的限制，缩放是经常性的操作，一个CSS像素对应多少个设备像素是根据当前的缩放比例来决定的。</li>
+				</ol>
+			</li>
+			<li>DPR：设备像素比(devicePixelRatio)
+				<ol class="decimal">
+					<li><b>概念：</b>默认缩放为100%的情况下，设备像素和CSS像素的比值DPR = 设备像素(screen.width/height) / CSS像素</li>
+					<li><b>对应的javascript属性：</b>window.devicePixelRatio</li>
+					<li><b>公式：</b>window.devicePixelRatio = (screen.width/height) / (style.width/height) </li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+</div>
+
+
+<div class="mswitch">
+	<h3 class="mb10"> </h3>
+	<div class="example-demo">
+	</div>
+</div>

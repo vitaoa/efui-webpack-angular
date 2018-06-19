@@ -25,7 +25,7 @@
 				<a href="">两种继承方式call和apply</a>
 			</li>
 			<li>
-				<a href="">注册注销事件</a>
+				<a href="">addEventListener注册注销事件</a>
 			</li>
 			<li>
 				<a href="">Touch与Mouse事件</a>
@@ -151,7 +151,7 @@ function(){
 		<div class="exm-t2"><b>总结：</b></div>
 		<ol>
 			<li><span class="red">要在函数体后面加括号就能立即调用，则这个函数必须是函数表达式</span>，不能是函数声明；</li>
-			<li><span class="red">（）、！、+、-、=等运算符，都将函数声明转换成函数表达式</span>，消除了javascript引擎识别函数表达式和函数声明的歧义，告诉javascript引擎这是一个函数表达式，不是函数声明，可以在后面加括号，并立即执行函数的代码；</li>
+			<li><span class="c-red">（）、！、+、-、=等运算符，都将函数声明转换成函数表达式</span>，消除了javascript引擎识别函数表达式和函数声明的歧义，告诉javascript引擎这是一个函数表达式，不是函数声明，可以在后面加括号，并立即执行函数的代码；</li>
 			<li><span class="red">加括号是最安全的做法</span>，因为！、+、-等运算符还会和函数的返回值进行运算，有时造成不必要的麻烦。</li>
 		</ol>
 		<pre>(function(a){
@@ -759,7 +759,44 @@ console.log(p.constructor.prototype.constructor === Person); // true</pre>
 <div class="mswitch">
 	<h3 class="mb10">注册注销事件</h3>
 	<div class="example-desc">
-		<div class="html">
+		<ol class="hanja">
+			<li>
+				如果浏览器不支持 addEventListener() 方法, 可以使用 attachEvent() 方法替代。
+				<div class="html">
+					<pre>if (document.addEventListener) {                //所有主流浏览器，除了 IE 8 及更早 IE版本
+    document.addEventListener("click", myFunction);
+} else if (document.attachEvent) {             // IE 8 及更早 IE 版本
+    document.attachEvent("onclick", myFunction);
+}</pre>
+					<pre>var addEvent=(function(){
+	if(document.addEventListener){
+		return function(el,type,fn){
+			if(el.length){
+				for(var i=0;i&lt;el.length;i++){
+					addEvent(el[i],type,fn);
+				}
+			}else{
+				el.addEventListener(type,fn,false);
+			}
+		};
+	}else{
+		return function(el,type,fn){
+			if(el.length){
+				for(var i=0;i&lt;el.length;i++){
+					addEvent(el[i],type,fn);
+				}
+			}else{
+				el.attachEvent('on'+type,function(){
+					return fn.call(el,window.event);
+				});
+			}
+		};
+	}
+})();</pre>
+				</div>
+			</li>
+			<li>
+				<div class="html">
 			<pre>/*注册滑动事件(pc鼠标滚动，移动手指滑动)*/
 if(document.addEventListener){
 	document.addEventListener('DOMMouseScroll',scrollFunc,false);
@@ -777,7 +814,10 @@ window.onmousewheel=document.onmousewheel=null;
 var scrollFunc=function(){
 	//code here...
 };</pre>
-		</div>
+				</div>
+
+			</li>
+		</ol>
 	</div>
 
 </div>

@@ -13,6 +13,8 @@ require('./countTo');
 require('./dataToggle');
 require('./skill');
 require('./component');
+require('./plugins');
+require('./canvas');
 require('./photoswipe');
 require('./photoswipe-ui-default');
 
