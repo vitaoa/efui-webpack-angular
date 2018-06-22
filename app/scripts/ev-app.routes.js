@@ -6,7 +6,7 @@
             $stateProvider
                 .state("index", { //导航用的名字，如<a ui-sref="login">login</a>里的login
                     url: '/',    //访问路径
-                    templateUrl: "partials/common/main.html",
+                    templateUrl: "app/partials/common/main.html",
                     controller: function($scope, $location) {
                         $scope.docsTit = "Easy Fast UI Frame";
                         $scope.docsMsg = "EFUI为一款轻量级前端UI框架，通俗易懂的写法及模块式的拼装方便自由扩展，简单易用，轻量快捷。";
@@ -14,7 +14,7 @@
                 })
                 .state('login', {
                     url: "/login",
-                    templateUrl: "partials/login/index.html",
+                    templateUrl: "app/partials/login/index.html",
                     controller: function($scope) {
                         $scope.submitted = false;
                         $scope.login = function() {
@@ -31,16 +31,16 @@
                 })
                 .state('animation', {
                     url: "/animation",
-                    templateUrl: "partials/animation/index.html",
+                    templateUrl: "app/partials/animation/index.html",
                     controller: 'animationController'
                 })
                 .state('animation.pages', {
                     url: "/:pageid",
-                    templateUrl: function($paramid){return 'partials/animation/'+$paramid.pageid+'.html';}
+                    templateUrl: function($paramid){return 'app/partials/animation/'+$paramid.pageid+'.html';}
                 })
                 .state('standard', {
                     url: "/standard",
-                    templateUrl: "partials/standard/index.html",
+                    templateUrl: "app/partials/standard/index.html",
                     controller: function($scope, $location) {
                         $scope.docsTit = "规范";
                         $scope.docsMsg = "CSS规范、HTML规范、JavaScript规范、浏览器兼容性";
@@ -48,11 +48,11 @@
                 })
                 .state('standard.pages', {
                     url: "/:pageid",
-                    templateUrl: function($paramid){return 'partials/standard/'+$paramid.pageid+'.html';}
+                    templateUrl: function($paramid){return 'app/partials/standard/'+$paramid.pageid+'.html';}
                 })
                 .state('element', {
                     url: "/element",
-                    templateUrl: "partials/element/index.html",
+                    templateUrl: "app/partials/element/index.html",
                     controller: function($scope, $location) {
                         $scope.docsTit = "基本元素";
                         $scope.docsMsg = "CSS样式、HTML标签";
@@ -60,16 +60,16 @@
                 })
                 .state('element.pages',{
                     url:'/:pageid',
-                    templateUrl:function($paramid){return 'partials/element/'+$paramid.pageid+'.html';}
+                    templateUrl:function($paramid){return 'app/partials/element/'+$paramid.pageid+'.html';}
                 })
                 .state('component', {
                     url: "/component",
-                    templateUrl: "partials/component/index.html",
+                    templateUrl: "app/partials/component/index.html",
                     controller: 'componentController'
                 })
                 .state('component.pages', {
                     url: "/:pageid",
-                    templateUrl: function($routeParams){return 'partials/component/'+$routeParams.pageid+'.html'},
+                    templateUrl: function($routeParams){return 'app/partials/component/'+$routeParams.pageid+'.html'},
                     // controller:function ($scope) {
                     //     $scope.checkboxAll = function (obj,parent) {
                     //         !$(obj).prop('checked') && $(parent).find('input[type="checkbox"]').prop('checked', true);
@@ -79,21 +79,21 @@
                 })
                 .state('plugin', {
                     url: "/plugin",
-                    templateUrl: "partials/plugin/index.html",
+                    templateUrl: "app/partials/plugin/index.html",
                     controller: 'pluginController'
                 })
                 .state('plugin.pages', {
                     url: "/:pageid",
-                    templateUrl: function($routeParams){return 'partials/plugin/'+$routeParams.pageid+'.html'}
+                    templateUrl: function($routeParams){return 'app/partials/plugin/'+$routeParams.pageid+'.html'}
                 })
                 .state('skills', {
                     url: "/skills",
-                    templateUrl: "partials/skills/index.html",
+                    templateUrl: "app/partials/skills/index.html",
                     controller: 'skillsController'
                 })
                 .state('skills.pages', {
                     url: "/:pageid",
-                    templateUrl: function($routeParams){return 'partials/skills/'+$routeParams.pageid+'.html'},
+                    templateUrl: function($routeParams){return 'app/partials/skills/'+$routeParams.pageid+'.html'},
                     controller:function($scope,$stateParams,$element){
                         $scope.pagename = $stateParams.pageid;
                         $scope.answertitle = '查看正确答案';
@@ -425,7 +425,7 @@
                 })
                 .state('frame', {
                     url: "/frame",
-                    templateUrl: "partials/frame/index.html",
+                    templateUrl: "app/partials/frame/index.html",
                     controller: function($scope, $location) {
                         $scope.docsTit = "前端框架库";
                         $scope.docsMsg = "以Javascript语言为基础搭建的编程框架";
@@ -475,7 +475,7 @@
                 })
                 .state('frame.pages', {
                     url: '/:pageid',
-                    templateUrl:function($routeParams){return 'partials/frame/'+$routeParams.pageid+'.html';},
+                    templateUrl:function($routeParams){return 'app/partials/frame/'+$routeParams.pageid+'.html';},
                     controller: function($scope, $location,$state,$stateParams,$element) {
                         $scope.pagename = $stateParams.pageid;
                         $scope.toggleClass = function(){

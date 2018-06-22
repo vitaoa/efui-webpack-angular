@@ -15,9 +15,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //清除文件
 
+
 //路径定义
 const publicPath = '/';
-
 //定义插件
 const plugins=[
     new HtmlWebpackPlugin({
@@ -25,7 +25,7 @@ const plugins=[
         "date" :'2018.1',
         'Designed':'',
         'Coded':'Vita',
-        "template": path.resolve(__dirname,'app/demo.html'), // 模板名
+        "template": path.resolve(__dirname,'./demo.html'), // 模板名
         "filename": 'index.html', // 生成的文件名
         "favicon": '../favicon.ico',
         "inject": true,
@@ -88,7 +88,8 @@ if (!isDev) {
             alias: {//创建 import 或 require 的别名
                 jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery.min'),
                 angular: path.resolve(__dirname, 'app/bower_components/angular/angular.min'),
-                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router.min')
+                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router.min'),
+	            entryCss:path.resolve(__dirname, 'app/scripts/entry-app'),
             }
         },
         externals: {//防止将某些 import 的包打包到 bundle 中
@@ -162,7 +163,8 @@ if (!isDev) {
             alias: {//创建 import 或 require 的别名
                 jquery: path.resolve(__dirname, 'app/bower_components/jquery/dist/jquery'),
                 angular: path.resolve(__dirname, 'app/bower_components/angular/angular'),
-                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router')
+                angularUiRouter: path.resolve(__dirname, 'app/bower_components/angular-ui-router/release/angular-ui-router'),
+	            entryCss:path.resolve(__dirname, 'app/scripts/entry-app'),
             }
         },
         externals: {//防止将某些 import 的包打包到 bundle 中，必须在html页面里面添加。
@@ -205,7 +207,7 @@ if (!isDev) {
         plugins:plugins,
         //对webpack-dev-server进行配置
         devServer:{
-            contentBase:"./app/", // 本地服务器在哪个目录搭建页面
+            contentBase:"./", // 本地服务器在哪个目录搭建页面
             inline:true, // 用来支持webpack-dev-server自动刷新的配置
             hot:true, // 启动webpack热模块替换特性
             port:8888 //端口号(默认8080)

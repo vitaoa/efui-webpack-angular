@@ -1,55 +1,18 @@
 ﻿'use strict';
 
-require("./ev-app.routes");
-require("./ev-app.controller");
-require("./jquery.prettify");
-require("./jquery.collapse");
-require("./jquery.slider");
-require('./efui');
-require('./lib/jQueryRotate');
-require('./rotary');
-require('./carousel');
-require('./countTo');
-require('./dataToggle');
-require('./skill');
-require('./component');
-require('./plugins');
-require('./canvas');
-require('./photoswipe');
-require('./photoswipe-ui-default');
 
-// require.ensure([],function(){
-//     require("./jquery.prettify.js");
-//     require("./jquery.collapse.js");
-//     require("./jquery.slider.js");
-//     require('./efui.js');
-// },"efuicomponent");
 
-// css 文件引入
+require(['entryCss'], function () {
+    setTimeout(function () {
+	    angular.bootstrap(document, ['evApp']);
+	    $('.page-loader').fadeOut(1000);
+    },1000);
 
-require("../styles/_base.scss");
-require("../styles/_layout.scss");
-require("../styles/_navbar.scss");
-require("../styles/_component.scss");
-require("../styles/_sidebar.scss");
-require("../styles/_fonticons.scss");
-require("../styles/_prettyprint.scss");
-require("../styles/_button.scss");
-require("../styles/_anim.scss");
-require("../styles/_rotary.scss");
-require("../styles/_carousel.scss");
-require("../styles/_popup.scss");
-require("../styles/_plugin.scss");
-
-$(function () {
-    angular.bootstrap(document, ['evApp']);
 });
 
 angular.module('evApp', ['evApp.routes','evApp.controller'])
     /* 缓存模板templateUrl */
     .run(["$templateCache", function($templateCache) {
-        $templateCache.put("hello.html", "<div><h1>Hi 我是林炳文~~~6666</h1></div>");
-        $templateCache.put("hello2.html", "<div><h1>Hi 我是林炳文~~~8888</h1></div>");
         $templateCache.put("toptitle.html", '<h3 class="mb10" ng-repeat="data in menulist" ng-click="toggleClass()">'+
             '<span ng-repeat="item in data.likes">'+
             '<span class="red" ng-if="!item.submenu && item.title == pagename">{{item.title}}:{{item.abstract}}</span>'+
@@ -69,13 +32,13 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
     .directive('headerpanel', function () {
         return {
             restrict: 'EA',
-            templateUrl: 'partials/common/header.html'
+            templateUrl: 'app/partials/common/header.html'
         };
     })
     .directive('footerpanel', function () {
         return {
             restrict: 'EA',
-            templateUrl: 'partials/common/footer.html'
+            templateUrl: 'app/partials/common/footer.html'
         };
     })
     .directive('my-class', function () {
