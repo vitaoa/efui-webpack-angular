@@ -10,7 +10,8 @@
 			<li><a href="">与传统图片格式对比</a></li>
 			<li><a href="">与图标字体(icon font)对比</a></li>
 			<li><a href="">svg sprites与png sprites对比</a></li>
-			<li><a href="">浏览器兼容性</a></li>
+			<!--<li><a href="">浏览器兼容性</a></li>-->
+			<li><a href="">环形进度条</a></li>
 		</ol>
 	</div>
 </div>
@@ -86,9 +87,13 @@
 </div>
 
 <div class="mswitch">
-	<div class="pt10 pb10">浏览器兼容性</div>
+	<div class="pt10 pb10">环形进度条</div>
 	<ol class="decimal">
-	
+		<svg width="565.2" height="565.2" xmlns="http://www.w3.org/2000/svg">
+			<circle id="backdrop" r="90" cy="120" cx="120" stroke-width="3" stroke="#333" fill="none" />
+			<circle id="progress" class="circle_bar" r="90" cy="120" cx="120" stroke-linecap="round" stroke-width="4" stroke="orange" fill="none" />
+		</svg>
+		
 	</ol>
 </div>
 

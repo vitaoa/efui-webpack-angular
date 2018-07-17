@@ -34,7 +34,7 @@
 				   <!--onClick="sendVeriCodeClick();_gaq.push(['_trackEvent', 'demo2-account-gts2', 'sendVeriCode', 'content-bottom',1,true]);"-->
 				   <!--name="sendVeriCode" value="获取验证码" class="get-code"/>-->
 			<input type="button" id="sendVeriCode"
-				   name="sendVeriCode" value="获取验证码" class="get-code"/>
+				   name="sendVeriCode" value="获取验证码" class="get-code" ng-click="sendCodeNumber('.get-code')"/>
 			<span class="result-icon"><i class="i-correct"></i></span>
 		</div>
 		<div id="checkCodeerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span

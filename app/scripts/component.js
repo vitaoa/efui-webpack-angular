@@ -197,6 +197,9 @@
                 $('#mobilePhone_number').errorTips();
             }
         },
+	    sendCodeNumber:function () {
+		    $('#mobilePhone_number').mobilePhoneVerify() && $('#checkCode').focus() && $(this).settime(59);
+	    },
     });
 })(jQuery);
 
@@ -224,13 +227,6 @@ window.onload = function() {
             $(this).parent().toggleClass('checkdbox');
             $(this).parent().find('input[type="checkbox"]').prop('checked',!checkStatus);
         });
-    });
-
-
-    //获取验证码
-    // var countdown =59;
-    $('#sendVeriCode').click(function(){
-        $('#mobilePhone_number').mobilePhoneVerify() && $('#checkCode').focus() && $(this).settime(59);
     });
 
 

@@ -23,6 +23,14 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
             '</h3>');
 
     }])
+	.filter('hidetel',function () {
+		return function (input,arg) {
+			//input =>'13834890323'
+
+			//return '138****0323';
+			return input.substring(0,3)+'****'+input.substring(7);
+		}
+	})
 
     .controller('MainController', function ($scope) {
         $scope.name = '林炳文';

@@ -205,3 +205,16 @@
         -webkit-transform: rotate(225deg);
     }
 }
+.circle_bar {
+    stroke-dasharray: 100%;
+    stroke-dashoffset: 100%;
+    animation: donut 800ms 200ms cubic-bezier(0.99, 0.01, 0.22, 0.94) forwards;
+}
+@keyframes donut {
+    from {
+        stroke-dashoffset: 100%;
+    }
+    to {
+        stroke-dashoffset: 0%;
+    }
+}

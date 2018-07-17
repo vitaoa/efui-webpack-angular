@@ -426,6 +426,10 @@
             $scope.submitInit = function (id) {
                 $(id).submitInit();
             };
+            //验证码倒计时
+	        $scope.sendCodeNumber = function (id) {
+		        $(id).sendCodeNumber();
+	        };
         }])
         .controller('skillsController', ['$scope' ,function($scope) {
             $scope.docsTit = "进阶";
