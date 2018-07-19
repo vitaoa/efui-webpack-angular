@@ -352,10 +352,16 @@
 	            var countTime = function () {
 		            $(id).DownTime(time);
 	            };
-	            setTimeout(function () {
-		            countTime();
-		            setInterval(countTime,1000);
-	            },0);
+	            setInterval(countTime,1000);
+
+	            var countTime = function () {
+		            $('.plugin-downtime').DownTime('2018/08/21 23:59:59');
+	            };
+	            setInterval(countTime,1000);
+
+            };
+            $scope.TimeCountDown = function (time,id,speed,arr) {
+	            $(id).TimeCountDown(time,speed,arr);
             };
             $scope.sliderLeftRight =function (e) {
                 $(e).sliderLeftRight();
@@ -429,6 +435,9 @@
             //验证码倒计时
 	        $scope.sendCodeNumber = function (id) {
 		        $(id).sendCodeNumber();
+	        };
+	        $scope.setImagePreview = function (id) {
+              $(id).setImagePreview();
 	        };
         }])
         .controller('skillsController', ['$scope' ,function($scope) {
