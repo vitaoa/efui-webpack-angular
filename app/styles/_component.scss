@@ -77,6 +77,15 @@
 
 /* ============ bullet ============ */
 ol{
+    &.hanja,&.decimal{
+        ul{@include style-bullets(disc,none);
+            ul{@include style-bullets(lower-alpha,none);
+                ul{@include style-bullets(circle,none);
+                    ul{@include style-bullets(lower-greek,none);}
+                }
+            }
+        }
+    }
     &.hanja{margin-top: 10px;
         @include style-bullets(korean-hanja-informal,none);
     }

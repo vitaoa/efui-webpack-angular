@@ -894,46 +894,46 @@ var scrollFunc=function(){
 	</div>
 </div>
 <div class="mswitch">
-	<h3 class="mb10">使定时器settimeout、setInterval能够执行带参数的函数</h3>
-	<div class="example-demo">
-		<pre>window.setTimeout("alert('ok')",1000);
-或者==========
-var msg = "ok";
-window.setTimeout("alertMsg(msg)", 1000);
-function alertMsg(pmsg) {
-	alert(pmsg);
-}
-</pre>
-		<pre>window.setTimeout(helpFn("ok"), 1000);
-function helpFn(pmsg) { return function() { alert(pmsg); } }</pre>
-	</div>
-	<div class="example-desc">
-		<ol>
-			<li>
-				<h3>函数形式 </h3>
-				<div class="html"><pre>setTimeout(hideAD,1000);使用指针形式作为参数
+	<ol class="hanja">
+		<li>
+			<h3 class="mb10">使定时器settimeout、setInterval能够执行带参数的函数</h3>
+			
+			<div class="example-desc">
+				<ol class="decimal">
+					<li>
+						<h3>函数形式 </h3>
+						<div class="html"><pre>setTimeout(hideAD,1000);使用指针形式作为参数
 function hideAD(){
 	$("#ad").hide();
 }
 </pre></div>
-			</li>
-			<li>
-				<h3>使用字符串形式</h3>
-				<div class="html"><pre>setTimeout("hideAD()",1000);
+					</li>
+					<li>
+						<h3>使用字符串形式</h3>
+						<div class="html"><pre>setTimeout("hideAD()",1000);
 function hideAD(){
 	$("#ad").hide();
 }
 </pre></div>
-			</li>
-			<li>
-				<h3>借助嵌套匿名函数,返回无参函数</h3>
-				<div class="html">
+					</li>
+					<li>
+						<h3>借助嵌套匿名函数,返回无参函数</h3>
+						<div class="html">
 					<pre>window.setTimeout(helpFn("ok"), 1000);
 function helpFn(pmsg) { return function() { alert(pmsg); } }</pre>
-				</div>
-			</li>
-		</ol>
-	</div>
+						</div>
+					</li>
+				</ol>
+			</div>
+		</li>
+		<li>
+			<h3 class="mb10">setInterval()方法只能够执行一次</h3>
+			<div class="example-desc">
+				setInterval(hideAD(),1000);此方式只能够执行一次，因为hideAD后面加括号就直接执行
+				<p class="c-red">当setInterval()方法的第一个参数是字符串的时候，它是在全局作用域查找字符串中的对应方法名称。</p>
+			</div>
+		</li>
+	</ol>
 </div>
 <div class="mswitch">
 	<h3 class="mb10">$(document).on的一些疑惑</h3>

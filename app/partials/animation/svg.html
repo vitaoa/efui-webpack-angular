@@ -11,30 +11,262 @@
 			<li><a href="">与图标字体(icon font)对比</a></li>
 			<li><a href="">svg sprites与png sprites对比</a></li>
 			<!--<li><a href="">浏览器兼容性</a></li>-->
-			<li><a href="">环形进度条</a></li>
+			<li><a href="">svg特效</a></li>
 		</ol>
 	</div>
 </div>
 
 
 <div class="mswitch">
-	<b class="pt10 pb10">简介</b>
-	<ol class="decimal">
-		<li>SVG是一种可缩放矢量图形（英语：Scalable Vector Graphics，SVG），基于可扩展标记语言（XML），用于描述二维矢量图形的图形格式。</li>
-		<li>SVG由W3C制定，是一个开放标准。</li>
-		<li>简单的理解：它是图形的另一种格式例如它和常见的图片格式.png、.jpg、.gif等是一类。</li>
+	<ol class="hanja">
+		<li>
+			<b class="pt10 pb10">简介</b>
+			<ol class="decimal">
+				<li>SVG是一种可缩放矢量图形（英语：Scalable Vector Graphics，SVG），基于可扩展标记语言（XML），用于描述二维矢量图形的图形格式。</li>
+				<li>SVG由W3C制定，是一个开放标准。</li>
+				<li>简单的理解：它是图形的另一种格式例如它和常见的图片格式.png、.jpg、.gif等是一类。</li>
+			</ol>
+		</li>
+		<li>
+			<b class="pt10 pb10">嵌入HTML的几种方式</b>
+			<ol class="decimal">
+				<li>代码直接嵌入
+					<div class="html">
+						<pre>&lt;svg xmlns="http://www.w3.org/2000/svg">
+    &lt;line x1="0" y1="0" x2="200" y2="200" style="stroke-width:1;stroke:black"/>
+&lt;/svg></pre>
+					</div>
+				</li>
+				<li>img标签src方式引用
+					<div class="html">
+						<pre>&lt;img src="svgDemo.svg"/></pre>
+					</div>
+				</li>
+				<li>a标签href方式引用
+					<div class="html">
+						<pre>&lt;a href="svgDemo.svg">转到SVG图像</a></pre>
+					</div>
+					该方法只会显示链接文本，只有当用户单击链接，才能跳转至SVG图像。
+				</li>
+				<li>CSS的background属性引用
+					<div class="html">
+						<pre>&lt;div style="width:500;height:500;background:yellow url(svgDemo.svg) repeat"/></pre>
+					</div>
+				</li>
+				<li>embed
+					<div class="html">
+						<pre>&lt;embed src="svgDemo.svg" type="image/svg+xml" /> </pre>
+					</div>
+					默认的大小是 300 x 150
+				</li>
+				<li>object
+					<div class="html">
+						<pre>&lt;object data="svgDemo.svg" type="image/svg+xml" /> </pre>
+					</div>
+					默认的大小是 300 x 150
+				</li>
+				<li>iframe
+					<div class="html">
+						<pre>&lt;iframe src="svgDemo.svg" /></pre>
+					</div>
+					默认的大小是 304 x 154，因为iframe有边框，边框线宽是 2。
+				</li>
+			</ol>
+			<p class="c-red pt10">针对embed、object、iframe：为了确保图像能正常显示，最好手动给svg指定width和height属性。</p>
+		</li>
+		<li>
+			<b class="pt10 pb10">基本概念</b>
+			<div class="example-visualize mt10">
+				<svg x="0px" y="0px" width="700px" height="200px" viewBox="0 0 550 100" preserveAspectRatio="xMinYMin meet">
+					<rect x="10" y="5" fill="white" stroke="black" width="90" height="90"/>
+					<circle fill="white" stroke="black" cx="170" cy="50" r="45"/>
+					<polygon fill="white" stroke="black" points="279,5 294,35 328,40 303,62
+      309,94 279,79 258,94 254,62 230,39 263,35"/>
+					<line fill="none" stroke="black" x1="410" y1="95" x2="440" y2="6"/>
+					<line fill="none" stroke="black" x1="360" y1="6" x2="360" y2="95"/>
+				</svg>
+				<div class="html">
+				<pre>&lt;svg x="0px" y="0px" width="700px" height="200px" viewBox="0 0 550 100" preserveAspectRatio="xMinYMin meet">
+     &lt;rect x="10" y="5" fill="white" stroke="black" width="90" height="90"/>
+     &lt;circle fill="white" stroke="black" cx="170" cy="50" r="45"/>
+     &lt;polygon fill="white" stroke="black" points="279,5 294,35 328,40 303,62 309,94 279,79 258,94 254,62 230,39 263,35"/>
+     &lt;line fill="none" stroke="black" x1="410" y1="95" x2="440" y2="6"/>
+     &lt;line fill="none" stroke="black" x1="360" y1="6" x2="360" y2="95"/>
+&lt;/svg></pre>
+				</div>
+			</div>
+			<ol class="decimal">
+				<li><b>viewport: 物理窗口</b>
+					<p>用 x,y,width,height 这4个属性，在页面上固定的矩形区域。</p>
+				</li>
+				<li><b>viewbox: 实物窗口</b>
+					<p>定义 SVG 元素在 viewport 中的具体尺寸比例</p>
+					<p class="pt10">注意，在 SVG 中，<span class="c-red">子标签的所有尺寸都是不能带单位的</span>，因为初始单位就是根据viewport和viewbox确定。</p>
+					<p>案例中：viewport 为 [0,0] 到 [700,200]，viewbox 为 [0,0] 到 [550,100]</p>
+					<p>SVG 中基本的尺寸则不是 1px，而是 700/550 = 14/11px=1.27px。</p>
+					<pre>&lt;rect x="10" y="5" fill="white" stroke="black" width="90" height="90"/></pre>
+					实际尺寸为 [12.7,6.35] 到 [114.55,114.55]
+				</li>
+				<li><b>preserveAspectRatio: 保留横纵比</b>
+					<p>用来定义上面 viewport 和 viewbox 相互对齐的方式</p>
+					<div>基本格式为：&lt;align> [&lt;meetOrSlice>]
+						<ul>
+							<li>align：默认值为 xMidYMid，即为中点重合，viewbox 是通过中心进行延展的。</li>
+							<li>meetOrSlice: 主要就是定义该 SVG 是内嵌，还是裁剪或是 none，即meet || slice || none。
+								<ul>
+									<li>meet(默认值): 本意是让 svg 尽可能的显示在 viewport 里，即，会在 rat_x 和 rat_y 中选择最小的值作为缩放标准。</li>
+									<li>slice: 本意是让 svg 完全铺满 viewport，即，会在 rat_x 和 rat_y 中选择最大的值作为缩放标准。</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<p class="pt10">案例中：viewport 为 [0,0] 到 [700,200]，viewbox 为 [0,0] 到 [550,100]</p>
+					<p>rat_x = 700/550 = 1.27；rat_y = 200/100 = 2；</p>
+					<p>SVG 中基本的尺寸：当为 meet 的情况，那么实际缩放比例为 1.27；当为 slice 的情况，那么实际缩放比例为 2。</p>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<b class="pt10 pb10">响应式 SVG</b>
+			<div class="example-visualize mt10 mb10">
+				<div style="width: 60%;">
+					<svg viewBox="0 0 218.8 87.1">
+						<g fill="none" stroke="#000">
+							<path d="M7.3 75L25.9 6.8s58.4-6.4 33.5 13-41.1 32.8-11.2 30.8h15.9v5.5s42.6
+	         18.8 0 20.6" />
+							<path d="M133.1 58.2s12.7-69.2 24.4-47.5c0 0 4.1 8.6 9.5.9 0 0 5-10 10.4.9 0
+	         0 12.2 32.6 13.6 43 0 0 39.8 5.4 15.8 15.4-13.2 5.5-53.8
+	         13.1-77.4 5.9.1 0-51.9-15.4 3.7-18.6z" />
+						</g>
+					</svg>
+				</div>
+				<div class="html">
+					<pre>&lt;svg viewBox="0 0 218.8 87.1">
+  &lt;g fill="none" stroke="#000">
+	&lt;path d="M7.3 75L25.9 6.8s58.4-6.4 33.5 13-41.1 32.8-11.2 30.8h15.9v5.5s42.6 18.8 0 20.6" />
+	&lt;path d="M133.1 58.2s12.7-69.2 24.4-47.5c0 0 4.1 8.6 9.5.9 0 0 5-10 10.4.9 0 0 12.2 32.6 13.6 43 0 0 39.8 5.4 15.8 15.4-13.2 5.5-53.8 13.1-77.4 5.9.1 0-51.9-15.4 3.7-18.6z" />
+  &lt;/g>
+&lt;/svg></pre>
+				</div>
+			</div>
+			响应式实现就是svg 标签给一个 viewbox 并且不带 width/height
+		</li>
+		<li>
+			<b class="pt10 pb10">SVG中能够直接使用的图形</b>
+			<ul>
+				<li>rect</li>
+				<li>circle</li>
+				<li>ellipse</li>
+				<li>line</li>
+				<li>polyline</li>
+				<li>polygon</li>
+			</ul>
+		</li>
+		<li>
+			<b class="pt10 pb10">分组和Path</b>（通常 Path 和 分组通常是一起使用的）
+			<div class="html">
+				<pre>&lt;g fill="none" stroke="#000">
+    &lt;path d="M7.3 75L25.9 6.8s58.4-6.4 33.5 13-41.1 32.8-11.2 30.8h15.9v5.5s42.6 18.8 0 20.6" />
+    &lt;path d="M133.1 58.2s12.7-69.2 24.4-47.5c0 0 4.1 8.6 9.5.9 0 0 5-10 10.4.9 0 0 12.2 32.6 13.6 43 0 0 39.8 5.4 15.8 15.4-13.2 5.5-53.8 13.1-77.4 5.9.1 0-51.9-15.4 3.7-18.6z" />
+&lt;/g> </pre>
+			</div>
+			<ol class="decimal">
+				<li>Path：
+					<ul>
+						<li>path 中 d(data) 属性是用来定义相关线条数据，通常是以 M/m 为起始，代表的就是 move to 的意思</li>
+						<li>在 path 中，一共可以定义 10 种不同的图形
+							<ul>
+								<li>线型
+									<ul>
+										<li>M/m：定义起始点</li>
+										<li>L/l：画线段（Line to）</li>
+										<li>H/h：画水平线</li>
+										<li>V/v：画竖直线</li>
+										<li>Z/z：表示 path 的结束，并且将最后一点和 M/m 标识开头的一点连接起来</li>
+									</ul>
+									<div class="html">
+										<pre>&lt;path d="M10 10 H 90 V 90 H 10 L 10 10"/>
+使用 Z
+&lt;path d="M10 10 H 90 V 90 H 10 Z" fill="#ccc" stroke="red"/></pre>
+									</div>
+									<svg viewBox="0,0,100,100" width="100px" height="100px">
+										<path d="M10 10 H 90 V 90 H 10 L 10 10"/>
+										<!--// 使用 Z-->
+										<path d="M10 10 H 90 V 90 H 10 Z" fill="#ccc" stroke="red"/>
+									</svg>
+									<p>该 path 实际上就是画了一个正方形，宽 = 高 = 80。</p>
+								</li>
+								<li>曲线：贝塞尔曲线
+									<ul>
+										<li>C/c：正统的贝塞尔曲线，需要定义三个点
+										<p>基本格式为：C x1 y1, x2 y2, x y (or c dx1 dy1, dx2 dy2, dx dy)</p>
+											<div class="html">
+												<pre>&lt;path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/></pre>
+											</div>
+											<svg viewBox="0,0,200,200" width="100px" height="100px">
+												<path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
+											</svg>
+										</li>
+										<li>S/s：表示一个反射贝塞尔，即在原有贝塞尔上再加一段贝塞尔曲线，一般和 C/c 一起使用
+											<p>基本格式为：S x2 y2, x y (or s dx2 dy2, dx dy)</p>
+											<div class="html">
+												<pre>&lt;path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="#ccc"/></pre>
+											</div>
+											<svg viewBox="0,0,200,200" width="100px" height="100px">
+												<path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="#ccc"/>
+											</svg>
+										</li>
+										<li>Q/q：定义二次贝塞尔曲线，相当于上面传统的贝塞尔来说，更加简单，只需要定义二个点，起始点为 M 定义的点
+											<p>基本格式为：Q x1 y1, x y (or q dx1 dy1, dx dy)</p>
+											<div class="html">
+												<pre>&lt;path d="M10 80 Q 95 10 180 80" stroke="black" fill="#ccc"/></pre>
+											</div>
+											<svg viewBox="0,0,200,200" width="100px" height="100px">
+												<path d="M10 80 Q 95 10 180 80" stroke="black" fill="#ccc"/>
+											</svg>
+										</li>
+										<li>T/t：和 S/s 差不多，也是一个贝塞尔曲线的延长，只需要定义贝塞尔曲线里面的终点即可
+											<p>基本格式为：T x y (or t dx dy)</p>
+											<div class="html">
+												<pre>&lt;path d="M10 80 Q 95 10 180 80 T 265 80" stroke="black" fill="#ccc"/></pre>
+											</div>
+											<svg width="200px" height="100px" viewBox="0,0,400,200">
+												<path d="M10 80 Q 95 10 180 80 T 350 80" stroke="black" fill="#ccc"/>
+											</svg>
+										</li>
+									</ul>
+									<p class="c-red">简单来说，C/S，Q/T 是两两搭配一起使用的</p>
+								</li>
+								<li>弧线
+									<ul>
+										<li>A/a：用来画弧线(Arcs)，起始点是从上一个命令的结束点位置开始计算的
+											<p>基准格式：A rx ry x-axis-rotation large-arc-flag sweep-flag x y (or a rx ry x-axis-rotation large-arc-flag sweep-flag dx dy)</p>
+											<ul>
+												<li>rx,ry: 代表的就是长轴短轴</li>
+												<li>x,y: 代表的是弧长的结束点。开始点就是上一个命令的终点。</li>
+												<li>x-axis-rotation: x 轴的旋转角度。顺时针为正</li>
+												<li>large-arc-flag[0,1]: 表示取大弧还是小弧。因为两点之间的弧长有两部分。</li>
+												<li>sweep-flag[0,1]: 取顺时针的弧，还是逆时针的弧长。参考点是以起始点开始的。</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>每种标识符有两种书写方式
+							<ul>
+								<li>大写: 参照的是绝对坐标，即，SVG 的右上角</li>
+								<li>小写: 参照的相对坐标，即，前一个点的坐标。</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>分组：可以理解为 PS 中的图层，分组标签就是 g，使用 g 标签包裹的所有子元素都认同为一组。
+					<p>g 标签除了分组，还有另外一个很重要的功能–动画</p>
+				</li>
+			</ol>
+		</li>
 	</ol>
-	<div class="example-visualize al-c mt15">
-		<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-		  <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
-		    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
-		    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
-		  <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
-		    C22.32,8.481,24.301,9.057,26.013,10.047z" transform="rotate(239.945 20 20)">
-		    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animateTransform>
-		    </path>
-		</svg>
-	</div>
 </div>
 <div class="mswitch">
 	<div class="pt10 pb10">与传统图片格式对比</div>
@@ -87,13 +319,30 @@
 </div>
 
 <div class="mswitch">
-	<div class="pt10 pb10">环形进度条</div>
 	<ol class="decimal">
-		<svg width="565.2" height="565.2" xmlns="http://www.w3.org/2000/svg">
-			<circle id="backdrop" r="90" cy="120" cx="120" stroke-width="3" stroke="#333" fill="none" />
-			<circle id="progress" class="circle_bar" r="90" cy="120" cx="120" stroke-linecap="round" stroke-width="4" stroke="orange" fill="none" />
-		</svg>
-		
+		<li>
+			<div class="pt10 pb10">环形进度条</div>
+			<div class="example-visualize al-c mt15">
+				<svg width="565.2" height="265.2" xmlns="http://www.w3.org/2000/svg">
+					<circle id="backdrop" r="90" cy="120" cx="120" stroke-width="3" stroke="#333" fill="none" />
+					<circle id="progress" class="circle_bar" r="90" cy="120" cx="120" stroke-linecap="round" stroke-width="4" stroke="orange" fill="none" />
+				</svg>
+			</div>
+		</li>
+		<li>
+			<div class="pt10 pb10">加载动画</div>
+			<div class="example-visualize al-c mt15">
+				<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+				  <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+				    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+				    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+				  <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+				    C22.32,8.481,24.301,9.057,26.013,10.047z" transform="rotate(239.945 20 20)">
+				    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animateTransform>
+				    </path>
+				</svg>
+			</div>
+		</li>
 	</ol>
 </div>
 
