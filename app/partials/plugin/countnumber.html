@@ -1,12 +1,37 @@
-<ol>
-	<li>
-        <div class="pt10 pb10">数字递增到指定的数值</div>
-		<div class="example-visualize">
-            <div class="counter col_fourth" data-ng-init="countTo('.countnum')">
-                <div class="timer countnum" data-to="300" data-speed="1500"></div>
-                <div class="timer countnum" data-to="200" data-speed="1500"></div>
-            </div>
-		</div>
-	</li>
-</ol>
 
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">数字效果</a></li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<div class="pt10 pb10">数字递增到指定的数值</div>
+			<div class="example-visualize">
+				<div class="counter col_fourth" data-ng-init="countTo('.countnum')">
+					<div class="timer countnum" data-to="300" data-speed="1500"></div>
+					<div class="timer countnum" data-to="200" data-speed="1500"></div>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="pt10 pb10">打字效果</div>
+			<div class="example-visualize">
+				<p><input id='txtTyping' type="text" ng-click="txtTyping({id:'txtTyping',text:'12324343',time:200})" class="i-text" readonly="readonly"></p>
+				<div class="btn-group mt15">
+					<input type="button" class="btn btn-primary" value="打字开始" ng-click="txtTyping({id:'typingDemo',text:'8888889999',time:200})">
+					<span id="typingDemo" class="i-text" style="line-height: 20px;height: 20px;"></span>
+				</div>
+			</div>
+		</li>
+	</ol>
+	
+</div>

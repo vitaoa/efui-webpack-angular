@@ -933,6 +933,13 @@ function helpFn(pmsg) { return function() { alert(pmsg); } }</pre>
 				<p class="c-red">当setInterval()方法的第一个参数是字符串的时候，它是在全局作用域查找字符串中的对应方法名称。</p>
 			</div>
 		</li>
+		<li>
+			<h3 class="mb10">调入函数出错 is not defined</h3>
+			<div class="example-desc">
+				setInterval("hideAD()",1000); <span class="c-red">会出现：hideAD is not defined</span>
+				<p>解决方法：去掉双引号和括号，直接写成：setInterval(hideAD,1000);即可</p>
+			</div>
+		</li>
 	</ol>
 </div>
 <div class="mswitch">

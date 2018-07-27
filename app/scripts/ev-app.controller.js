@@ -37,6 +37,10 @@
                     $(this).countTo(a);
                 });
             };
+            $scope.txtTyping = function (a) {
+	            a = $.extend({},a || {});
+	            $(this).txtTyping(a);
+            }
             $scope.squareDrawInit = function (id,hitprize) {
                 $(this).squareDraw({
                     objId:id,
@@ -363,8 +367,9 @@
             $scope.TimeCountDown = function (time,id,speed,arr) {
 	            $(id).TimeCountDown(time,speed,arr);
             };
-            $scope.sliderLeftRight =function (e) {
-                $(e).sliderLeftRight();
+            $scope.sliderLeftRight =function (a) {
+	            a = $.extend({}, a || {});
+	            $(this).sliderLeftRight(a);
             };
         }])
         .controller('componentController', ['$scope' ,function($scope) {
