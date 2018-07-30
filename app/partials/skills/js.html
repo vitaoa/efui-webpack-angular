@@ -45,6 +45,9 @@
 			<li>
 				<a href="">JS赋值运算</a>
 			</li>
+			<li>
+				<a href="">IE浏览器专属</a>
+			</li>
 		</ol>
 	</div>
 </div>
@@ -1369,9 +1372,40 @@ console.log(p5.getInfo());  //Andy 12 student</pre>
 	</div>
 </div>
 <div class="mswitch">
-	<h3 class="mb10"></h3>
-	<div class="example-demo">
-	</div>
-	<div class="example-desc">
-	</div>
+	<ol class="decimal">
+		<li>
+			<h3 class="mb10">“浏览器模式”和“文档模式”</h3>
+			<div class="example-desc">
+				<ul>
+					<li>只有IE浏览器中才会有“浏览器模式”和“文档模式”，兼容性视图涉及两个重要的功能便是“浏览器模式【browser mode】”和“文档模式【document mode】”。</li>
+					<li>如果浏览器模式与文档模式不一致的时候，我们一般认为还是以文档模式为准【渲染页面】</li>
+					<li>js方法：
+						<ul>
+							<li>浏览器模式：navigator.userAgent</li>
+							<li>文档模式：document.documentMode</li>
+						</ul>
+					</li>
+					<li>区别：
+						<ul>
+							<li>浏览器模式：
+								<ul>
+									<li>影响的是浏览器的版本及IE的条件注释，主要表现在展现，对CSS影响很大。</li>
+									<li>对服务器端获得浏览器版本号appVersion也会有影响</li>
+									<li>用于切换IE针对该网页的默认文档模式、对不同版本浏览器的条件备注解析、发送给网站服务器的用户代理（User-Agent）字符串的值。</li>
+									<li>网站可以根据浏览器返回的不同用户代理字符串判断浏览器的版本和安装的功能，这样就可以向不同的浏览器返回不同的页面内容。</li>
+								</ul>
+							</li>
+							<li>文档模式：
+								<ul>
+									<li>影响的是IE的排版引擎，对DOM的渲染会产生影响。</li>
+									<li>用于指定IE的页面排版引擎（Trident）以哪个版本的方式来解析并渲染网页代码。</li>
+									<li>切换文档模式会导致网页被刷新，但不会更改用户代理字符串中的版本号，也不会从服务器重新下载网页。</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ol>
 </div>
