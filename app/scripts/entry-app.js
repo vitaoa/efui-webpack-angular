@@ -16,6 +16,7 @@ require("../styles/_rotary.scss");
 require("../styles/_carousel.scss");
 require("../styles/_popup.scss");
 require("../styles/_plugin.scss");
+require("../styles/_svg.scss");
 
 
 // js 文件引入

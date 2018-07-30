@@ -7,6 +7,7 @@
 	<div class="mcon">
 		<ol>
 			<li><a href="">简介</a></li>
+			<li><a href="">结合CSS变量为每个实例添加不同颜色</a></li>
 			<li><a href="">与传统图片格式对比</a></li>
 			<li><a href="">与图标字体(icon font)对比</a></li>
 			<li><a href="">svg sprites与png sprites对比</a></li>
@@ -266,6 +267,160 @@
 					<p>g 标签除了分组，还有另外一个很重要的功能–动画</p>
 				</li>
 			</ol>
+		</li>
+		<li>
+			<b class="pt10 pb10">SVG 复用</b>
+			<div class="example-visualize mt10">
+				<svg xmlns="http://www.w3.org/2000/svg" width="500" height="150">
+					<defs>
+						<g id="shape">
+							<rect x="50" y="50" width="50" height="50" />
+							<circle cx="50" cy="50" r="50" />
+						</g>
+					</defs>
+					<symbol id="shape2" preserveAspectRatio="xMinYMin meet" viewBox="0 0 50 100">
+						<rect x="0" y="0" width="50" height="50"/>
+					</symbol>
+					
+					<use xlink:href="#shape" x="50" y="50" />
+					<use xlink:href="#shape" x="200" y="50" />
+					<use xlink:href="#shape2" x="350" y="50" style="fill:#bf55ec;" />
+				</svg>
+			</div>
+			<ol class="decimal">
+				<li>defs：预定义一个元素使其能够在SVG图像中重复使用
+					<div class="html">
+						<pre>&lt;svg xmlns="http://www.w3.org/2000/svg">
+  &lt;defs>
+      &lt;g id="shape">
+          &lt;rect x="50" y="50" width="50" height="50" />
+          &lt;circle cx="50" cy="50" r="50" />
+      &lt;/g>
+  &lt;/defs>
+&lt;/svg>  </pre>
+					</div>
+					<ul>
+						<li>defs使用g的方式来复用图形。</li>
+					</ul>
+				</li>
+				<li>symbol：定义可重复使用的符号
+					<div class="html">
+						<pre>&lt;svg xmlns="http://www.w3.org/2000/svg">
+	&lt;symbol id="shape2">
+		&lt;circle cx="25" cy="25" r="25" style="fill:#bf55ec;"/>
+	&lt;/symbol>
+&lt;/svg></pre>
+					</div>
+					<ul>
+						<li>symbol元素需要一个ID号，以便以被use元素引用。</li>
+						<li>一个symbol元素可以有preserveAspectRatio和viewBox属性，而g元素不能拥有这些属性。</li>
+					</ul>
+				</li>
+				<li>use：在SVG图像中多次重用一个预定义的SVG图形，包括g元素和symbol元素
+					<div class="html">
+						<pre>&lt;svg xmlns="http://www.w3.org/2000/svg">
+  &lt;use xlink:href="#shape" x="50" y="50" />
+  &lt;use xlink:href="#shape" x="200" y="50" />
+  &lt;use xlink:href="#shape2" x="350" y="50" style="fill:#bf55ec;" />
+&lt;/svg> </pre>
+					</div>
+					<ul>
+						<li>嵌入在defs或symbol元素中的图形是不会被直接显示的，只能使用use元素来引用它。</li>
+						<li>要引用g元素，必须在g元素上设置一个ID，通过ID来引用它。use元素通过xlink:href属性来引入g元素。</li>
+						<li>可以在use元素中使用style属性来为复用的图形设置它的样式。</li>
+						<li>可以引用SVG图像中的任何元素，只要这个元素有一个唯一的ID号：
+							<div class="html">
+								<pre>&lt;svg width="500" height="110">
+    &lt;g id="shape2">
+        &lt;rect x="0" y="0" width="50" height="50" />
+    &lt;/g>
+    &lt;use xlink:href="#shape2" x="200" y="50" />
+&lt;/svg>   </pre>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ol>
+		</li>
+	</ol>
+</div>
+<div class="mswitch">
+		<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+			<symbol id="icon-coffee" viewBox="0 0 20 20">
+				<title>icon-coffee</title>
+				<path fill="var(--handle-color, purple)" d="M15,17H14V9h3a3,3,0,0,1,3,3h0A5,5,0,0,1,15,17Zm1-6v3.83A3,3,0,0,0,18,12a1,1,0,0,0-1-1Z"/>
+				<rect fill="var(--cup-color, purple)" x="1" y="7" width="15" height="12" rx="3" ry="3"/>
+				<path fill="var(--color-1, purple)" d="M7.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,0,1-1.79.89Z"/>
+				<path fill="var(--color-2, purple)" d="M3.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,1,1-1.79.89Z"/>
+				<path fill="var(--color-3, purple)" d="M11.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,1,1-1.79.89Z"/>
+			</symbol>
+			<symbol id="cross" viewBox="0 0 20 20">
+				<path fill="var(--color-2,purple)" d="M17.1 5.2l-2.6-2.6-4.6 4.7-4.7-4.7-2.5 2.6 4.7 4.7-4.7 4.7 2.5 2.5 4.7-4.7 4.6 4.7 2.6-2.5-4.7-4.7"/>
+			</symbol>
+			<symbol id="play" viewBox="0 0 15 15">
+				<path fill="var(--color-3,purple)" d="M7.5,0.5c3.9,0,7,3.1,7,7c0,3.9-3.1,7-7,7c-3.9,0-7-3.1-7-7l0,0C0.5,3.6,3.6,0.5,7.5,0.5 C7.5,0.5,7.5,0.5,7.5,0.5L7.5,0.5L7.5,0.5z M6.1,4.7v5.6l4.2-2.8L6.1,4.7z"/>
+			</symbol>
+		</svg>
+	<ol class="decimal mt10">
+		<li>CSS变量：
+			<ul>
+				<li>又叫做"CSS 自定义属性",与color、font-size等正式属性没有什么不同，只是没有默认含义。</li>
+				<li>变量名前面要加两根连词线（--）。</li>
+				<li>用来将 CSS 变量分配给某个属性的 var() 函数可以将第二个参数作为默认值。</li>
+				<li>浏览器兼容：IE 浏览器完全不支持</li>
+			</ul>
+		</li>
+		<li>结合CSS变量为每个实例添加不同颜色：
+			<div class="example-visualize mt10">
+				<svg class="icon icon--fill" aria-hidden="true">
+					<use xlink:href="#icon-coffee" href="#icon-coffee" />
+				</svg>
+				<svg class="icon icon--color" aria-hidden="true">
+					<use xlink:href="#icon-coffee" href="#icon-coffee" />
+				</svg>
+				<svg class="icon icon--color-alt" aria-hidden="true">
+					<use xlink:href="#icon-coffee" href="#icon-coffee" />
+				</svg>
+				<svg class="icon icon--fill" aria-hidden="true">
+					<use xlink:href="#cross" href="#cross" />
+				</svg>
+				<svg class="icon icon--color" aria-hidden="true">
+					<use xlink:href="#play" href="#play" />
+				</svg>
+			</div>
+			<div class="html">
+		<pre>&lt;svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+	&lt;symbol id="icon-coffee" viewBox="0 0 20 20">
+		&lt;title>icon-coffee</title>
+		&lt;path fill="var(--handle-color, purple)" d="M15,17H14V9h3a3,3,0,0,1,3,3h0A5,5,0,0,1,15,17Zm1-6v3.83A3,3,0,0,0,18,12a1,1,0,0,0-1-1Z"/>
+		&lt;rect fill="var(--cup-color, purple)" x="1" y="7" width="15" height="12" rx="3" ry="3"/>
+		&lt;path fill="var(--color-1, purple)" d="M7.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,0,1-1.79.89Z"/>
+		&lt;path fill="var(--color-2, purple)" d="M3.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,1,1-1.79.89Z"/>
+		&lt;path fill="var(--color-3, purple)" d="M11.07,5.42a5.45,5.45,0,0,1,0-4.85,1,1,0,0,1,1.79.89,3.44,3.44,0,0,0,0,3.06,1,1,0,1,1-1.79.89Z"/>
+	&lt;/symbol>
+	&lt;symbol id="cross" viewBox="0 0 20 20">
+		&lt;path fill="var(--color-2,purple)" d="M17.1 5.2l-2.6-2.6-4.6 4.7-4.7-4.7-2.5 2.6 4.7 4.7-4.7 4.7 2.5 2.5 4.7-4.7 4.6 4.7 2.6-2.5-4.7-4.7"/>
+	&lt;/symbol>
+	&lt;symbol id="play" viewBox="0 0 15 15">
+		&lt;path fill="var(--color-3,purple)" d="M7.5,0.5c3.9,0,7,3.1,7,7c0,3.9-3.1,7-7,7c-3.9,0-7-3.1-7-7l0,0C0.5,3.6,3.6,0.5,7.5,0.5 C7.5,0.5,7.5,0.5,7.5,0.5L7.5,0.5L7.5,0.5z M6.1,4.7v5.6l4.2-2.8L6.1,4.7z"/>
+	&lt;/symbol>
+&lt;/svg>
+&lt;svg class="icon icon--fill" aria-hidden="true">
+	&lt;use xlink:href="#icon-coffee" href="#icon-coffee" />
+&lt;/svg>
+&lt;svg class="icon icon--color" aria-hidden="true">
+	&lt;use xlink:href="#icon-coffee" href="#icon-coffee" />
+&lt;/svg>
+&lt;svg class="icon icon--color-alt" aria-hidden="true">
+	&lt;use xlink:href="#icon-coffee" href="#icon-coffee" />
+&lt;/svg>
+&lt;svg class="icon icon--fill" aria-hidden="true">
+	&lt;use xlink:href="#cross" href="#cross" />
+&lt;/svg>
+&lt;svg class="icon icon--color" aria-hidden="true">
+	&lt;use xlink:href="#play" href="#play" />
+&lt;/svg></pre>
+			</div>
 		</li>
 	</ol>
 </div>

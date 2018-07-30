@@ -5767,15 +5767,15 @@ button[disabled], input[disabled] {
 
 .picswitch {
   width: 410px;
+  max-width: 100%;
   height: 273px;
-  padding: 0 80px;
   margin: 0 auto; }
   .picswitch .arrow-btn {
-    width: 76px;
+    width: 26px;
     height: 271px;
     line-height: 271px;
     font-size: 2em;
-    background-color: #f4f6f9; }
+    z-index: 9; }
   .picswitch .picswitch-itmes li {
     width: 410px; }
 
@@ -5829,3 +5829,23 @@ button[disabled], input[disabled] {
     overflow: hidden; }
     .marqueeScrollWrapper .marqueeScrollLeft * {
       display: inline; }
+.icon {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px; }
+  .icon--fill {
+    fill: grey; }
+  .icon--color {
+    fill: #ef5b49;
+    --handle-color: #c13127;
+    --cup-color: #ef5b49;
+    --color-1: #c13127;
+    --color-2: #ef5b49;
+    --color-3: #cacaea; }
+  .icon--color-alt {
+    fill: #2f3fff;
+    --handle-color: #1f2bac;
+    --cup-color: #2f3fff;
+    --color-1: #ef5b49;
+    --color-2: #cacaea;
+    --color-3: #c13127; }

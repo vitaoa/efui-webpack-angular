@@ -1,0 +1,30 @@
+
+@mixin icon-colors($fallback: black) {
+  fill: $fallback;
+  @content;
+}
+.icon {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  &--fill {@include icon-colors(grey);
+
+  }
+  &--color {@include icon-colors(#ef5b49){
+      --handle-color: #c13127;
+      --cup-color: #ef5b49;
+      --color-1: #c13127;
+      --color-2: #ef5b49;
+      --color-3: #cacaea;
+    }
+  }
+  &--color-alt {
+      @include icon-colors(#2f3fff){
+      --handle-color: #1f2bac;
+      --cup-color: #2f3fff;
+        --color-1: #ef5b49;
+        --color-2: #cacaea;
+        --color-3: #c13127;
+    }
+  }
+}
