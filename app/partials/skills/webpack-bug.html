@@ -1,0 +1,36 @@
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li>
+				<a href="">bug</a>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<div class="mswitch">
+	<ol class="hanja">
+		<li>
+			<b>开发环境下，打包jquery时不认识promise</b>
+			<ol class="mb10 decimal">
+				<li>IE：<span class="c-red">SCRIPT5009: “Promise”未定义 </span></li>
+				<li>Safari：<span class="c-red">ReferenceError: Can't find variable: Promise</span></li>
+			</ol>
+			<b>解决方法：</b>
+			<ul>
+				<li>先安装es6-promise：npm i es6-promise -D</li>
+				<li>然后在js文件中引入 es6-promise，在js的最前面(例如jquery最前面)加上如下代码：
+					<div class="html">
+						<pre>var Promise = require('es6-promise').Promise;
+window.Promise = Promise;</pre>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ol>
+</div>

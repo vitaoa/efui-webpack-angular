@@ -2,6 +2,7 @@
 	<div class="mtit"><span>目录</span></div>
 	<div class="mcon">
 		<ol>
+			<li><a href="">字符串操作</a></li>
 			<li><a href="">正则表达式的用途</a></li>
 			<li><a href="">正则表达式定义</a></li>
 			<li><a href="">正则表达式方法</a></li>
@@ -12,15 +13,130 @@
 		</ol>
 	</div>
 </div>
+
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
 <div class="mswitch">
-	<h3 class="mb10">一、正则表达式的用途  </h3>
-<div class="example-desc">
-	<ol>
-		<li><span class="red">验证</span>字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
-		<li>用来<span class="red">查找</span>字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
-		<li>用来<span class="red">替换</span>，比普通的替换更强大。</li>
+	<ol class="decimal">
+		<li><b>字符方法</b>
+			<div class="html">
+				<pre>var mystr="Hello World!";
+console.log(mystr.charAt(7));    //o
+console.log(mystr.charCodeAt(1)); //101 </pre>
+			</div>
+			<ul>
+				<li>charAt：返回给定位置的字符
+					<ul>
+						<li>从0开始</li>
+					</ul>
+				</li>
+				<li>charCodeAt：返回该位置字符的字符编码</li>
+			</ul>
+		</li>
+		<li><b>字符串操作方法</b>
+			<ul>
+				<li>字符串拼接：contact()，但是实践中我们使用最多的还是加操作符+更便捷</li>
+				<li>获取子字符串：
+					<div class="html">
+						<pre>var str="hello world";</pre>
+					</div>
+					<ul>
+						<li>slice(start, stop)：
+							<div class="html">
+								<pre>console.log(str.slice(3));//lo world
+console.log(str.slice(3,7));//lo w
+console.log(str.slice(3,-4));//lo w -4+11=7表示子字符串最后一个字符后面的位置</pre>
+							</div>
+						</li>
+						<li>substring(start, stop)：
+							<div class="html">
+				<pre>console.log(str.substring(3));    //lo world
+console.log(str.substring(3,7));//lo w
+console.log(str.substring(3,-4));  //hel</pre>
+							</div>
+						</li>
+						<li>substr(start, length)：
+							<div class="html">
+				<pre>console.log(str.substr(3));//lo world
+console.log(str.substr(3,7));//lo worl 7表示返回7个字符
+console.log(str.substr(3,-4));//""空字符串 </pre>
+							</div>
+						</li>
+					</ul>
+					<ul>
+						<li>第一个参数都是指定起始截取位置；如果为负数，那么该参数声明从字符串的尾部开始算起，-1指字符串中最后一个字符。</li>
+						<li>未填第二参数时，自动截取起始位置到字符串末尾，即将字符串的长度作为结束位置；</li>
+						<li>slice()和substring()的第二个参数指定的是子字符串最后一个字符<b class="c-red">后面的位置</b>，就是包含头不包含尾，substr()的第二个参数指定的则是返回的字符个数；</li>
+						<li>substring参数只能是非负整数，会将负数转化为0，例如substring(3,-4)相当于substring(3,0)，<b class="c-red">此外由于这个方法会将较小数作为开始位置，较大数作为结束位置</b>，所以相当于调用str.substring(0,3); 。</li>
+						<li>slice的第二个参数原则上也不该为负数，若强行传递负数，会被当成0处理，返回长度为 0 的字符串，即空串。</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><b>字符串位置方法</b>
+			<ul>
+				<li>indexOf()：从前向后搜索</li>
+				<li>lastIndexOf()：从后向前搜索</li>
+			</ul>
+			<ul>
+				<li>都是返回子字符串的位置，如果没有找到，则返回-1</li>
+				<li>都可以接收两个参数：要查找的子字符串和开始搜索的位置 </li>
+			</ul>
+		</li>
+		<li><b>trim()方法</b>
+			用来删除字符串前后的空格
+		</li>
+		<li><b>字符串大小写转换方法</b>
+			<ul>
+				<li>toLowerCase</li>
+				<li>toLocaleLowerCase</li>
+				<li>toUpperCase</li>
+				<li>toLocaleUpperCase</li>
+			</ul>
+		</li>
+		<li><b>字符串的模式匹配方法</b>
+			<ul>
+				<li>match()：
+					<div class="html">
+						<pre>var text = "cat,bat,sat,fat";
+var regexp = /.at/;
+
+//与regexp.exec(text)相同
+var matches = text.match(regexp);
+console.log(matches)</pre>
+					</div>
+					<ul>
+						<li>本质上与RegExp的exec()方法相同。</li>
+						<li>只接受一个参数，正则表达式或者是一个RegExp对象或者是规定要检索的字符串值</li>
+						<li>返回一个数组</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>search：查找</li>
+		<li>substring：获取子字符串
+		</li>
+		<li>split：将字符串进行拆分返回一个新的数组
+			<div class="html">
+				<pre>var mystr="qingchenghuwoguoxiansheng,woaishenghuo,woaiziji";
+var arr1=mystr.split(",");    //["qingchenghuwoguoxiansheng","woaishenghuo","woaiziji"];
+var arr2=mystr.split(",",1);    //["qingchenghuwoguoxiansheng"];</pre>
+			</div>
+			<ul>
+				<li>第二个参数，表示返回的字符串数组的最大长度</li>
+			</ul>
+		</li>
 	</ol>
 </div>
+<div class="mswitch">
+	<h3 class="mb10">一、正则表达式的用途  </h3>
+	<div class="example-desc">
+		<ol>
+			<li><span class="red">验证</span>字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
+			<li>用来<span class="red">查找</span>字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
+			<li>用来<span class="red">替换</span>，比普通的替换更强大。</li>
+		</ol>
+	</div>
 </div>
 <div class="mswitch">
 <h3 class="mb10">二、正则表达式定义  </h3>

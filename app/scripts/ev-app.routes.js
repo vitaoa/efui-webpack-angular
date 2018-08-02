@@ -437,6 +437,7 @@
                                     {
                                         'title':"SPA",
                                         'submenu':[
+                                            {'name':"angular基础",'url':"angular"},
                                             {'name':"表单验证",'url':"angular-form-validate"},
                                             {'name':"子页面2",'url':"angular-spa2"},
                                             {'name':"子页面3",'url':"angular-spa3"}

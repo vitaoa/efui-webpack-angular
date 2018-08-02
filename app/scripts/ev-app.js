@@ -1,7 +1,5 @@
 ﻿'use strict';
 
-
-
 require(['entryCss'], function () {
     setTimeout(function () {
 	    angular.bootstrap(document, ['evApp']);
@@ -210,3 +208,4 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
 
         })
     });
+
