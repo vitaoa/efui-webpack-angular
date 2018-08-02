@@ -98,32 +98,54 @@ console.log(str.substr(3,-4));//""空字符串 </pre>
 			<ul>
 				<li>match()：
 					<div class="html">
-						<pre>var text = "cat,bat,sat,fat";
+						<pre>var str="cat,bat,sat,fat";
 var regexp = /.at/;
 
-//与regexp.exec(text)相同
-var matches = text.match(regexp);
+//与regexp.exec(str)相同
+var matches = str.match(regexp);
 console.log(matches)</pre>
 					</div>
 					<ul>
 						<li>本质上与RegExp的exec()方法相同。</li>
-						<li>只接受一个参数，正则表达式或者是一个RegExp对象或者是规定要检索的字符串值</li>
+						<li>只接受一个参数，由字符串或RegExp对象指定的一个正则表达式</li>
 						<li>返回一个数组</li>
+					</ul>
+				</li>
+				<li>search()：
+					<div class="html">
+						<pre>var str="cat,bat,sat,fat";
+var pos=str.search(/cat/);
+console.log(pos);//1 1表示at字符串在原来字符串中第一次出现的位置 </pre>
+					</div>
+					<ul>
+						<li>只接受一个参数，由字符串或RegExp对象指定的一个正则表达式</li>
+						<li>返回字符串中第一个匹配项的索引，如果没有匹配项，返回-1</li>
 					</ul>
 				</li>
 			</ul>
 		</li>
-		<li>search：查找</li>
-		<li>substring：获取子字符串
-		</li>
-		<li>split：将字符串进行拆分返回一个新的数组
+		<li>replace()：
 			<div class="html">
-				<pre>var mystr="qingchenghuwoguoxiansheng,woaishenghuo,woaiziji";
-var arr1=mystr.split(",");    //["qingchenghuwoguoxiansheng","woaishenghuo","woaiziji"];
-var arr2=mystr.split(",",1);    //["qingchenghuwoguoxiansheng"];</pre>
+						<pre>var str="cat,bat,sat,fat";
+var res=str.replace("at","one");//第一个参数是字符串，所以只会替换第一个子字符串
+console.log(res);//cone,bat,sat,fat
+
+var res1=str.replace(/at/g,"one");//第一个参数是正则表达式，所以会替换所有的子字符串
+console.log(res1);//cone,bone,sone,fone </pre>
+			</div>
+		</li>
+		<li>split(separator,length)：
+			<div class="html">
+				<pre>var str="red,blue,green,yellow";
+console.log(str.split(","));//["red", "blue", "green", "yellow"]
+console.log(str.split(",",2));//["red", "blue"]  第二个参数用来限制数组大小
+console.log(str.split(/[^\,]+/));// ["", ",", ",", ",", ""] //第一项和最后一项为空字符串是因为正则表达式指定的分隔符出现在了子字符串的开头，即"red"和"yellow"
+    //[^...] 不在方括号内的任意字符  只要不是逗号都是分隔符 </pre>
 			</div>
 			<ul>
-				<li>第二个参数，表示返回的字符串数组的最大长度</li>
+				<li>第一个参数：字符串或正则表达式，从该参数指定的地方分割。</li>
+				<li>基于指定的字符，将字符串分割成字符串数组，返回一个新的数组，当指定的字符为空字符串时，将会分隔整个字符串。 </li>
+				<li>第二个参数，表示返回的字符串数组的最大长度。</li>
 			</ul>
 		</li>
 	</ol>
@@ -213,48 +235,48 @@ function match(){
  	}  
 }</pre>
 <script>
-	+function(){ 
-    	var text="index.aspx?test=1&ww=2&www=3"; //    
-  	var   re =/\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-    //  var   re =new RegExp("\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
- 	var result=  re.test(text);
-  	if(result){
-        	console.log("ok");   
-    		console.log(result);  // 是true
-	}else{
-      		console.log("err");  
-	}                 
-}();
-//改写
-+function(){ 
-   	var text="index1.aspx?test=1&ww=2&www=3";
-	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-   	//  var   re =new RegExp( "\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
-	var result=  re.exec(text); 
-	if(result){
-    		console.log("ok"); 
-    		console.log(result);  // 是?test=1&ww=2&www=3,ww=2&     
-     		console.log(result[0]+",0");//是?test=1&ww=2&www=3
-     		console.log(result[1]+",1");//是ww=2&     
-     		console.log(result.length);//是2     
-	}else{
-      		console.log("err");  
-	}   
-}();
-//改写
-+function(){ 
-    	var text="index11.aspx?test=1&ww=234"; //
-	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
- 	//   var   re2 = "(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}"
- 	var result= text.match(re);
-	if(result){
-  		console.log(result);//?test=1&ww=234,test=1&        
-  		console.log(result[0]+",0");//?test=1&ww=234
-        	console.log(result[1]+",1");//test=1&
-   	}else{
-  		console.log("err");  
- 	}  
-}();
+//	+function(){
+//    	var text="index.aspx?test=1&ww=2&www=3"; //
+//  	var   re =/\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
+//    //  var   re =new RegExp("\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
+// 	var result=  re.test(text);
+//  	if(result){
+//        	console.log("ok");
+//    		console.log(result);  // 是true
+//	}else{
+//      		console.log("err");
+//	}
+//}();
+////改写
+//+function(){
+//   	var text="index1.aspx?test=1&ww=2&www=3";
+//	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
+//   	//  var   re =new RegExp( "\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
+//	var result=  re.exec(text);
+//	if(result){
+//    		console.log("ok");
+//    		console.log(result);  // 是?test=1&ww=2&www=3,ww=2&
+//     		console.log(result[0]+",0");//是?test=1&ww=2&www=3
+//     		console.log(result[1]+",1");//是ww=2&
+//     		console.log(result.length);//是2
+//	}else{
+//      		console.log("err");
+//	}
+//}();
+////改写
+//+function(){
+//    	var text="index11.aspx?test=1&ww=234"; //
+//	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
+// 	//   var   re2 = "(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}"
+// 	var result= text.match(re);
+//	if(result){
+//  		console.log(result);//?test=1&ww=234,test=1&
+//  		console.log(result[0]+",0");//?test=1&ww=234
+//        	console.log(result[1]+",1");//test=1&
+//   	}else{
+//  		console.log("err");
+// 	}
+//}();
 </script>
 </div>
 <div class="example-desc">
