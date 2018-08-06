@@ -3,13 +3,13 @@
 	<div class="mcon">
 		<ol>
 			<li><a href="">字符串操作</a></li>
-			<li><a href="">正则表达式的用途</a></li>
-			<li><a href="">正则表达式定义</a></li>
-			<li><a href="">正则表达式方法</a></li>
+			<li><a href="">正则表达式简介</a></li>
+			<li><a href="">正则表达式常用方法</a></li>
 			<li><a href="">正则表达式的字符</a></li>
 			<li><a href="">常用的正则表达式</a></li>
 			<li><a href="">捕获组</a></li>
 			<li><a href="">反向引用</a></li>
+			<li><a href="">.gitignore正则书写</a></li>
 		</ol>
 	</div>
 </div>
@@ -151,33 +151,39 @@ console.log(str.split(/[^\,]+/));// ["", ",", ",", ",", ""] //第一项和最后
 	</ol>
 </div>
 <div class="mswitch">
-	<h3 class="mb10">一、正则表达式的用途  </h3>
-	<div class="example-desc">
-		<ol>
-			<li><span class="red">验证</span>字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
-			<li>用来<span class="red">查找</span>字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
-			<li>用来<span class="red">替换</span>，比普通的替换更强大。</li>
-		</ol>
-	</div>
-</div>
-<div class="mswitch">
-<h3 class="mb10">二、正则表达式定义  </h3>
-<div class="example-demo">
-	<pre>var re =new RegExp("\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
-var re =new RegExp( /^\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/);
-var re =/\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;</pre>
-</div>
-<div class="example-desc">
-	<div class="exm-t1">在js中定义正则表达式有两种方式：</div>
-	<ol>
-		<li>通过构造函数
+	<ol class="decimal">
+		<li><b>组成：</b>
+			<div class="html"><pre>new RegExp(pattern,modifiers);</pre></div>
 			<ul>
-				<li>使用构造函数定义正则表达式，注意大小写，否则就会不起作用。由于构造函数的参数是一个字符串，也可以是两个斜杠的方式定义，遇到一些特殊字符就需要使用\进行转义
-					<pre>var re = new RegExp();//RegExp是一个对象,和Aarray一样  
-//但这样没有任何效果,需要将正则表达式的内容作为字符串传递进去  
-re = new RegExp("a");//最简单的正则表达式,将匹配字母a  
-re = new RegExp("a","i");//第二个参数,表示匹配时不分大小写  </pre></li>
-				<li>RegExp构造函数第一个参数为正则表达式的文本内容,而第一个参数则为可选项标志.标志可以组合使用
+				<li>模式：pattern
+					<ul>
+						<li>方括号[]：<b class="c-red">单个匹配</b>
+							<p>用于定义匹配的字符范围，匹配任何<b class="c-red">一个</b>列在方括号中的字符</p>
+							<p>[^abc]     查找任何不在方括号中的字符</p>
+						</li>
+						<li>圆括号()：<b class="c-red">多个匹配</b>
+							<p>分组，用于提取匹配的字符串，表达式中有几个()就有几个相应的匹配字符串</p>
+							<p>(red|blue|green)     查找任何指定的选项</p>
+						</li>
+						<li>大括号{}：<b class="c-red">匹配次数</b>
+							<p>表示匹配的次数</p>
+						</li>
+						<li>元字符：<b class="c-red">( [ { \ ^ $ | ) ? * + .</b>
+							<p>是拥有特殊含义的字符</p>
+						</li>
+						<li>量词：
+							<ul>
+								<li><span class="col-1"> * </span>： <span class="col-2 red">匹配前面的子表达式零次或多次。</span><span class="col-3">例如，zo* 能匹配 "z" 以及 "zoo"。 * 等价于{0,}</span></li>
+								<li><span class="col-1"> + </span>： <span class="col-2 red">匹配前面的子表达式一次或多次。</span><span class="col-3">例如，'zo+' 能匹配 "zo" 以及 "zoo"，但不能匹配 "z"。+ 等价于 {1,}</span></li>
+								<li><span class="col-1"> ? </span>： <span class="col-2 red">匹配前面的子表达式零次或一次。</span><span class="col-3">例如，"do(es)?" 可以匹配 "do" 或 "does" 中的"do" 。? 等价于 {0,1}</span></li>
+								<li><span class="col-1"> {n} </span>： <span class="col-2 red">n 是一个非负整数，匹配确定的 n 次。</span><span class="col-3">例如，'o{2}' 不能匹配 "Bob" 中的 'o'，但是能匹配 "food" 中的两个 o</span></li>
+								<li><span class="col-1"> {n,} </span>： <span class="col-2 red">n 是一个非负整数，至少匹配n 次。</span><span class="col-3">例如，'o{2,}' 不能匹配 "Bob" 中的 'o'，但能匹配 "foooood" 中的所有 o。'o{1,}' 等价于 'o+'。'o{0,}' 则等价于 'o*'</span></li>
+								<li><span class="col-1"> {n,m} </span>： <span class="col-2 red">m 和 n 均为非负整数，其中n <= m。最少匹配 n 次且最多匹配 m 次。</span><span class="col-3">例如，"o{1,3}" 将匹配 "fooooood" 中的前三个 o。'o{0,1}' 等价于 'o?'。请注意在逗号和两个数之间不能有空格</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>修饰符：modifiers
 					<ul>
 						<li>g （全文查找） </li>
 						<li>i （忽略大小写） </li>
@@ -185,145 +191,102 @@ re = new RegExp("a","i");//第二个参数,表示匹配时不分大小写  </pre
 					</ul>
 				</li>
 			</ul>
-			
 		</li>
-		<li>通过//，也就是两个斜杠</li>
-	</ol>
-</div>
-</div>
-<div class="mswitch">
-<h3 class="mb10">三、正则表达式方法  </h3>
-<div class="example-demo">
-	<pre>function test(){ 
-    	var text="index.aspx?test=1&ww=2&www=3"; //    
-  	var   re =/\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-    //  var   re =new RegExp("\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
- 	var result=  re.test(text);
-  	if(result){
-        	console.log("ok");   
-	}else{
-      		console.log("err");  
-	}                 
-}
-//改写
-function exec(){ 
-   	var text="index.aspx?test=1&ww=2&www=3";
-	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-   	//  var   re =new RegExp( "\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
-	var result=  re.exec(text); 
-	if(result){
-    		console.log("ok"); 
-    		console.log(result);  // 是?test=1&ww=2&www=3,ww=2&     
-     		console.log(result[0]+",0");//是?test=1&ww=2&www=3
-     		console.log(result[1]+",1");//是ww=2&     
-	}else{
-      		console.log("err");  
-	}   
-}
-//改写
-function match(){ 
-    	var text="index.aspx?test=1&ww=234"; //
-	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
- 	//   var   re2 = "(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}"
- 	var result= text.match(re);
-	if(result){
-  		console.log(result);//?test=1&ww=234,test=1&        
-  		console.log(result[0]+",0");//?test=1&ww=234
-        	console.log(result[1]+",1");//test=1&
-   	}else{
-  		console.log("err");  
- 	}  
-}</pre>
-<script>
-//	+function(){
-//    	var text="index.aspx?test=1&ww=2&www=3"; //
-//  	var   re =/\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-//    //  var   re =new RegExp("\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
-// 	var result=  re.test(text);
-//  	if(result){
-//        	console.log("ok");
-//    		console.log(result);  // 是true
-//	}else{
-//      		console.log("err");
-//	}
-//}();
-////改写
-//+function(){
-//   	var text="index1.aspx?test=1&ww=2&www=3";
-//	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-//   	//  var   re =new RegExp( "\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");
-//	var result=  re.exec(text);
-//	if(result){
-//    		console.log("ok");
-//    		console.log(result);  // 是?test=1&ww=2&www=3,ww=2&
-//     		console.log(result[0]+",0");//是?test=1&ww=2&www=3
-//     		console.log(result[1]+",1");//是ww=2&
-//     		console.log(result.length);//是2
-//	}else{
-//      		console.log("err");
-//	}
-//}();
-////改写
-//+function(){
-//    	var text="index11.aspx?test=1&ww=234"; //
-//	var   re = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;
-// 	//   var   re2 = "(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}"
-// 	var result= text.match(re);
-//	if(result){
-//  		console.log(result);//?test=1&ww=234,test=1&
-//  		console.log(result[0]+",0");//?test=1&ww=234
-//        	console.log(result[1]+",1");//test=1&
-//   	}else{
-//  		console.log("err");
-// 	}
-//}();
-</script>
-</div>
-<div class="example-desc">
-	<div class="exm-t1">使用正则表达式的主要有字符串的方法match，正则表达式的方法exec，test</div>
-	<ol>
-		<li>match
+		<li><b>创建方法：</b>
 			<ul>
-				<li>是字符串的方法，但参数确是一个正则表达式</li>
+				<li>通过构造函数
+					<div class="html">
+			<pre>var re = new RegExp();//RegExp是一个对象,和Aarray一样
+//但这样没有任何效果,需要将正则表达式的内容作为字符串传递进去
+re = new RegExp("a");//最简单的正则表达式,将匹配字母a
+re = new RegExp("a","i");//第二个参数,表示匹配时不分大小写  </pre>
+					</div>
+					<ul>
+						<li>使用构造函数定义正则表达式，注意大小写，否则就会不起作用。由于构造函数的参数是一个字符串，也可以是两个斜杠的方式定义，遇到一些特殊字符就需要使用\进行转义
+						</li>
+						<li>RegExp构造函数第一个参数为正则表达式的文本内容,而第一个参数则为可选项标志.标志可以组合使用
+						
+						</li>
+					</ul>
+				
+				</li>
+				<li>通过perl风格，也就是两个斜杠//
+					<div class="html">
+						<pre>/a/i</pre>
+					</div>
+				</li>
 			</ul>
 		</li>
-		<li>test
+		<li>
+			<b>用途：</b>
 			<ul>
-				<li>测试给定的字符串是否满足正则表达式，<span class="red">返回值是bool类型的，只有真和假</span>，如果只是单纯的判断，不需要其他的处理，可以使用尤其是验证时。</li>
+				<li><b>验证：</b><span class="red">验证</span>字符串是否符合指定特征，比如验证是否是合法的邮件地址。</li>
+				<li><b>查找：</b>用来<span class="red">查找</span>字符串，从一个长的文本中查找符合指定特征的字符串，比查找固定字符串更加灵活方便。</li>
+				<li><b>替换：</b>用来<span class="red">替换</span>，比普通的替换更强大。</li>
 			</ul>
-		</li>
-		<li>exec
-			<ul>
-				<li>测试给定的字符串是否满足正则表达式，<span class="red">返回匹配到的字符串，如果没有匹配的则返回null</span>，和test基本一致，如果需要获取匹配的各个子字符串，可以使用下标的方式</li>
-			</ul>
-		</li>
-		<li>compile
-			<ul><li>把正则表达式编译为内部格式，从而执行得更快。</li></ul>
-		</li>
-		<li>source
-			<ul><li>返回正则表达式模式的文本的复本。只读。</li></ul>
-		</li>
-		<li>replace
-			<ul><li>替换与正则表达式匹配的子串。</li></ul>
-		</li>
-		<li>search
-			<ul><li>检索与正则表达式相匹配的值。</li></ul>
-		</li>
-		<li>split
-			<ul><li>把字符串分割为字符串数组。</li></ul>
 		</li>
 	</ol>
 </div>
+<div class="mswitch">
+	<h3 class="mb10">常用方法  </h3>
+	<p>使用正则表达式的主要有正则表达式的方法test、exec，字符串的方法match、search、replace、split（参数是一个正则表达式）</p>
+	<div class="html">
+		<pre>var string="index.aspx?test=1&ww=2&www=3"; //
+var regexp = /\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;</pre>
+	</div>
+	<ol class="decimal">
+		<li><b>test()：</b>
+			<ul>
+				<li>用法：var res=regexp.test(string)</li>
+				<li>功能：指出被查找的字符串中是否存在满足正则表达式要求的内容</li>
+				<li>返回值：boolean（存在返回true,不存在返回false）</li>
+			</ul>
+		</li>
+		<li><b>exec()：</b>
+			<ul>
+				<li>用法：var arr=regexp.exec(string)</li>
+				<li>功能：该函数通过对传入的string进行一次匹配检测，获得字符串中第一个满足正则表达式的内容，获取字符串中第一个与正则表达式匹配的内容，并且将匹配的内容和子匹配的结果存放在返回的数组中</li>
+				<li>返回值：数组（arr[0]为传入的string,arr[1]到arr[arr.length=1]是满足正则表达式的匹配结果。当不存在匹配的内容时，exec方法返回null）</li>
+			</ul>
+		</li>
+		<li><b>match()：</b>
+			<ul>
+				<li>用法：var arr=string.match(regexp)</li>
+				<li>功能：将字符串中能够与正则表达式匹配的部分以数组形式返回</li>
+				<li>返回：满足正则表达式的子串数组，如果正则表达式采用全局匹配，返回多个，否则只返回第一个</li>
+			</ul>
+		</li>
+		<li><b>search()：</b>
+			<ul>
+				<li>用法：var index=string.search(regexp)</li>
+				<li>功能：查找第一次出现满足表达式的位置</li>
+				<li>返回：第一次出现的位置</li>
+			</ul>
+		</li>
+		<li><b>replace()：</b>
+			<ul>
+				<li>用法：var str=string.replace(regexp,"替换后的值")</li>
+				<li>功能：替换字符串，将满足正则表达式要求的部分替换，“替换后的值”也可以利用function动态替换，如：string.replace(regexp,function(){return this+"***"}</li>
+				<li>返回：替换后的字符串</li>
+			</ul>
+		</li>
+		<li><b>split()：</b>
+			<ul>
+				<li>用法：var arr=string.split(regexp)</li>
+				<li>功能：将string以一定的规则分割</li>
+				<li>返回：分割后的数组</li>
+			</ul>
+		</li>
+	</ol>
 </div>
 <div class="mswitch">
-<h3 class="mb10">四、正则表达式的字符 </h3>
+<h3 class="mb10">正则表达式的字符 </h3>
 <div class="example-demo">
 	<pre>var   re  = /^\?(\w{1,}=\w{1,}&){1,}\w{1,}=\w{1,}/;//  \?表示配置问号?
 var   re1 =new RegExp( "^\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");//  \\?表示配置问号?</pre>
 </div>
 <div class="example-desc">
-	<div class="exm-t1"></div>
-	<ol>
+	<ol class="decimal">
 		<li>普通字符(直接量字符)：
 			<ul>
 				<li>字母、数字、汉字、下划线、以及后边章节中没有特殊定义的标点符号，都是"普通字符"。表达式中的普通字符，在匹配一个字符串的时候，匹配与之相同的一个字符。</li>
@@ -338,24 +301,28 @@ var   re1 =new RegExp( "^\\?(\\w{1,}=\\w{1,}&){1,}\\w{1,}=\\w{1,}");//  \\?表�
 		</li>
 		<li>元字符：
 			<ul>
-				<li>元字符是正则表达式的一部分，当我们要匹配正则表达式本身时，必须对这些元字符转义<pre>( [ { \ ^ $ | ) ? * + . //正则表达式用到的所有元字符
+				<li>元字符是正则表达式的一部分，当我们要匹配正则表达式本身时，必须对这些元字符转义
+					<div class="html">
+						<pre>( [ { \ ^ $ | ) ? * + . //正则表达式用到的所有元字符
 //----------------------
 
 //1.使用正则表达式字面量创建正则表达式
-var str = "?";  
-var re = /?/;  
-alert(re.test(str));//出错，因为？是元字符，必须转义  
-re = /\?/;  
-alert(re.test(str));//true  
+var str = "?";
+var re = /?/;
+alert(re.test(str));//出错，因为？是元字符，必须转义
+re = /\?/;
+alert(re.test(str));//true
 
 //2.使用RegExp构造函数创建正则表达式
-var str = "\?";  
-alert(str);//只会输出?  
-var re = /\?/;//将匹配?  
-alert(re.test(str));//true  
-re = new RegExp("\?");//出错,因为这相当于re = /\?/  
-re = new RegExp("\\?");//正确，将匹配？  
-alert(re.test(str));//true  </pre></li>
+var str = "\?";
+alert(str);//只会输出?
+var re = /\?/;//将匹配?
+alert(re.test(str));//true
+re = new RegExp("\?");//出错,因为这相当于re = /\?/
+re = new RegExp("\\?");//正确，将匹配？
+alert(re.test(str));//true  </pre>
+					</div>
+				</li>
 				<li> ? 的四种用法:
 					<ol>
 						<li><span class="red">原文符号：</span>
@@ -427,17 +394,26 @@ regex.Match("abcabc"); // return "abc"</pre></li>
 				<li>还有其他一些有特殊用处的标点符号，在前面加 "\" 后，就代表该符号本身。比如：^, $ ,.都有特殊意义，如果要想匹配字符串中 "^" , "$" , "." 字符，则表达式就需要写成 "\^" , "\$" , "\."。</li>
 			</ul>
 		</li>
-		<li>代表抽象意义的特殊符号(<span class="red">本身不匹配任何字符</span>)：
+		<li>定位符(<span class="c-red">本身不匹配任何字符</span>)：
 			<ul>
-				<li><span class="col-1"> ^ </span>： <span class="col-2">与字符串开始的地方匹配，不匹配任何字符</span><pre>表达式 "^aaa" 在匹配 "xxx aaa xxx" 时，匹配结果是：失败。因为 "^" 要求与字符串开始的地方匹配，因此，只有当 "aaa" 位于字符串的开头的时候，"^aaa" 才能匹配，比如："aaa xxx xxx"。</pre></li>
-				<li><span class="col-1"> $ </span>： <span class="col-2">与字符串结束的地方匹配，不匹配任何字符</span><pre>表达式 "aaa$" 在匹配 "xxx aaa xxx" 时，匹配结果是：失败。因为 "$" 要求与字符串结束的地方匹配，因此，只有当 "aaa" 位于字符串的结尾的时候，"aaa$" 才能匹配，比如："xxx xxx aaa"。</pre></li>
-				<li><span class="col-1"> \b </span>： <span class="col-2">匹配一个<span class="red">单词</span>边界，也就是单词和空格之间的位置，不匹配任何字符</span><pre>表达式 ".\b." 在匹配 "@@@abc" 时，匹配结果是：成功；匹配到的内容是："@a"；匹配到的位置是：开始于2，结束于4。</pre></li>
+				<li><span class="col-1"> ^ </span>： <span class="col-2">只匹配字符串的开头</span>
+					<p>但是在字符集和中，它表示的是类似“非“的意思，例如[^abc]就表示不能是a，b或者c中的任何一个</p>
+				</li>
+				<li><span class="col-1"> $ </span>： <span class="col-2">只匹配字符串结尾的字符</span></li>
+				<li><span class="col-1"> \b </span>： <span class="col-2">匹配一个<span class="c-red">单词</span>边界，也就是单词和空格之间的位置，不匹配任何字符</span>
+					<div class="html">
+						<pre>表达式 ".\b." 在匹配 "@@@abc" 时，匹配结果是：成功；匹配到的内容是："@a"；匹配到的位置是：开始于2，结束于4。</pre>
+						进一步说明："\b" 与 "^" 和 "$" 类似，本身不匹配任何字符，但是它要求它在匹配结果中所处位置的左右两边，其中一边是 "\w" 范围，另一边是 非"\w" 的范围。
+						<pre>表达式 "\bend\b" 在匹配 "weekend,endfor,end" 时，匹配结果是：成功；匹配到的内容是："end"；匹配到的位置是：开始于15，结束于18</pre>
+					</div>
+				</li>
+				<li><span class="col-1"> \B </span>：<span class="col-2">表示非边界</span>
+				</li>
 			</ul>
-			<div class="exm-t1 mb25">进一步说明："\b" 与 "^" 和 "$" 类似，本身不匹配任何字符，但是它要求它在匹配结果中所处位置的左右两边，其中一边是 "\w" 范围，另一边是 非"\w" 的范围。<pre>表达式 "\bend\b" 在匹配 "weekend,endfor,end" 时，匹配结果是：成功；匹配到的内容是："end"；匹配到的位置是：开始于15，结束于18</pre></div>
 		</li>
 		<li>预定义类：
 			<ul>
-				<li><span class="col-1"> . </span>： <span class="col-2 red">IE下[^\n]，其它[^\n\r]</span><span class="col-3">匹配除换行符之外的任何一个字符</span></li>
+				<li><span class="col-1"> . </span>： <span class="col-2 red">IE下[^\n]，其它[^\n\r]</span><span class="col-3">匹配字符串中除了换行符\n之外的所有字符</span></li>
 				<li><span class="col-1"> \d </span>： <span class="col-2 red">[0-9]</span><span class="col-3">匹配数字</span></li>
 				<li><span class="col-1"> \D </span>： <span class="col-2 red">[^0-9]</span><span class="col-3">匹配非数字字符</span></li>
 				<li><span class="col-1"> \s </span>： <span class="col-2 red">[ \n\r\t\f\x0B]</span><span class="col-3">匹配一个空白字符</span></li>
@@ -449,14 +425,6 @@ regex.Match("abcabc"); // return "abc"</pre></li>
 		<li>量词匹配次数：
 			<ul>
 				<li>量词单个出现时皆是<b class="red">贪婪量词</b>
-					<ul>
-						<li><span class="col-1"> * </span>： <span class="col-2 red">匹配前面的子表达式零次或多次。</span><span class="col-3">例如，zo* 能匹配 "z" 以及 "zoo"。 * 等价于{0,}</span></li>
-						<li><span class="col-1"> + </span>： <span class="col-2 red">匹配前面的子表达式一次或多次。</span><span class="col-3">例如，'zo+' 能匹配 "zo" 以及 "zoo"，但不能匹配 "z"。+ 等价于 {1,}</span></li>
-						<li><span class="col-1"> ? </span>： <span class="col-2 red">匹配前面的子表达式零次或一次。</span><span class="col-3">例如，"do(es)?" 可以匹配 "do" 或 "does" 中的"do" 。? 等价于 {0,1}</span></li>
-						<li><span class="col-1"> {n} </span>： <span class="col-2 red">n 是一个非负整数，匹配确定的 n 次。</span><span class="col-3">例如，'o{2}' 不能匹配 "Bob" 中的 'o'，但是能匹配 "food" 中的两个 o</span></li>
-						<li><span class="col-1"> {n,} </span>： <span class="col-2 red">n 是一个非负整数，至少匹配n 次。</span><span class="col-3">例如，'o{2,}' 不能匹配 "Bob" 中的 'o'，但能匹配 "foooood" 中的所有 o。'o{1,}' 等价于 'o+'。'o{0,}' 则等价于 'o*'</span></li>
-						<li><span class="col-1"> {n,m} </span>： <span class="col-2 red">m 和 n 均为非负整数，其中n <= m。最少匹配 n 次且最多匹配 m 次。</span><span class="col-3">例如，"o{1,3}" 将匹配 "fooooood" 中的前三个 o。'o{0,1}' 等价于 'o?'。请注意在逗号和两个数之间不能有空格</span></li>
-					</ul>
 				</li>
 				<li>在贪婪量词后面加个"?"则为<b class="red">惰性量词</b>,如"a+"是贪婪匹配的,"a+?"则是惰性的 </li>
 				<li>用贪婪量词进行匹配时，它首先会将整块字符串当成一个匹配，如果匹配的话就退出，如果不匹配，就截去最后一个字符进行匹配，如果不匹配，继续将最后一个字符截去进行匹配，直到有匹配为止。直到现在我们遇到的量词都是贪婪量词 </li>
@@ -477,7 +445,7 @@ re = /\w+?/;//将匹配a  </pre>
 </div>
 </div>
 <div class="mswitch">
-<h3 class="mb10">五、常用的正则表达式 </h3>
+<h3 class="mb10">常用的正则表达式 </h3>
 <div class="example-demo">
 	<pre>"^\\d+$"　　//非负整数（正整数 + 0） 
 "^[0-9]*[1-9][0-9]*$"　　//正整数 
@@ -520,7 +488,7 @@ re = /\w+?/;//将匹配a  </pre>
 </div>
 </div>
 <div class="mswitch">
-	<h3 class="mb10">六、捕获组 </h3>
+	<h3 class="mb10">捕获组 </h3>
 	<div class="example-demo">
 		<pre>//语法
 	普通捕获组：(Expression)
@@ -564,7 +532,7 @@ re = /\w+?/;//将匹配a  </pre>
 	</div>
 </div>
 <div class="mswitch">
-	<h3 class="mb10">七、反向引用 </h3>
+	<h3 class="mb10">反向引用 </h3>
 	<div class="example-demo">
 		<pre>//从一个简单例子说起:
 	源字符串：abcdebbcde
@@ -587,4 +555,48 @@ re = /\w+?/;//将匹配a  </pre>
 			<li>普通捕获组反向引用中number是十进制的数字，即捕获组的编号；命名捕获组反向引用中的name为命名捕获组的组名。</li>
 		</ul>
 	</div>
+</div>
+
+<div class="mswitch">
+	<div class="pt10 pb10">.gitignore正则书写规范</div>
+	<ol class="decimal">
+		<li>所有空行或者以注释符号 <b class="c-red">#</b> 开头的行都会被 Git 忽略。</li>
+		<li>匹配模式最后跟反斜杠 <b class="c-red">/</b> 说明要忽略的是目录。</li>
+		<li>要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号 <b class="c-red">!</b> 取反。</li>
+		<li>glob模式匹配：用来匹配文件路径
+			<ul>
+				<li>星号<b class="c-red">*</b>：匹配零个或多个任意字符</li>
+				<li>问号<b class="c-red">?</b>：只匹配一个任意字符</li>
+				<li>方括号<b class="c-red">[]</b>：匹配任何<b class="c-red">一个</b>列在方括号中的字符，如[abc]可匹配一个 a 或一个 b 或一个 c</li>
+				<li>如果在方括号中使用短划线 <b class="c-red">-</b> 分隔两个字符，表示所有在这两个字符范围内的都可以匹配，如[0-9]表示匹配所有 0 到 9 的数字</li>
+				<li><b>与正则的比较：</b>
+					<ul>
+						<li>Glob的通配符 <b class="c-red">？</b>：等价正则的表达式 <b class="c-red">.</b></li>
+						<li>Glob的通配符 <b class="c-red">*</b>：等价正则的表达式 <b class="c-red">.*</b></li>
+						<li><b>Glob尝试匹配整个字符串，正则只匹配子串除非使用^和$</b>。<br>
+							例如：S*.DOC的等价正则是^S.*\.DOC$
+						</li>
+					</ul>
+				</li>
+				<li><b>node glob对常用通配符又做了一些扩展：</b>
+					<ul>
+						<li><b class="c-red">**</b>：匹配任意数量的字符包括空字符（包括路径分隔符）
+							<p>**/*.js匹配/a/b/c.js</p>
+						</li>
+						<li><b class="c-red">!(pattern|pattern)</b>：匹配除了()内以外的pattern
+							<p>!(abc|bcd)匹配aaa,bbb，不匹配abc,bcd</p>
+						</li>
+						<li><b class="c-red">?(pattern|pattern)</b>：匹配至多一个()内的pattern
+							<p>?(abc|bcd)匹配abc或者bcd，不匹配bbb</p>
+						</li>
+						<li><b class="c-red">+(pattern|pattern)</b>：匹配至少一个()内的pattern</li>
+						<li><b class="c-red">*(pattern|pattern)</b>：匹配任意个()内的pattern</li>
+						<li><b class="c-red">@(pattern|pattern)</b>：精确匹配()内的其中一个pattern
+							<p>@(abc|bcd)匹配abc，不匹配abd</p>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ol>
 </div>
