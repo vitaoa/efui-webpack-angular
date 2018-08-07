@@ -6,6 +6,7 @@
 	<div class="mtit"><span>目录</span></div>
 	<div class="mcon">
 		<ol>
+			<li><a href="">宿主环境</a></li>
 			<li>
 				<a href="">函数调用</a>
 			</li>
@@ -50,6 +51,40 @@
 			</li>
 		</ol>
 	</div>
+</div>
+
+<div class="mswitch">
+	<ol class="hanja">
+		<li>
+			<p>console对象，window对象，DOM元素对象并不被javaScript真正“拥有”</p>
+			<ol class="decimal">
+				<li>console对象：
+					<b class="c-red">console对象并不是属于JS的而是浏属于浏览器的</b>。因此， 各大浏览器关于console对象API的实现也各不相同
+				</li>
+				<li>window对象：保存全局变量的顶层对象
+					<p><b>与Global对象的区别：</b></p>
+					<ul>
+						<li>Global对象是ECMAscript标准中定死的全局对象</li>
+						<li>Window对象是浏览器的一个实例，</li>
+					</ul>
+				</li>
+				<li>DOM元素对象：是浏览器提供的东西，有如下特点：
+					<ul>
+						<li>无法写覆盖；</li>
+						<li>包含一些预定义的只读属性；</li>
+						<li>包含无法将 this 重载为其他对象的方法。</li>
+					</ul>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<p>javascript一般是不能独立运行的， 而要依赖于宿主环境，常见的宿主环境有：</p>
+			<ol class="decimal">
+				<li>浏览器 (最常见)</li>
+				<li>node</li>
+			</ol>
+		</li>
+	</ol>
 </div>
 <div class="mswitch">
 	<div class="pt10 pb10">函数调用</div>

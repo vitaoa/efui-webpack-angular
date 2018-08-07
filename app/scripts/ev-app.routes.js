@@ -451,21 +451,21 @@
                                     {
                                         'title':"vue",
                                         'submenu':[
-                                            {'name':"vue入门",'url':"vue"}
+                                            {'name':"vue简介",'url':"vue"}
                                         ]
                                     }
                                 ]
                             },
-                            {
-                                "firstName":"React",
-                                "likes":[
-                                    {
-                                        'title':'react',
-                                        'url':'react',
-                                        'abstract':''
-                                    }
-                                ]
-                            }
+                            // {
+                            //     "firstName":"React",
+                            //     "likes":[
+                            //         {
+                            //             'title':'react',
+                            //             'url':'react',
+                            //             'abstract':''
+                            //         }
+                            //     ]
+                            // }
                         ];
                         $scope.submitForm = function(isValid) {
                             if (!isValid) {

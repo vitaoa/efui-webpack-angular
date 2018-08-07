@@ -461,6 +461,9 @@
                         {
                             'title':"正则表达式","url":"regex"
                         },
+	                    {
+		                    'title':"ES6","url":"es6"
+	                    },
                         {
                             'title':"seo","url":"seo"
                         },
@@ -504,13 +507,13 @@
                         {
                             'title':"javascript",
                             'submenu':[
-                                {'name':"概念题",'url':"note-js01"}
+                                {'name':"基本概念",'url':"note-js01"}
                             ]
                         },
                         {
                             'title':"css",
                             'submenu':[
-                                {'name':"概念题",'url':"note-css01"}
+                                {'name':"基本概念",'url':"note-css01"}
                             ]
                         }
                     ]
