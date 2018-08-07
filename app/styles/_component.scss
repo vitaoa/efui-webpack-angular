@@ -91,8 +91,16 @@ ol{
     }
     &.decimal{margin-top: 10px;
         @include style-bullets(decimal,none);
+        > li{margin-left: 24px;}
     }
-    li{margin-top: 10px;}
+    li{margin-top: 10px;margin-left: 16px;}
+}
+
+@media (max-width:767px) {
+    /* ============ bullet ============ */
+    ol{
+
+    }
 }
 
 
@@ -1124,4 +1132,15 @@ div[id^=scrollBar] {
 /* ============ gallery ============ */
 .my-gallery{@include clearfix();margin-top: 15px;
     figure{display: block;float: left;margin: 5px 20px 20px 0;@include size(80px,80px);overflow: hidden}
+}
+
+/* ============ note question ============ */
+.note-question{
+    .note-title{padding: 10px 0;}
+    .note-reply{position: relative;padding-right: 70px;
+        .btn[type=submit]{position: absolute;right:0;bottom:0;}
+        .i-answer{display: block;width:100%;@include box-sizing(border-box);padding: 10px;border:1px dashed #e8e8e8;}
+    }
+    .note-desc{border-bottom: 1px dashed #e8e8e8;padding-bottom: 15px;margin-bottom: 15px;}
+    .html{background: #e5f4e6;font-family: Verdana, Arial, '\5B8B\4F53';font-size: 13px;border-left:6px solid #d7e4d8;padding: 10px;}
 }

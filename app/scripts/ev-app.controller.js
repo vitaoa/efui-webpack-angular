@@ -445,7 +445,7 @@
               $(id).setImagePreview();
 	        };
         }])
-        .controller('skillsController', ['$scope' ,function($scope) {
+        .controller('skillsController', ['$scope','$stateParams','$http' ,function($scope,$stateParams,$http) {
             $scope.docsTit = "进阶";
             $scope.docsMsg = "前端技能进阶";
             $scope.menulist = [
@@ -519,6 +519,30 @@
                     ]
                 }
             ];
+
+	        $scope.pagename = $stateParams.pageid;
+	        $scope.answertitle = '查看正确答案';
+	        $scope.answertitle2 = '关闭正确答案';
+	        $http.get('app/data/note-js01.json').then(
+		        function success(res) {
+			        $scope.noteTitlelist = res.data.noteTitlelist;
+		        },function error(err) {
+                    console.log(err);
+		        }
+	        );
+
+	        $scope.submitForm = function(answer,item) {
+		        if (item !== answer) {
+			        alert('回答错误');
+		        }
+	        };
+	        $scope.isArray = function(o){
+		        return Object.prototype.toString.call(o) === '[object Array]';
+	        };
+	        $scope.isObj = function(o){
+		        return Object.prototype.toString.call(o) === '[object Object]';
+	        };
+
             $scope.dataToggle = function () {
                 $(this).dataToggle({
                     show:true

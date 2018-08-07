@@ -15,7 +15,6 @@
 @mixin style-bullet($type,$image) {
   list-style-image: $image;
   list-style-type: $type;
-  margin-left: 32px;
 }
 @mixin style-bullets($type,$image) {
   list-style: $type;
