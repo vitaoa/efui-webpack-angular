@@ -79,10 +79,10 @@
                     clearInterval(scrollTimer);
                 },function(){
                     scrollTimer = setInterval(function(){
-                        scrollNews(_obj);
+	                    scrollList(_obj);
                     },timeInterval);
                 }).trigger("mouseout");
-                function scrollNews(obj){
+                function scrollList(obj){
                     var $self = obj.find("ul:first");
                     var lineHeight = $self.find("li:first").outerHeight(true);
                     $self.animate({ "top" : -lineHeight +"px" },600 , function(){
@@ -371,6 +371,10 @@
 	            a = $.extend({}, a || {});
 	            $(this).sliderLeftRight(a);
             };
+            $scope.copyLinks = function (a){
+	            a = $.extend({}, a || {});
+	            $(this).copyLinks(a);
+            }
         }])
         .controller('componentController', ['$scope' ,function($scope) {
             $scope.docsTit = "组件";
@@ -463,6 +467,9 @@
                         },
 	                    {
 		                    'title':"ES6","url":"es6"
+	                    },
+	                    {
+		                    'title':"font face","url":"font-face"
 	                    },
                         {
                             'title':"seo","url":"seo"

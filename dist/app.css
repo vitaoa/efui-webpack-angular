@@ -976,45 +976,45 @@ ol.hanja ul, ol.decimal ul {
   list-style: disc; }
   ol.hanja ul li, ol.decimal ul li {
     list-style-image: none;
-    list-style-type: disc;
-    margin-left: 32px; }
+    list-style-type: disc; }
   ol.hanja ul ul, ol.decimal ul ul {
     list-style: lower-alpha; }
     ol.hanja ul ul li, ol.decimal ul ul li {
       list-style-image: none;
-      list-style-type: lower-alpha;
-      margin-left: 32px; }
+      list-style-type: lower-alpha; }
     ol.hanja ul ul ul, ol.decimal ul ul ul {
       list-style: circle; }
       ol.hanja ul ul ul li, ol.decimal ul ul ul li {
         list-style-image: none;
-        list-style-type: circle;
-        margin-left: 32px; }
+        list-style-type: circle; }
       ol.hanja ul ul ul ul, ol.decimal ul ul ul ul {
         list-style: lower-greek; }
         ol.hanja ul ul ul ul li, ol.decimal ul ul ul ul li {
           list-style-image: none;
-          list-style-type: lower-greek;
-          margin-left: 32px; }
+          list-style-type: lower-greek; }
 
 ol.hanja {
   margin-top: 10px;
   list-style: korean-hanja-informal; }
   ol.hanja li {
     list-style-image: none;
-    list-style-type: korean-hanja-informal;
-    margin-left: 32px; }
+    list-style-type: korean-hanja-informal; }
 
 ol.decimal {
   margin-top: 10px;
   list-style: decimal; }
   ol.decimal li {
     list-style-image: none;
-    list-style-type: decimal;
-    margin-left: 32px; }
+    list-style-type: decimal; }
+  ol.decimal > li {
+    margin-left: 24px; }
 
 ol li {
-  margin-top: 10px; }
+  margin-top: 10px;
+  margin-left: 16px; }
+
+@media (max-width: 767px) {
+  /* ============ bullet ============ */ }
 
 /* ============ input ============ */
 .radio-group .radio-item {
@@ -1279,8 +1279,7 @@ ol li {
     list-style: decimal; }
     .mlist ol li {
       list-style-image: none;
-      list-style-type: decimal;
-      margin-left: 32px; }
+      list-style-type: decimal; }
 
 .mlist .mtit {
   background: #F5F5F5;
@@ -2144,6 +2143,38 @@ div[id^=scrollBar] {
     height: 80px;
     width: 80px;
     overflow: hidden; }
+
+/* ============ note question ============ */
+.note-question .note-title {
+  padding: 10px 0; }
+
+.note-question .note-reply {
+  position: relative;
+  padding-right: 70px; }
+  .note-question .note-reply .btn[type=submit] {
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .note-question .note-reply .i-answer {
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px dashed #e8e8e8; }
+
+.note-question .note-desc {
+  border-bottom: 1px dashed #e8e8e8;
+  padding-bottom: 15px;
+  margin-bottom: 15px; }
+
+.note-question .html {
+  background: #e5f4e6;
+  font-family: Verdana, Arial, '\5B8B\4F53';
+  font-size: 13px;
+  border-left: 6px solid #d7e4d8;
+  padding: 10px; }
 /* ============ Navbar ============ */
 .sidebar-menu dl a {
   color: #777;
@@ -2361,6 +2392,7 @@ div[id^=scrollBar] {
 /* ============ Fonticons ============ */
 @font-face {
   font-family: "fontico";
+  src: url(./fonts/ico.eot);
   src: url(./fonts/ico.eot?#iefix) format("embedded-opentype"), url(./fonts/ico.woff) format("woff"), url(./fonts/ico.ttf) format("truetype"), url(./fonts/ico.svg#fontico) format("svg"); }
 
 [class*=" f-"], [class^=f-] {

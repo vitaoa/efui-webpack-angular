@@ -82,7 +82,7 @@
 			    intervalF = setInterval(typing,options.time);
 		    }
 	    },
-	    sliderLeftRight:function (options) {
+	    sliderLeftRight000:function (options) {
 		    var _cur = 0;
 		    var ele = $('.'+options.className);
 		    var slideprev = ele.find('.arrow-prev');
@@ -183,7 +183,21 @@
 				    timer();
 			    });
 		    }
-	    }
+	    },
+	    copyLinks:function (options) {
+			var e = document.getElementById(options.id);
+			e.select();
+			try{
+				if(document.execCommand('copy', false, null)){
+					tooltip({msg:"Copy the link successfully"});
+				} else{
+					tooltip({msg:"This function does not support the browser, please manually copy the text box"});
+				}
+			} catch(err){
+				tooltip({msg:"copy failed！"});
+			};
+		    bindClickHide('.PopupLayer','.PopupCon');
+		},
     });
 })(jQuery);
 

@@ -37,4 +37,6 @@ require('./plugins');
 require('./canvas');
 require('./photoswipe');
 require('./photoswipe-ui-default');
+require('./plugins/picslider');
 require('./browser');
+require('./extend');

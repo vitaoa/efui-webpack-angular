@@ -15,6 +15,7 @@ require.config({
 		"slider":["jquery.slider"],
 		"photoswipeUi":["photoswipe-ui-default"],
 		"jQueryRotate":["lib/jQueryRotate"],
+		"picslider":["plugins/picslider"]
 	},
 	map: {
 		'*': {
@@ -32,5 +33,5 @@ require.config({
 });
 require(['appRoutes','appController','prettify','collapse','slider','efui',
 	'jQueryRotate','rotary','carousel','countTo','dataToggle',
-	'skill','component','plugins','canvas','photoswipe','photoswipeUi'
+	'skill','component','plugins','canvas','photoswipe','photoswipeUi','picslider','extend'
 ]);

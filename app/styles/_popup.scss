@@ -11,6 +11,11 @@
     .popup-tb-cell{display: table-cell;vertical-align: middle;}
 }
 .PopupLayer{position:fixed;left:0;top:0;width:100%;height:100%;@include rgba-background((#000,.4));z-index:9999;
+    &.popCopyAlert{
+        .PopupBox{
+            .PopupCon{height:auto;padding: 20px;}
+        }
+    }
     .PopupBox{margin:0 auto;width:580px;position: relative;*margin-top:150px;
         .PopupCloseBtn{position: absolute;top:13px;right:11px;display: block;@include size(26px,26px);cursor: pointer;
             background: transparentize(#eee, 0.5);
