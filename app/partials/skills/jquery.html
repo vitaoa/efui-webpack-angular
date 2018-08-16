@@ -9,9 +9,9 @@
 			<li>
 				<a href="">插件开发</a>
 			</li>
-			<!--<li>-->
-				<!--<a href="">插件开发</a>-->
-			<!--</li>-->
+			<li>
+				<a href="">事件绑定</a>
+			</li>
 		</ol>
 	</div>
 </div>
@@ -65,8 +65,38 @@ $.add(3,4); //return 7 </pre>
 
 
 <div class="mswitch">
-	<div class="pt10 pb10"></div>
-	<div class="example-visualize"></div>
+	<ol class="hanja">
+		<li><b>多事件绑定on()、bind()、live()、delegate()的区别</b>
+			<ol class="decimal">
+				<li>live()方法已经过时，不建议使用</li>
+				<li>on()：
+					<ul>
+						<li>on的基本语法：$(selector).on(events[,selector][,data],fn)</li>
+						<li>on的第二个参数可以阻止一些情况下的冒泡，原理简单说就是用选择器来精确到匹配到你想执行函数的那个元素,而bind()就没有这个参数，因此在使用bind()时很可能产生冒泡。</li>
+						<li>bind() live() delegate()都是通过on()来实现的</li>
+					</ul>
+				</li>
+				<li>bind()：
+					<ul>
+						<li>基本语法：$(selector).bind(event[,data],function)</li>
+						<li>简写方法：$(selector).event(function)</li>
+						<li>如果匹配到的元素特别多的时候，影响性能，除非用id</li>
+						<li>对于尚未存在、动态添加的元素，无法绑定</li>
+					</ul>
+				</li>
+				<li>delegate()：
+					<ul>
+						<li>基本语法：$(selector).delegate(childSelector,event[,data],function)</li>
+						<li>childSelector规定要附加事件处理程序的一个或多个子元素。</li>
+						<li>为childSelector的父元素（或祖先元素也可）绑定事件</li>
+						<li>适用于当前或未来的元素</li>
+						<li>解决了用bind()方法的上面两个问题，不用再一个个地去为p元素绑定事件，也可以为动态添加进来的p元素绑定</li>
+						<li>如果事件目标在DOM树中很深的位置，这样一层层冒泡上来查找与选择器匹配的元素，又影响到性能了</li>
+					</ul>
+				</li>
+			</ol>
+		</li>
+	</ol>
 </div>
 
 

@@ -85,6 +85,7 @@ ol{
                 }
             }
         }
+        > li{margin-left: 34px;}
     }
     &.hanja{margin-top: 10px;
         @include style-bullets(korean-hanja-informal,none);
@@ -225,7 +226,7 @@ ol{
 .mlist .mcon {
     padding: 10px 10px 10px 20px;
     color: #888;
-    line-height: 30px
+    line-height: 30px;min-height: 50px;
 }
 
 .mlist a {

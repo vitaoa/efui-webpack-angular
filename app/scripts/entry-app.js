@@ -40,3 +40,4 @@ require('./photoswipe-ui-default');
 require('./plugins/picslider');
 require('./browser');
 require('./extend');
+require('./jsEvent');

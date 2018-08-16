@@ -82,7 +82,7 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
             template : '<div ng-transclude></div>',
             link : function(scope, element, attrs) {
                 scope.showMe = false;
-                scope.answershow = false;
+                // scope.answershow = false;
                 scope.title = '点击展开';
                 scope.title2 = '点击缩回';
                 scope.text = '这里是内部的内容。';
@@ -103,7 +103,7 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
                     scope.showMe = !scope.showMe;
                 }
                 scope.toggleanswer = function(){
-                    scope.answershow = !scope.answershow;
+                    this.answershow = !this.answershow;
                 };
             }
         };

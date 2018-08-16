@@ -6,7 +6,7 @@
 .docs-header{display: none;}
 
 [class*="list-col-"]{@include clearfix;
-    li{float: left;margin-bottom: 30px;}
+    li{float: left;margin-bottom: 30px;margin-left: 0;margin-right: 0;}
     &.list-col-2{
         li{width: 50%;}
     }
