@@ -1,0 +1,122 @@
+
+.inputcssverify{
+  input[type=radio],input[type=checkbox]{visibility: hidden;position: absolute;@include opacity(0);margin: 0;
+    & + label{cursor: pointer;@include inline-block;
+      &:before,&:after{content: '';position: absolute;top: 50%;left: 0;}
+    }
+    &:checked{
+      & + label{
+        &:before{}
+        &:after{}
+      }
+    }
+  }
+  .theme-dot{
+    input[type=radio],input[type=checkbox]{
+      &:checked{
+        & + label{
+          &:before{background-color: #fff;border-color:#064EBF;}
+          &:after{background-color: #064EBF;}
+        }
+      }
+      & + label{padding-left: 30px;
+        &:before{border-radius: 50%;background-color:#efefef;border: 1px solid #ddd;@include size(18px);margin-top: -10px;}
+        &:after{border-radius: 50%;background-color:#ddd;@include size(6px);margin-top: -3px;left: 7px;}
+      }
+    }
+  }
+  .theme-right{
+    input[type=radio],input[type=checkbox]{
+      &:checked{
+        & + label{
+          &:before{border-color: #064EBF;background: #fff;}
+          &:after{border-color: #064EBF;}
+        }
+      }
+      & + label{padding-left: 30px;
+        &:before{background-color:#efefef;border: 1px solid #ddd;@include size(18px);margin-top: -10px;}
+        &:after{border:2px solid #ddd;border-left:0;border-top:0;@include size(5px,10px);left: 7px;margin-top: -8px;@include prefixer(transform,rotate(45deg),("webkit","moz","ms","o"));}
+      }
+    }
+  }
+  .theme-right-block{
+    input[type=radio],input[type=checkbox]{
+      &:checked{
+        & + label{color:#fff;background: #3498db;
+          &:before{}
+          &:after{background:none;border-color: #fff;}
+        }
+      }
+      & + label{padding:8px 8px 8px 25px;color:#999;background:#efefef;border-radius: 3px;
+        &:before{}
+        &:after{border:2px solid #999;border-left:0;border-top:0;@include size(5px,10px);left: 9px;margin-top: -8px;@include prefixer(transform,rotate(45deg),("webkit","moz","ms","o"));}
+      }
+    }
+  }
+  .theme-dot-block{
+    input[type=radio],input[type=checkbox]{
+      &:checked{
+        & + label{color:#fff;background: #3498db;
+          &:before{}
+          &:after{background-color: #fff;}
+        }
+      }
+      & + label{padding:8px 8px 8px 20px;color:#999;background:#efefef;border-radius: 3px;
+        &:before{}
+        &:after{border-radius: 50%;background-color:#ddd;@include size(6px);margin-top: -3px;left: 7px;}
+      }
+    }
+  }
+  .radio-item,.checkbox-item {position: relative;@include inline-block;}
+}
+.radio-group,.checkbox-group{
+  .radio-item,.checkbox-item,.switch-item{margin:0 5px;}
+}
+
+.switch-item {position: relative;line-height: 30px;background-color: #E8E8E8;
+  @include inline-block();@include size(80px,30px);@include prefixer(transition,(background-color, border) .2s ease-in-out ,("webkit","moz","o","ms"));
+  label{z-index: 1;position: absolute;top: 0;left: 0;@include size(100%);
+    &:after{content: 'OFF';font-size: 12px;text-align: center;font-weight: 100;float: left;background-color: #f5f5f5;color: #064EBF;
+      @include size(50%,100%);@include box-sizing(border-box);@include inline-block();
+      @include prefixer(transition,.2s ease-in-out,("webkit","moz","o","ms"));
+      @include prefixer(transition-property,(transform, width, left),("webkit","moz","o","ms"));
+      @include gradient-vertical(#fff, #e6e6e6);
+    }
+  }
+  input[type=checkbox]{visibility: hidden;
+    &:checked{
+      & + label{
+        &:after{content: 'ON';background-color: #064EBF;color: #fff;
+          @include prefixer(transform,translate(100%, 0),("webkit","moz","o","ms"));
+          @include gradient-vertical(#064EBF, #08c);
+        }
+      }
+    }
+  }
+}
+
+.file-item {cursor: pointer;line-height: 30px;text-align: center;background: #4180E2;overflow: hidden;position: relative;
+  @include inline-block();@include size(150px,30px);
+  &:hover{background: #064EBF;}
+  &:before{font-weight: 400;font-style: normal;font-variant: normal;text-decoration: none;color: #fff;margin-right: 3px;
+    font-family: fontico; content: "\ea07";
+    @include inline-block();
+  }
+  &:after{cursor: pointer;outline: 0;color: #fff;text-align: center;white-space: nowrap;
+    content: "选择要上传的文件";
+    @include inline-block();@include prefixer(transition,(background-color .3s ease-out, border-color .3s ease-out),("webkit","moz","o","ms"))
+  }
+  input[type=file] {cursor: pointer;font-size: 50rem;@include opacity(0);@include size(100%,100%);
+    z-index: 999;position: absolute;right: 0;top: 0;
+  }
+}
+
+.i-text {padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #333;background-color: #fff;background-image: none;border: 1px solid #ccc;
+  @include inline-block();@include placeholder(#999);
+}
+
+.input-group{border: 1px solid #ccc;
+  [class*="f-"]{float: left;padding: 10px;
+    & + input{display: block;border:none;padding-left: 0;}
+  }
+}

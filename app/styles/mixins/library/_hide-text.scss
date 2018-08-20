@@ -6,8 +6,7 @@
 }
 
 @mixin text-hide() {
-  font-size: 0;
-  line-height: 0;
+  font: 0/0 a;
   height: 0;
   color: transparent;
   overflow: hidden;

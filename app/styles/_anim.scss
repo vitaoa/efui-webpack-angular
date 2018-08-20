@@ -1,22 +1,5 @@
 /* ============ Animations ============ */
-// Layout
-@import "variables/variables";
-@import "mixins/library";
 
-.docs-header{display: none;}
-
-[class*="list-col-"]{@include clearfix;
-    li{float: left;margin-bottom: 30px;margin-left: 0;margin-right: 0;}
-    &.list-col-2{
-        li{width: 50%;}
-    }
-    &.list-col-4{
-        li{width: 25%;}
-    }
-    &.list-col-3{
-        li{width: 33.3%;}
-    }
-}
 .radius-box{border-radius: 5px;background:#fff;box-shadow: 5px 10px 40px rgba(27, 12, 118, .06);}
 
 .list-item{text-align: center;width:90%;margin: 0 auto;font-family: 'PingFang_Medium';padding-top: 50px;padding-bottom: 35px;

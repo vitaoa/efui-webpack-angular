@@ -107,8 +107,8 @@
 
         //绑定事件
         return this.each(function () {
-            console.log($this);
-            console.log(options);
+            // console.log($this);
+            // console.log(options);
         });
     };
     $.fn.squareDraw.defaults ={

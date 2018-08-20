@@ -1,75 +1,87 @@
-<div class="form-box form-box-padd account-open app-login">
-	<div class="form-listbox">
-		<label class="input-label">身份证号</label>
-		<div class="input-box border-active">
-			<input type="text" class="inp-font" name="personalInformation.certificateNumber" id="certificateNumber" size="70" placeholder="请输入身份证号"
-				   ng-init="formatCertificate('#certificateNumber')">
-			<!--<span class="result-icon"><i class="i-correct"></i></span>-->
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li>
+				<a href="">基本使用</a>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<div class="form-box form-box-padd account-open app-login ">
+		<div class="form-listbox">
+			<label class="input-label">身份证号</label>
+			<div class="input-box border-active">
+				<input type="text" class="inp-font" name="personalInformation.certificateNumber" id="certificateNumber" size="70" placeholder="请输入身份证号"
+					   ng-init="formatCertificate('#certificateNumber')">
+				<!--<span class="result-icon"><i class="i-correct"></i></span>-->
+			</div>
 		</div>
-	</div>
-	<div class="form-listbox mobilePhone-listbox">
-		<label class="input-label">手机号码</label>
-		<div class="input-box border-active">
-			<i class="i-phone"></i>
-			<input type="text" class="inp-font" name="personalInformation.mobilePhone" id="mobilePhone_number" maxlength="13" placeholder="请输入11位手机号码"
-				   	ng-init="formatPhone('#mobilePhone_number')"
-				   	ng-keyup="mobilePhoneKeyup('#mobilePhone_number')"
-				   	ng-focus="mobilePhoneFocus('#mobilePhone_number')"
-				   	ng-blur="mobilePhoneBlur('#mobilePhone_number')" />
-			<span class="result-icon"><i class="i-correct"></i></span>
+		<div class="form-listbox mobilePhone-listbox">
+			<label class="input-label">手机号码</label>
+			<div class="input-box border-active">
+				<i class="i-phone"></i>
+				<input type="text" class="inp-font" name="personalInformation.mobilePhone" id="mobilePhone_number" maxlength="13" placeholder="请输入11位手机号码"
+					    ng-init="formatPhone('#mobilePhone_number')"
+					    ng-keyup="mobilePhoneKeyup('#mobilePhone_number')"
+					    ng-focus="mobilePhoneFocus('#mobilePhone_number')"
+					    ng-blur="mobilePhoneBlur('#mobilePhone_number')" />
+				<span class="result-icon"><i class="i-correct"></i></span>
+			</div>
+			<div id="phoneerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span
+					class="jiant-icon i-error"></span>请输入您的手机号码</p></div>
 		</div>
-		<div id="phoneerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span
-				class="jiant-icon i-error"></span>请输入您的手机号码</p></div>
-	</div>
-	<div class="form-listbox getcode-listbox" id="checkCode_div">
-		<label class="input-label">验证码</label>
-		<div class="input-box border-active">
-			<div class="disable-layer"></div>
-			<i class="i-vcode"></i>
-			<input type="text" class="inp-font m-pad2" name="checkCode" id="checkCode" maxlength="4" size="35" placeholder="请输入验证码"
-				   	ng-keyup="checkCodeKeyup('#checkCode')"
-				   	ng-focus="checkCodeFocus('#checkCode')"
-				   	ng-blur="checkCodeBlur('#checkCode')"/>
-			<!--<input type="button" id="sendVeriCode"-->
-				   <!--onClick="sendVeriCodeClick();_gaq.push(['_trackEvent', 'demo2-account-gts2', 'sendVeriCode', 'content-bottom',1,true]);"-->
-				   <!--name="sendVeriCode" value="获取验证码" class="get-code"/>-->
-			<input type="button" id="sendVeriCode"
-				   name="sendVeriCode" value="获取验证码" class="get-code" ng-click="sendCodeNumber('.get-code')"/>
-			<span class="result-icon"><i class="i-correct"></i></span>
+		<div class="form-listbox getcode-listbox" id="checkCode_div">
+			<label class="input-label">验证码</label>
+			<div class="input-box border-active">
+				<div class="disable-layer"></div>
+				<i class="i-vcode"></i>
+				<input type="text" class="inp-font m-pad2" name="checkCode" id="checkCode" maxlength="4" size="35" placeholder="请输入验证码"
+					    ng-keyup="checkCodeKeyup('#checkCode')"
+					    ng-focus="checkCodeFocus('#checkCode')"
+					    ng-blur="checkCodeBlur('#checkCode')"/>
+				<!--<input type="button" id="sendVeriCode"-->
+					   <!--onClick="sendVeriCodeClick();_gaq.push(['_trackEvent', 'demo2-account-gts2', 'sendVeriCode', 'content-bottom',1,true]);"-->
+					   <!--name="sendVeriCode" value="获取验证码" class="get-code"/>-->
+				<input type="button" id="sendVeriCode"
+					   name="sendVeriCode" value="获取验证码" class="get-code" ng-click="sendCodeNumber('.get-code')"/>
+				<span class="result-icon"><i class="i-correct"></i></span>
+			</div>
+			<div id="checkCodeerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span
+					class="jiant-icon i-error"></span>请输入正确的验证码</p></div>
+	
+			<div class="ac-tip"><span>未能收到短信验证码？<a href="javascript:;" class="voicetipBtn">点此发送语音验证码</a></span></div>
 		</div>
-		<div id="checkCodeerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span
-				class="jiant-icon i-error"></span>请输入正确的验证码</p></div>
-
-		<div class="ac-tip"><span>未能收到短信验证码？<a href="javascript:;" class="voicetipBtn">点此发送语音验证码</a></span></div>
-	</div>
-	<div class="form-listbox" id="passwordRaw_div">
-		<label class="input-label">设置密码</label>
-		<div class="input-box border-active">
-			<div class="disable-layer"></div>
-			<i class="i-password"></i>
-			<input type="password" size="70" name="personalInformation.passwordRaw" id="passwordRaw" class="inp-font" placeholder="设置密码，最短6位字母数字组合"
-				   	ng-keyup="passwordKeyup(['#passwordRaw','#passwordRaw2'])"
-				   	ng-focus="passwordFocus('#passwordRaw')"
-				   	ng-blur="passwordBlur('#passwordRaw')">
-			<input style="display: none;" type="text" size="70" name="password" id="passwordRaw2" class="inp-font" placeholder="设置密码，最短6位字母数字组合"
-				   	ng-keyup="passwordKeyup(['#passwordRaw2','#passwordRaw'])"
-				   	ng-focus="passwordFocus('#passwordRaw2')"
-				   	ng-blur="passwordBlur('#passwordRaw2')">
-			<a href="javascript:void 0;" id="eyeid" class="eye" title="掩藏密码" ng-click="showPasswordRaw('#eyeid');"></a>
-			<span class="result-icon"><i class="i-correct"></i></span>
+		<div class="form-listbox" id="passwordRaw_div">
+			<label class="input-label">设置密码</label>
+			<div class="input-box border-active">
+				<div class="disable-layer"></div>
+				<i class="i-password"></i>
+				<input type="password" size="70" name="personalInformation.passwordRaw" id="passwordRaw" class="inp-font" placeholder="设置密码，最短6位字母数字组合"
+					    ng-keyup="passwordKeyup(['#passwordRaw','#passwordRaw2'])"
+					    ng-focus="passwordFocus('#passwordRaw')"
+					    ng-blur="passwordBlur('#passwordRaw')">
+				<input style="display: none;" type="text" size="70" name="password" id="passwordRaw2" class="inp-font" placeholder="设置密码，最短6位字母数字组合"
+					    ng-keyup="passwordKeyup(['#passwordRaw2','#passwordRaw'])"
+					    ng-focus="passwordFocus('#passwordRaw2')"
+					    ng-blur="passwordBlur('#passwordRaw2')">
+				<a href="javascript:void 0;" id="eyeid" class="eye" title="掩藏密码" ng-click="showPasswordRaw('#eyeid');"></a>
+				<span class="result-icon"><i class="i-correct"></i></span>
+			</div>
+			<div id="passwordRawerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span
+					class="jiant-icon i-error"></span>请输入有效的账户密码</p></div>
 		</div>
-		<div id="passwordRawerror" class="result-msg"><p class="wrong-icon wrong-icon-cuo"><span
-				class="jiant-icon i-error"></span>请输入有效的账户密码</p></div>
-	</div>
-
-	<div class="confirm-file">
-		<p class="agree-con">
-			<input type="checkbox" checked="checked" id="agreeCheck"><a href="javascript:;" class="i-checkbox"><i
-				class="i-check"></i>我已仔细阅读并同意</a><a href="" class="tongy">客户协议</a>、<a href="" class="tongy">免责声明</a>、<a
-				href="" class="tongy">风险披露声明</a>
-		</p>
-	</div>
-	<div class="btn-group">
-		<a href="javascript:;" class="btn submit-btn btn-primary" ng-click="submitInit()">提交</a>
+	
+		<div class="confirm-file">
+			<p class="agree-con">
+				<input type="checkbox" checked="checked" id="agreeCheck"><a href="javascript:;" class="i-checkbox"><i
+					class="i-check"></i>我已仔细阅读并同意</a><a href="" class="tongy">客户协议</a>、<a href="" class="tongy">免责声明</a>、<a
+					href="" class="tongy">风险披露声明</a>
+			</p>
+		</div>
+		<div class="btn-group">
+			<a href="javascript:;" class="btn submit-btn btn-primary" ng-click="submitInit()">提交</a>
+		</div>
 	</div>
 </div>

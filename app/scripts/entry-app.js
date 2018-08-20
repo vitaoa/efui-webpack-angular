@@ -3,20 +3,7 @@
  */
 
 // css 文件引入
-require("../styles/_base.scss");
-require("../styles/_layout.scss");
-require("../styles/_navbar.scss");
-require("../styles/_component.scss");
-require("../styles/_sidebar.scss");
-require("../styles/_fonticons.scss");
-require("../styles/_prettyprint.scss");
-require("../styles/_button.scss");
-require("../styles/_anim.scss");
-require("../styles/_rotary.scss");
-require("../styles/_carousel.scss");
-require("../styles/_popup.scss");
-require("../styles/_plugin.scss");
-require("../styles/_svg.scss");
+require("../styles/efui.scss");
 
 
 // js 文件引入
@@ -41,3 +28,4 @@ require('./plugins/picslider');
 require('./browser');
 require('./extend');
 require('./jsEvent');
+require('./form');

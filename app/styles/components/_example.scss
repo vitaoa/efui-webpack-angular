@@ -1,0 +1,116 @@
+
+.example-demo {
+  border: 1px solid #eee;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  padding: 0 15px 15px;
+  & + .example-visualize{margin-top:20px;}
+}
+
+.example-demo:before {
+  content: 'Demo';
+  display: block;
+  color: #bbb;
+  text-transform: uppercase;
+  margin: 0 -15px 15px;
+  padding: 4px 10px;
+  font-size: 12px
+}
+
+.example-demo .example-visualize {
+  margin: 1em
+}
+
+.example-visualize {
+  padding: 39px 19px 14px;
+  border: 1px solid #e8e8e8;
+  position: relative;
+  & + .example-visualize{border-top:0;}
+  & + .example-demo{margin-top:20px;}
+
+  & > ol {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    background: #fefefe;
+    & > li {
+      margin: .5em
+    }
+    &.decimal > li{
+      margin: .5rem 0 .5rem 32px;
+    }
+    &.hanja{margin:0 1em;padding-left: 2.5em;}
+  }
+}
+
+.example-visualize:before {
+  content: 'view';
+  display: block;
+  color: #bbb;
+  text-transform: uppercase;
+  margin: 0 -15px 15px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #fafafa;
+  position: absolute;
+  left: 15px;
+  top: 0;
+  border-bottom: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8
+}
+
+.example-visualize .container {
+  padding-right: 15px !important;
+  padding-left: 15px !important
+}
+
+.example-visualize .navbar-header {
+  display: block;
+  width: 100%
+}
+
+.example-visualize .collapse.in {
+  clear: both
+}
+
+.example-visualize .navbar-header .navbar-toggle {
+  display: block
+}
+
+.example-visualize .nav {
+  float: none !important
+}
+
+.example-visualize .nav > li {
+  float: none
+}
+
+.example-desc {
+  padding: 15px;
+  background: #f5f5f5;
+  color: #333;
+  margin-bottom: 35px;
+  line-height:1.8;
+  .html{
+    pre{background:#fff;}
+  }
+  & > ul {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    background: #fefefe;
+    & > li {
+      margin-bottom: .5em
+    }
+  }
+  & > ol {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    background: #fefefe;
+    & > li {
+      margin: .5em
+    }
+    &.decimal > li{
+      margin: .5rem 0 .5rem 32px;
+    }
+    &.hanja{margin:0 1em;padding-left: 2.5em;}
+  }
+}

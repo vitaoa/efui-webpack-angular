@@ -1,0 +1,132 @@
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.label:empty {
+  display: none;
+}
+.label-default {
+  background-color: #777;
+}
+.label-default[href]:hover,
+.label-default[href]:focus {
+  background-color: #5e5e5e;
+}
+.label-primary {
+  background-color: #337ab7;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: #286090;
+}
+.label-success {
+  background-color: #5cb85c;
+}
+.label-success[href]:hover,
+.label-success[href]:focus {
+  background-color: #449d44;
+}
+.label-info {
+  background-color: #5bc0de;
+}
+.label-info[href]:hover,
+.label-info[href]:focus {
+  background-color: #31b0d5;
+}
+.label-warning {
+  background-color: #f0ad4e;
+}
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+  background-color: #ec971f;
+}
+.label-danger {
+  background-color: #d9534f;
+}
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+  background-color: #c9302c;
+}
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #000;
+}
+.badge:empty {
+  display: none;
+}
+.badge-default {
+  background-color: #777;
+}
+.badge-danger {
+  background-color: #d9534f;
+}
+.badge-warning {
+  background-color: #f0ad4e;
+}
+.badge-info {
+  background-color: #5bc0de;
+}
+.label-dot{
+  position: relative;
+  display: inline-block;
+  line-height: 22px;
+  padding: 0 6px;
+}
+.label-dot:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #000;
+  border-radius: 5px;
+  right: -3px;
+  top: -3px;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.dot-default:after{
+  background-color: #777;
+}
+.dot-info:after{
+  background-color: #5bc0de;
+}
+.dot-danger:after{
+  background-color: #c9302c;
+}
+.dot-warning:after{
+  background-color: #f0ad4e;
+}
+.tag-item{
+  position: relative;
+  display: inline-block;
+}
+.tag{
+  display: inline-block;
+  position: absolute;
+  color:#fff;
+  font-size: 12px;
+  font-family: "宋体";
+}
+.tag:empty {
+  display: none;
+}
+.tag-default{background: #5fb336;padding: 0 6px;}
+.tag.flt{left:0;top:0;}
+.tag.flb{left:0;bottom:0;}
+.tag.frt{right:0;top:0;}
+.tag.frb{right:0;bottom:0;}

@@ -1,0 +1,95 @@
+/* ============ popup ============ */
+.popup-tb{display: table;width:100%;height:100%;text-align: center;
+    .popup-tb-cell{display: table-cell;vertical-align: middle;text-align: center;}
+}
+.PopupLayer{position:fixed;left:0;top:0;width:100%;height:100%;@include rgba-background((#000,.4));z-index:9999;
+    &.popCopyAlert{
+        .PopupBox{
+            .PopupCon{height:auto;padding: 20px;}
+        }
+    }
+    .PopupBox{margin:0 auto;width:580px;position: relative;*margin-top:150px;
+        .PopupCloseBtn{position: absolute;top:13px;right:11px;display: block;@include size(26px,26px);cursor: pointer;
+            background: transparentize(#eee, 0.5);
+            @include _directional-property(border, radius, 50%);
+            @include prefixer(transition, all ease 0.6s, ("webkit","ms","moz","o"));
+            &:before,&:after{content: '';display: block;width: 2px; height: 18px;background: transparentize(#363461, 0.5); position: absolute; left: 50%; top: 50%;
+                @include prefixer(transform, translate(-50%, -50%) rotate(45deg), ("webkit","ms","moz","o"));
+            }
+            &:after{
+                @include prefixer(transform, translate(-50%, -50%) rotate(-45deg), ("webkit","ms","moz","o"));
+            }
+            &:hover{
+                @include prefixer(transform, rotate(-180deg), ("webkit","ms","moz","o"));
+            }
+        }
+        .PopupCon{@include box-shadow(0 0 10px #060001);height:394px;border-radius: 6px;background-color:#fff8f0;color:#555;font-family: 'PingFang_Medium';font-size: 20px;
+            .status-txt{font-family: 'PingFang_Heavy';font-size: 32px;padding-bottom: 12px;}
+            [class*="pop-status"]{display: block;margin:0 auto -10px;position: relative;top:-38px;}
+            .pop-status01{background:#ccc;@include size(150px,176px);}
+            [class*="prize-"]{display: block;margin:0 auto 10px;@include size(245px,165px);position: relative;top:-28px;}
+            .prize-gift2{background:#2d2b5a;}
+            .prize-gift3{background:#7d2b5a;
+                .status-txt{margin-top:-24px;}
+            }
+            .prize-gift5{background:#000;}
+            .prize-gift7{background:#449d44;@include size(146px,214px);
+                .status-txt{margin-top:-24px;}
+            }
+        }
+        .c-red{color:#d44225;}
+        .btn-group{margin-top: 54px;
+            .btn{@include size(216px,50px);line-height:50px;font-size: 24px;}
+        }
+        .fragment-pic{display: block;@include size(548px,386px);/*background:url(../images/pc/fragment-pic.png) no-repeat center center;*/
+            position: absolute;top:-76px;left:-22px;
+        }
+        .pop-title{font-size: 30px;color:#5b5d6d;padding: 36px 0;}
+        .winningrecord{
+            .mCustomScrollbar,.m-content-rule{height: 390px;padding-right: 15px;z-index: 2;}
+            .m-content-rule .mCSB_inside>.mCSB_container{margin-right: 25px;}
+            ul{@include clearfix;padding-left:25px;}
+            li{width:50%;float: left;margin-bottom: 20px;}
+            .record-item{@include size(300px,110px);border-radius:6px;border: 1px solid #e2e2e2;color:#666;text-align: left;margin:0 auto;
+                [class*="prizepic-"]{display: block;@include size(100px,56px);float: left;margin: 28px 17px 0 20px;}
+                //.prizepic-0{background:url(../images/pc/prizepic-0.png) no-repeat center top;}
+                //.prizepic-3{background:url(../images/pc/prizepic-3.png) no-repeat center top;}
+                //.prizepic-2{background:url(../images/pc/prizepic-2.png) no-repeat center top;}
+                //.prizepic-5{background:url(../images/pc/prizepic-5.png) no-repeat center top;}
+                span{font-family: 'PingFang_Heavy';display: block;font-size: 18px;@include ellipsis();padding-top: 27px;padding-bottom: 8px;}
+                p{font-size: 15px;color:#777;}
+            }
+        }
+    }
+    &.notWinning,&.noprivilege{
+        .PopupCon{/*background-image: url(../images/k-line.png);background-position: center 70px;background-repeat: no-repeat;*/}
+    }
+    &.getWinning{
+        .PopupCon{/*background-image: url(../images/get-winning-bg.jpg);background-position:center top;background-repeat: no-repeat;*/
+            .btn-group{margin-top:72px;}
+            .current-prize{height:231px;}
+        }
+    }
+    &.drawRecord{
+        .PopupBox{width:710px;
+            .PopupCon{height: 532px;}
+        }
+    }
+    &.popLogin{
+        .PopupBox{
+            .PopupCon{background-color: #fff;height:423px;}
+            .btn-group{margin-top:25px;
+                .btn{width: 410px;padding: 0;}
+            }
+        }
+        .login-form{width:410px;margin:0 auto;
+            .from-group{margin-bottom: 20px;position: relative;padding-left:48px;border:1px solid #c8c8c8;border-radius: 2px;
+                input{border:0;width:100%;display: block;height:48px;line-height:48px;@include placeholder(#b4b4b4);font-size: 18px;}
+                [class*="icon-"]{@include size(22px,28px);display: block;position: absolute;left:12px;top:50%;margin-top:-14px;/*background:url(../images/pc/login-icon.png) no-repeat;*/}
+                .icon-user{background-position:top center;margin-top:-10px;}
+                .icon-phone{background-position:center center;}
+                .icon-vcode{background-position:bottom center;margin-top:-18px;}
+            }
+        }
+    }
+}

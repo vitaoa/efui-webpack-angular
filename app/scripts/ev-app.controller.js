@@ -3,6 +3,32 @@
  */
 
     angular.module('evApp.controller', [])
+        .controller('elementController',function ($scope,$sce) {
+	        $scope.docsTit = "基本元素";
+	        $scope.docsMsg = "CSS样式、HTML标签";
+	        $scope.trustAsHtml = function(html) {
+		        return $sce.trustAsHtml(html);
+	        };
+            $scope.menulist = [
+	            {"headmenu":"CSS　样式","menulist":[
+		            {'title':"样式统一",'url':"normalize"},
+		            {'title':"网页布局",'url':"layout"},
+		            {'title':"文字排版",'url':"publish"},
+		            {'title':"字体图标",'url':"font"}
+                ]},
+	            {"headmenu":"HTML 标签","menulist":[
+		            {'title':"按钮 <span>Button</span>",'url':"button"},
+		            {'title':"代码 <span>Code</span>",'url':"code"},
+		            {'title':"表单 <span>Form</span>","submenu":[
+			            {'name':"- input",'url':"input"},
+			            {'name':"- textarea",'url':"textarea"},
+			            {'name':"- select",'url':"select"}
+                    ]},
+		            {'title':"表格 <span>Table</span>",'url':"table"},
+		            {'title':"图片 <span>Image</span>",'url':"image"}
+                ]}
+            ];
+        })
         .controller('animationController',['$scope',function ($scope) {
 	        $scope.docsTit = "css 动画";
 	        $scope.docsMsg = "CSS3 Transitions, Transforms和Animation使用简介与应用展示";
@@ -448,6 +474,10 @@
 	        $scope.setImagePreview = function (id) {
               $(id).setImagePreview();
 	        };
+	        $scope.tabSwitch = function (op) {
+		        op = $.extend({}, op || {});
+		        tabSwitch(op);
+	        }
         }])
         .controller('skillsController', ['$scope','$stateParams','$http' ,function($scope,$stateParams,$http) {
             $scope.docsTit = "进阶";

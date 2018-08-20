@@ -182,7 +182,7 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
                 $rootScope.loginFlag = window.sessionStorage.getItem("loginSessionState");
             }
             $('pre').each(function() {
-                var _p_class = $(this).parent().get(0).className;
+                var _p_class = this.className || $(this).parent().get(0).className;
                 !(/\bhtml\b/.test(_p_class)) && $(this).addClass("prettyprint linenums") && prettyPrint();
             });
 
@@ -206,6 +206,11 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
                 });
             }
 
+            //公用方法
+	        $rootScope.toggle = function (options) {
+		        options = $.extend({},options || {});
+		        toggle(options);
+	        }
         })
     });
 

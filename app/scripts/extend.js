@@ -3,6 +3,21 @@
  */
 
 $.extend(
+	toggle = function (op) {
+		/* *
+		 * @dom:event element
+		 * @wrap:parent
+		 * @close:close class
+		 * */
+		if(op.dom){
+			$(op.dom).click(function(){
+				$(op.wrap).show();
+			});
+		}
+		$(op.close).click(function(){
+			$(op.wrap).hide();
+		});
+	},
 	tooltip = function(a){
 		a = $.extend({}, a || {});
 		if(!a.dom){
@@ -22,6 +37,18 @@ $.extend(
 			if (e.stopPropagation) e.stopPropagation();
 			else e.cancelBubble = true;
 			$(this).closest(e1).length>0 && $(this).closest(e2).length<=0 && $(this).closest(e1).hide();
+		});
+	},
+	tabSwitch = function (options) {
+		/* *
+		* @wrap:parent
+		* @nav:events
+		* @panel:switch
+		* */
+		$(options.nav).click(function(){
+			var _index = $(this).index();
+			$(this).addClass('active').siblings().removeClass('active');
+			$(this).closest(options.wrap).find(options.panel).eq(_index).addClass('active').siblings(options.panel).removeClass('active');
 		});
 	},
 );

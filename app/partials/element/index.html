@@ -11,27 +11,18 @@
 		<div class="col-xs-12 col-sm-3 col-md-3" id="sidebar">
 			<div class="sidebar-menu sidebar-slide">
 				<section class="sidebar-slide-overlay">
-					<dl>
-						<dt><a href="javascript:;">CSS　样式</a></dt>			
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'normalize'})">样式统一</a></dd>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'layout'})">网页布局</a></dd>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'publish'})">文字排版</a></dd>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'font'})">字体图标</a></dd>
-					</dl>
-					<dl>
-						<dt><a href="javascript:;">HTML 标签</a></dt>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'button'})">按钮 <span>Button</span></a></dd>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'code'})">代码 <span>Code</span></a></dd>
-						<dd ui-sref-active="active">
-							<a href="javascript:;" data-toggleclass="active">表单 <span>Form</span><i class="f-keyboard_arrow_down"></i></a>
-							<p class="subnav">
-								<a ui-sref="element.pages({pageid: 'input'})">- input</a>
-								<a ui-sref="element.pages({pageid: 'textarea'})">- textarea</a>
-								<a ui-sref="element.pages({pageid: 'select'})">- select</a>
+					<dl ng-repeat="ritem in menulist">
+						<dt><a href="javascript:;">{{ritem.headmenu}}</a></dt>
+						<dd ui-sref-active="active" ng-repeat='item in ritem.menulist'>
+							<a ui-sref="element.pages({pageid:item.url})" ng-if="!item.submenu" ng-bind-html="trustAsHtml(item.title)"></a>
+							<a href="javascript:;" data-toggleclass="active" ng-if="item.submenu">
+								<span ng-bind-html="trustAsHtml(item.title)"></span>
+								<i class="f-keyboard_arrow_down"></i>
+							</a>
+							<p class="subnav" ng-repeat='subitem in item.submenu'>
+								<a ui-sref="element.pages({pageid:subitem.url})">{{subitem.name}}</a>
 							</p>
 						</dd>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'table'})">表格 <span>Table</span></a></dd>
-						<dd ui-sref-active="active"><a ui-sref="element.pages({pageid: 'image'})">图片 <span>Image</span></a></dd>
 					</dl>
 				</section>
 			</div>

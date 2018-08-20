@@ -1,0 +1,58 @@
+.tabs{
+
+}
+.tabs .tabs-nav {
+  line-height: 40px;
+  background-color: #eee;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.tabs .tabs-nav li{
+  float: left;
+  padding: 0 15px;
+  @include style-bullets(none,none);
+}
+.tabs .tabs-nav li.active{
+  background: #ccc;
+}
+.tabs .tabs-nav li a{
+  color: inherit;
+}
+.tabs .tab-panel{padding: 15px;position: absolute;top: 0;z-index: 99;
+  @include prefixer(transition,transform .3s,('webkit','moz','ms','o'));
+  @include prefixer(transform,translateX(-100%),('webkit','moz','ms','o'));
+}
+.tabs .tabs-bd{
+  position: relative;
+  overflow: hidden;
+}
+.tabs .tab-panel ~ .tab-panel{
+  visibility: hidden;
+  @include prefixer(transform,translateX(100%),('webkit','moz','ms','o'));
+}
+.tabs .tabs-bd .active{
+  position: relative;
+  z-index: 100;
+  visibility: visible;
+  @include prefixer(transform,translateX(0),('webkit','moz','ms','o'));
+}
+.tabs-navb .tabs-nav .active{
+  position: relative;
+  border-bottom: 2px solid #2F486F;
+  color: #2F486F;
+}
+.tabs-navb .tabs-nav .active:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border: 6px rgba(0,0,0,0) solid;
+  content: "";
+  z-index: 1;
+  border-bottom-color: #2F486F;
+}

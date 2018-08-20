@@ -1,24 +1,38 @@
 
 // Core variables and mixins
-//@import "variables/variables";
-//@import "bootstrap/mixins";
+@import "variables/variables";
+@import "mixins/library";
+$support_for_ie:false;
 
+///* ============ Normalize ============ */
+////----------------------------
+@import "normalize";
 
 ///* ============ Base ============ */
 ////----------------------------
-//@import "base.scss";
+@import "base";
+
+///* ============ Fonts ============ */
+////----------------------------
+@import "fonticons";
+
+///* ============ Layout ============ */
+////----------------------------
+@import "layout";
 
 ///* ============ Component ============ */
 ////----------------------------
-//@import "component.scss";
-//@import "nav.scss";
+@import "component";
 
+///* ============ Plugin ============ */
+////----------------------------
+@import "plugin";
 
 ///* ============ Animation ============ */
 ////----------------------------
-//@import "animate.scss";
-
+@import "anim";
 
 ///* ============ Responsive ============ */
 ////----------------------------
-//@import "queries.scss";
+@import "queries";
+

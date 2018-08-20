@@ -1,0 +1,52 @@
+
+.picswitch {position: relative;overflow: hidden;
+  .arrow-btn {display: block;text-align: center;position: absolute;top: 0;cursor: pointer;
+    &.arrow-prev {left: 0;}
+    &.arrow-next {right: 0;}
+  }
+  .picswitch-itmes {width: 100%;height: 100%;overflow: hidden;position: relative;
+    ul {position: relative;padding: 0;margin: 0;height: 100%;}
+    li {overflow: hidden;background: #fff;margin: 0;float: left;height: 100%;
+      & > img {width: 100%;height: 100%;}
+    }
+  }
+}
+.picswitch{width:410px;max-width:100%;height: 273px;margin: 0 auto;
+  .arrow-btn {width: 26px;height: 271px;line-height: 271px;font-size: 2em;z-index: 9;}
+  .picswitch-itmes{
+    li{width:410px;}
+  }
+}
+
+
+
+.infos-play {height: 32px;overflow: hidden;color: rgba(237, 79, 79, .8);
+  .up {color: #74a258;}
+  .p1 {font-size: 16px;line-height: 22px;}
+  .p2 {font-size: 10px;line-height: 10px;}
+}
+
+.winners-list{overflow: hidden;padding: 10px;border: 1px solid #ccc;
+  ul{position: relative;
+    li{list-style: disc;font-size: 12px;line-height: 2;
+      b{font-weight: 500;}
+    }
+  }
+  &.eachOneScrollLeft,&.marqueeScrollLeft{white-space: nowrap;width:100%;height:24px;overflow: hidden;
+    *{display: inline;}
+    ul{
+      li{margin-left: 40px;}
+    }
+  }
+  &.eachOneScrollUp,&.marqueeScrollUp{height:167px;
+    ul{margin-left: 20px;}
+  }
+}
+.marqueeScrollWrapper{width:100%;overflow: hidden;position: relative;
+  .marqueeScrollLeft{white-space: nowrap;width:100%;height:24px;overflow: hidden;
+    *{display: inline;}
+  }
+  .marqueeScrollUp{
+
+  }
+}

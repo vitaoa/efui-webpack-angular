@@ -1,17 +1,20 @@
-
-	<ol>
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">基本使用</a></li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
 		<li>
 			<h3 class="mb10">文本框(text):</h3>
-			<div class="example-demo">  				
-  				<div class="example-visualize">
-					<input type="text" class="i-text" placeholder="Text input">
-				</div>
-				<div class="html">
-					<pre><input type="text" class="i-text" placeholder="Text input"></pre>
-				</div>
+			<div class="example-visualize">
+				<input type="text" class="i-text" placeholder="Text input">
 			</div>
 			<div class="example-desc">
-				<div class="exm-t1"><b>初始化：</b>在要应用的元素上添加 .i-text，再设置相应的参数</div>
+				<p><b>初始化：</b>在要应用的元素上添加 .i-text，再设置相应的参数</p>
 			</div>
 			<h3 class="mb10">带icon的文本框：</h3>
 			<div class="example-visualize">
@@ -22,86 +25,75 @@
 		</li>
 		<li>
 			<h3 class="mb10 pt20">单选框(radio):</h3>
-			<div class="example-demo">  				
+			<div class="example-demo inputcssverify">
   				<div class="example-visualize">
-					<div class="radio"><input type="radio" name="optionsRadios1" checked id="radio0"><label for="radio0"></label></div>
-	  				<div class="radio"><input type="radio" name="optionsRadios1" id="radio1"><label for="radio1"></label></div>
+				    <div class="radio-group mb10">
+					    <span class="radio-item theme-dot"><input type="radio" name="optionsRadios1" checked id="radio0"><label for="radio0"> 男</label></span>
+					    <span class="radio-item theme-dot"><input type="radio" name="optionsRadios1" id="radio1"><label for="radio1"> 女</label></span>
+				    </div>
+				    <div class="radio-group">
+					    <span class="radio-item theme-right"><input type="radio" name="optionsRadios2" checked id="radio01"><label for="radio01"> 男</label></span>
+					    <span class="radio-item theme-right"><input type="radio" name="optionsRadios2" id="radio02"><label for="radio02"> 女</label></span>
+				    </div>
 				</div>
-				<div class="html">
-					<pre><div class="radio">
-	<input type="radio" name="optionsRadios" checked id="radio0">
-	<label for="radio0"></label>
-</div>
-<div class="radio">
-	<input type="radio" name="optionsRadios" id="radio1">
-	<label for="radio1"></label>
-</div></pre>
+				<div class="example-visualize">
+					<p class="mb10">您的职业（单选框）</p>
+					<div class="radio-group mb10">
+						<span class="radio-item theme-right-block"><input type="radio" name="optionsRadios11" checked id="radio11"><label for="radio11"> 视觉设计师</label></span>
+						<span class="radio-item theme-right-block"><input type="radio" name="optionsRadios11" id="radio12"><label for="radio12"> 前端工程师</label></span>
+						<span class="radio-item theme-right-block"><input type="radio" name="optionsRadios11" id="radio13"><label for="radio13"> 数据分析师</label></span>
+					</div>
 				</div>
 			</div>
 			<div class="example-desc">
-				<div class="exm-t1"><b>初始化：</b>在要应用的元素的父元素上添加  .radio。</div>
+				<p><b>初始化：</b>在要应用的元素的父元素上添加  .radio-item。</p>
 			</div>
 		</li>
 		<li>
 			<h3 class="mb10 pt20">多选框(checkbox):</h3>
-			<div class="example-demo">  				
+			<div class="example-demo inputcssverify">
   				<div class="example-visualize">
-					<div class="checkbox"><input type="checkbox" id="checkbox0"><label for="checkbox0"></label></div>
-	  				<div class="checkbox"><input type="checkbox" checked id="checkbox1"><label for="checkbox1"></label></div>
-				</div>
-				<div class="html">
-					<pre><div class="checkbox">
-	<input type="checkbox" id="checkbox0">
-	<label for="checkbox0"></label>
-</div>
-<div class="checkbox">
-	<input type="checkbox" checked id="checkbox1">
-	<label for="checkbox1"></label>
-</div></pre>
+				    <p class="mb10">您擅长的技能（复选框）</p>
+				    <div class="checkbox-group">
+					    <span class="checkbox-item theme-dot-block"><input type="checkbox" id="checkbox0"><label for="checkbox0">HTML</label></span>
+					    <span class="checkbox-item theme-dot-block"><input type="checkbox" checked id="checkbox1"><label for="checkbox1">CSS</label></span>
+					    <span class="checkbox-item theme-dot-block"><input type="checkbox" checked id="checkbox2"><label for="checkbox2">JavaScript</label></span>
+					    <span class="checkbox-item theme-dot-block"><input type="checkbox" checked id="checkbox3"><label for="checkbox3">Nodejs</label></span>
+					    <span class="checkbox-item theme-dot-block"><input type="checkbox" checked id="checkbox4"><label for="checkbox4">Angular</label></span>
+					    <span class="checkbox-item theme-dot-block"><input type="checkbox" checked id="checkbox5"><label for="checkbox5">Vue</label></span>
+				    </div>
 				</div>
 			</div>
 			<div class="example-desc">
-				<div class="exm-t1"><b>初始化：</b>在要应用的元素的父元素上添加  .checkbox。</div>
+				<p><b>初始化：</b>在要应用的元素的父元素上添加  .checkbox-item。</p>
 			</div>
 		</li>
 		<li>
 			<h3 class="mb10 pt20">延伸(switch开关):</h3>
 			<div class="example-demo"> 	
   				<div class="example-visualize"> 
-					<div class="switch">
+					<div class="switch-item">
 						<input type="checkbox" checked id="checkboxs0"><label for="checkboxs0"></label>
 					</div>
-					<div class="switch">
+					<div class="switch-item">
 						<input type="checkbox" id="checkboxs1"><label for="checkboxs1"></label>
 					</div>
 				</div>
-				<div class="html">
-					<pre><div class="switch">
-	<input type="checkbox" checked id="checkboxs0">
-	<label for="checkboxs0"></label>
-</div>
-<div class="switch">
-	<input type="checkbox" id="checkboxs1">
-	<label for="checkboxs1"></label>
-</div></pre>
-				</div>
 			</div>
 			<div class="example-desc">
-				<div class="exm-t1"><b>初始化：</b>在要应用的元素的父元素上添加  .switch。</div>
+				<p><b>初始化：</b>在要应用的元素的父元素上添加  .switch-item。</p>
 			</div>
 		</li>
 		<li>
 			<h3 class="mb10">文件选择域(file):</h3>
 			<div class="example-demo">  				
   				<div class="example-visualize">
-					<span class="file"><input type="file"></span>
-				</div>
-				<div class="html">
-					<pre><span class="file"><input type="file"></span></pre>
+					<span class="file-item"><input type="file"></span>
 				</div>
 			</div>
 			<div class="example-desc">
-				<div class="exm-t1"><b>初始化：</b>在要应用的元素上添加 .file，再设置相应的参数</div>
+				<p><b>初始化：</b>在要应用的元素上添加 .file-item，再设置相应的参数</p>
 			</div>
 		</li>
 	</ol>
+</div>

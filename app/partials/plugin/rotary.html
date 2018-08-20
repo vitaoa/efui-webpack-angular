@@ -79,7 +79,7 @@
 		<div class="rotary-draw2" data-ng-init="rotaryDrawInit('#rotary-btn')">
 			<div class="rotary-con">
 				<i class="lightning"></i>
-				<span src="../static/img/activity201803/rotary-img.png" alt="" class="rotary-img" id="rotary-img"></span>
+				<span class="rotary-img" id="rotary-img"></span>
 				<a href="javascript:;" class="rotary-btn" id="rotary-btn"><span>（<b id="lotterynumber">520</b>次）</span></a>
 			</div>
 		</div>
@@ -87,7 +87,7 @@
 </div>
 
 <!--弹出层-未中奖-->
-<div class="PopupLayer notWinning dn">
+<div class="PopupLayer notWinning" style="display: none;">
 	<div class="popup-tb">
 		<div class="popup-tb-cell">
 			<div class="PopupBox">
@@ -101,13 +101,13 @@
 						<a href="javascript:;" class="btn btn-default">确认</a>
 					</div>
 				</div>
-				<a href="javascript:;" class="PopupCloseBtn"></a>
+				<a href="javascript:;" class="PopupCloseBtn" ng-init="toggle({wrap:'.notWinning',close:'.PopupCloseBtn'})"></a>
 			</div>
 		</div>
 	</div>
 </div>
 <!--弹出层-未中奖 差一点点，再接再励-->
-<div class="PopupLayer noprivilege dn">
+<div class="PopupLayer noprivilege" style="display: none;">
 	<div class="popup-tb">
 		<div class="popup-tb-cell">
 			<div class="PopupBox">
@@ -121,13 +121,13 @@
 						<a href="javascript:;" class="btn btn-default">确认</a>
 					</div>
 				</div>
-				<a href="javascript:;" class="PopupCloseBtn"></a>
+				<a href="javascript:;" class="PopupCloseBtn" ng-init="toggle({wrap:'.noprivilege',close:'.PopupCloseBtn'})"></a>
 			</div>
 		</div>
 	</div>
 </div>
 <!--弹出层-中奖-->
-<div class="PopupLayer getWinning dn">
+<div class="PopupLayer getWinning" style="display: none;">
 	<div class="popup-tb">
 		<div class="popup-tb-cell">
 			<div class="PopupBox">
@@ -163,13 +163,13 @@
 						<a href="javascript:;" class="btn btn-default">确认</a>
 					</div>
 				</div>
-				<a href="javascript:;" class="PopupCloseBtn"></a>
+				<a href="javascript:;" class="PopupCloseBtn" ng-init="toggle({wrap:'.getWinning',close:'.PopupCloseBtn'})"></a>
 			</div>
 		</div>
 	</div>
 </div>
 <!--弹出层-抽奖记录-->
-<div class="PopupLayer drawRecord dn">
+<div class="PopupLayer drawRecord" style="display: none;">
 	<div class="popup-tb">
 		<div class="popup-tb-cell">
 			<div class="PopupBox">
@@ -217,13 +217,13 @@
 						</div>
 					</div>
 				</div>
-				<a href="javascript:;" class="PopupCloseBtn"></a>
+				<a href="javascript:;" class="PopupCloseBtn" ng-init="toggle({wrap:'.drawRecord',close:'.PopupCloseBtn'})"></a>
 			</div>
 		</div>
 	</div>
 </div>
 <!--弹出层-登录-->
-<div class="PopupLayer popLogin dn">
+<div class="PopupLayer popLogin" style="display: none;">
 	<div class="popup-tb">
 		<div class="popup-tb-cell">
 			<div class="PopupBox">
@@ -244,7 +244,7 @@
 						<a href="javascript:;" class="btn btn-default">提 交</a>
 					</div>
 				</div>
-				<a href="javascript:;" class="PopupCloseBtn"></a>
+				<a href="javascript:;" class="PopupCloseBtn" ng-init="toggle({wrap:'.popLogin',close:'.PopupCloseBtn'})"></a>
 			</div>
 		</div>
 	</div>

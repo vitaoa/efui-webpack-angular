@@ -33,5 +33,5 @@ require.config({
 });
 require(['appRoutes','appController','prettify','collapse','slider','efui',
 	'jQueryRotate','rotary','carousel','countTo','dataToggle',
-	'skill','component','plugins','canvas','photoswipe','photoswipeUi','picslider','extend','jsEvent'
+	'skill','component','plugins','canvas','photoswipe','photoswipeUi','picslider','extend','jsEvent','form'
 ]);

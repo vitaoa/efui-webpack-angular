@@ -1,0 +1,55 @@
+
+.numbox {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 120px;
+  height: 23px;
+  padding: 0 23px;
+  vertical-align: middle;
+  border: solid 1px #ddd;
+  box-sizing: border-box;
+  background-color: #fff
+}
+
+.numbox [class*=btn-numbox], .numbox [class*=numbox-btn] {
+  font-size: 16px;
+  color: #ccc;
+  position: absolute;
+  top: 0;
+  width: 23px;
+  height: 100%;
+  line-height: 21px !important;
+  line-height: 21px;
+  padding: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer
+}
+
+.numbox .btn-numbox-plus, .numbox .numbox-btn-plus {
+  right: 0
+}
+
+.numbox .btn-numbox-minus, .numbox .numbox-btn-minus {
+  left: 0
+}
+
+.numbox .input-numbox {
+  display: inline-block;
+  overflow: hidden;
+  width: 100% !important;
+  height: 100%;
+  margin: 0;
+  padding: 0 3px !important;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: top;
+  text-overflow: ellipsis;
+  word-break: normal;
+  border: none !important;
+  border-right: solid 1px #ddd !important;
+  border-left: solid 1px #ddd !important;
+  border-radius: 0 !important
+}

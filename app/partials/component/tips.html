@@ -1,0 +1,169 @@
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">状态警告</a></li>
+			<li><a href="">新消息提示</a></li>
+			<li><a href="">浮层提示</a></li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<h3 class="mb10">基本使用</h3>
+			<div class="example-visualize">
+				<div class="tips tips-success radius">成功状态提示</div>
+				<div class="tips tips-info radius">信息状态提示</div>
+				<div class="tips tips-warning radius">错误状态提示</div>
+				<div class="tips tips-danger radius">危险状态提示</div>
+			</div>
+			<div class="example-desc">
+				为警告框添加一个.tips 类
+			</div>
+		</li>
+		<li>
+			<h3 class="mb10">普通提示条</h3>
+			<div class="example-visualize">
+				<div class="tips tips-success">
+				    <i class="f-check"></i> <span>提示操作成功或流程成功提示</span>
+				</div>
+				<div class="tips tips-info">
+				    <i class="f-info"></i> <span>提供相关的信息或建议提供相关的信息或建议</span>
+				</div>
+				<div class="tips tips-warning">
+				    <i class="f-notification"></i> <span>提供相关的信息或建议提供相关的信息或建议</span>
+				</div>
+				<div class="tips tips-danger">
+				    <i class="f-cross"></i> <span>提供相关的信息或建议提供相关的信息或建议</span>
+				</div>
+			</div>
+			<div class="example-desc">
+				为警告框添加一个.tips 类和一个提示图标
+			</div>
+		</li>
+		<li>
+			<h3 class="mb10">可关闭的警告框</h3>
+			<div class="example-visualize">
+				<div class="tips tips-warning radius tips-dismissible">
+				    <i class="f-cross right-ab"></i>
+				    <strong>警告!</strong> 错误状态提示
+				</div>
+			</div>
+			<div class="example-desc">
+				为警告框添加一个.tips 和一个可选的 .tips-dismissible 类和一个关闭按钮
+			</div>
+		</li>
+		<li>
+			<h3 class="mb10">工具提示条</h3>
+			<div class="example-visualize">
+				<div class="tips tips-success">
+					<div class="tooltips txt-ellipsis">
+					    <i class="f-trash right-ab"></i><i class="f-check"></i> <span>提示操作成功或流程成功提示提示操作成功或流程成功提示提示操作成功或流程成功提示提示操作成功或流程成功提示</span>
+					</div>
+				</div>
+				<div class="tips tips-info">
+					<div class="tooltips txt-ellipsis">
+					    <i class="f-inbox right-ab"></i><i class="f-info"></i> <span>提示操作成功或流程成功提示提示操作成功或流程成功提示提示操作成功或流程成功提示提示操作成功或流程成功提示</span>
+					</div>
+				</div>
+			</div>
+			<div class="example-desc">
+				父元素加上.tips，自身加上 .tooltips .txt-ellipsis类
+			</div>
+		</li>
+	</ol>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<h3 class="mb10">基本样式</h3>
+			<div class="example-visualize">
+				<div class="tips radius tips-success">
+					<div class="newstips">
+						<span class="dot dot-danger right-ab"></span>
+						<div class="tips-txt txt-ellipsis">新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息</div>
+					</div>
+				</div>
+				<div class="tips tips-info">
+					<div class="newstips">
+						<div class="tips-txt txt-ellipsis">
+							<span>新消息</span>
+							<span class="badge radius">123</span>
+						</div>
+					</div>
+				</div>
+				<div class="tips tips-info">
+					<div class="newstips">
+						<div class="tips-txt txt-ellipsis">
+							<span>新消息</span>
+							<span class="badge radius right-ab badge-info">123</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="example-desc">
+				加上.tips .tooltips .txt-ellipsis类
+			</div>
+		</li>
+		<li>
+			<h3 class="mb10">图片组合</h3>
+			<div class="example-visualize">
+				<div class="tips radius tips-success">
+					<div class="newstips">
+						<img alt="" class="avatar radius" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI2MHB4IiBoZWlnaHQ9IjQ4cHgiIHZpZXdCb3g9IjAgMCA2MCA0OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CgkgPHJlY3QgeD0iMCIgeT0iMCIgZmlsbD0iI0QyREFFMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQ4Ii8+CjxwYXRoIGZpbGw9IiM2NjYiIGQ9Ik0zMS45MDcsMjguOTU5di0xLjM2NmMxLjgyNS0xLjAyOCwzLjMxMi0zLjU5MSwzLjMxMi02LjE1NGMwLTQuMTE2LDAtNy40NTMtNC45NjktNy40NTNzLTQuOTY5LDMuMzM3LTQuOTY5LDcuNDUzCgljMCwyLjU2NCwxLjQ4Nyw1LjEyNiwzLjMxMiw2LjE1NHYxLjM2NmMtNS42MTgsMC40NTktOS45MzcsMy4yMi05LjkzNyw2LjU1N2gyMy4xODdDNDEuODQ0LDMyLjE3OCwzNy41MjUsMjkuNDE3LDMxLjkwNywyOC45NTl6Ii8+Cjwvc3ZnPg==">
+						<span class="dot dot-danger right-ab"></span>
+						<div class="tips-txt txt-ellipsis">新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息新消息</div>
+					</div>
+				</div>
+				<div class="tips tips-info">
+					<div class="newstips">
+						<img alt="" class="avatar radius" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI2MHB4IiBoZWlnaHQ9IjQ4cHgiIHZpZXdCb3g9IjAgMCA2MCA0OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CgkgPHJlY3QgeD0iMCIgeT0iMCIgZmlsbD0iI0QyREFFMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQ4Ii8+CjxwYXRoIGZpbGw9IiM2NjYiIGQ9Ik0zMS45MDcsMjguOTU5di0xLjM2NmMxLjgyNS0xLjAyOCwzLjMxMi0zLjU5MSwzLjMxMi02LjE1NGMwLTQuMTE2LDAtNy40NTMtNC45NjktNy40NTNzLTQuOTY5LDMuMzM3LTQuOTY5LDcuNDUzCgljMCwyLjU2NCwxLjQ4Nyw1LjEyNiwzLjMxMiw2LjE1NHYxLjM2NmMtNS42MTgsMC40NTktOS45MzcsMy4yMi05LjkzNyw2LjU1N2gyMy4xODdDNDEuODQ0LDMyLjE3OCwzNy41MjUsMjkuNDE3LDMxLjkwNywyOC45NTl6Ii8+Cjwvc3ZnPg==">
+						<div class="tips-txt txt-ellipsis">
+							<span>新消息</span>
+							<span class="badge radius">123</span>
+						</div>
+					</div>
+				</div>
+				<div class="tips tips-info">
+					<div class="newstips">
+						<img alt="" class="avatar radius" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI2MHB4IiBoZWlnaHQ9IjQ4cHgiIHZpZXdCb3g9IjAgMCA2MCA0OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CgkgPHJlY3QgeD0iMCIgeT0iMCIgZmlsbD0iI0QyREFFMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQ4Ii8+CjxwYXRoIGZpbGw9IiM2NjYiIGQ9Ik0zMS45MDcsMjguOTU5di0xLjM2NmMxLjgyNS0xLjAyOCwzLjMxMi0zLjU5MSwzLjMxMi02LjE1NGMwLTQuMTE2LDAtNy40NTMtNC45NjktNy40NTNzLTQuOTY5LDMuMzM3LTQuOTY5LDcuNDUzCgljMCwyLjU2NCwxLjQ4Nyw1LjEyNiwzLjMxMiw2LjE1NHYxLjM2NmMtNS42MTgsMC40NTktOS45MzcsMy4yMi05LjkzNyw2LjU1N2gyMy4xODdDNDEuODQ0LDMyLjE3OCwzNy41MjUsMjkuNDE3LDMxLjkwNywyOC45NTl6Ii8+Cjwvc3ZnPg==">
+						<div class="tips-txt txt-ellipsis">
+							<span>新消息</span>
+							<span class="badge radius right-ab badge-info">123</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ol>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<h3>基本使用</h3>
+			<div class="example-visualize">
+				<div class="tips tips-success">
+					<div class="poptips">
+						<div class="tips-txt"><i class="f-check"></i> 温馨提示内容</div>
+					</div>
+				</div>
+				<div class="tips tips-info">
+					<div class="poptips">
+						<div class="tips-txt"><i class="f-info"></i> 温馨提示内容</div>
+					</div>
+				</div>
+				<div class="tips tips-danger">
+					<div class="poptips">
+						<div class="tips-txt"><i class="f-fire"></i> 温馨提示内容</div>
+					</div>
+				</div>
+				<div class="tips tips-warning">
+					<div class="poptips">
+						<div class="tips-txt"><i class="f-warning"></i> 温馨提示内容</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ol>
+</div>

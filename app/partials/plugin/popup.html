@@ -1,34 +1,46 @@
-<ol>
-	<li>
-		<div class="pt10 pb10">自带遮罩背景</div>
-		<div class="example-visualize">
-			<!--弹出层-登录-->
-			<div class="PopupLayer popLogin d n">
-				<div class="popup-tb">
-					<div class="popup-tb-cell">
-						<div class="PopupBox">
-							<div class="PopupCon al-c">
-								<div class="pop-title">登入个人账号</div>
-								<div class="login-form">
-									<div class="from-group">
-										<span class="icon-user"></span><input type="text" placeholder="请输入账户号码">
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">基本使用</a></li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<div class="pt10 pb10">自带遮罩背景</div>
+			<div class="example-visualize">
+				<input type="button" value="弹层" class="btn btn-primary" id="popLoginBtn" ng-click="toggle({dom:'#popLoginBtn',wrap:'.popLogin',close:'.PopupCloseBtn'})">
+				<!--弹出层-登录-->
+				<div class="PopupLayer popLogin" style="display: none;">
+					<div class="popup-tb">
+						<div class="popup-tb-cell">
+							<div class="PopupBox">
+								<div class="PopupCon al-c">
+									<div class="pop-title">登入个人账号</div>
+									<div class="login-form">
+										<div class="from-group">
+											<span class="icon-user"></span><input type="text" placeholder="请输入账户号码">
+										</div>
+										<div class="from-group">
+											<span class="icon-phone"></span><input type="text" placeholder="请输入手机号码">
+										</div>
+										<div class="from-group">
+											<span class="icon-vcode"></span><input type="text" placeholder="请输入图片验证码">
+										</div>
 									</div>
-									<div class="from-group">
-										<span class="icon-phone"></span><input type="text" placeholder="请输入手机号码">
-									</div>
-									<div class="from-group">
-										<span class="icon-vcode"></span><input type="text" placeholder="请输入图片验证码">
+									<div class="btn-group al-c">
+										<a href="javascript:;" class="btn btn-default">提 交</a>
 									</div>
 								</div>
-								<div class="btn-group al-c">
-									<a href="javascript:;" class="btn btn-default">提 交</a>
-								</div>
+								<a href="javascript:;" class="PopupCloseBtn" ng-click=""></a>
 							</div>
-							<a href="javascript:;" class="PopupCloseBtn" onclick="$(this).closest('.PopupLayer').hide();"></a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</li>
-</ol>
+		</li>
+	</ol>
+
+</div>

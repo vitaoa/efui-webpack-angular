@@ -1,0 +1,15 @@
+
+.mlist {position: relative;padding-left: 90px;border-top: 1px solid #eee;border-bottom: 2px solid #eee;margin-bottom: 50px;
+  ol{@include style-bullets(decimal,none);}
+  .mtit {background: #F5F5F5;padding: 10px 0 10px 20px;font-size: 16px;position: absolute;left: 0;top: 0;bottom: 0;
+    span {background: #2F486F;display: inline-block;padding: 8px 10px 8px 20px;color: #fff;}
+  }
+  .mcon {padding: 10px 10px 10px 20px;color: #888;line-height: 30px;min-height: 50px;}
+  a {color: #2F486F;}
+}
+
+.mswitch{
+  & + .mswitch {display: none;}
+  blockquote {padding: 10px 15px;margin: 0 0 20px;background-color: #f5f5f5;border-left: 4px solid #91abd4;word-break: break-word;font-size: 15px;font-weight: 400;line-height: 30px;}
+  & > ol{}
+}

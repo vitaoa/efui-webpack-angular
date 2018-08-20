@@ -53,10 +53,7 @@
                 .state('element', {
                     url: "/element",
                     templateUrl: "app/partials/element/index.html",
-                    controller: function($scope, $location) {
-                        $scope.docsTit = "基本元素";
-                        $scope.docsMsg = "CSS样式、HTML标签";
-                    }
+                    controller: 'elementController'
                 })
                 .state('element.pages',{
                     url:'/:pageid',
