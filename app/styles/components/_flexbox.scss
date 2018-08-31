@@ -1,10 +1,10 @@
+
 .m-list {
 	.flexbox {background: #1d365d;margin-bottom: 10px;
 		* {padding: 5px;margin: 5px}
 	}
 }
-
-.flexbox {display: flex;
+.flexbox {@include display-flex;
 	&.column {flex-direction: column;}
 	&.row {flex-direction: row;}
 	&.row-reverse {flex-direction: row-reverse;}

@@ -78,6 +78,11 @@
 				<li>node</li>
 			</ol>
 		</li>
+		<li><b>js的this</b>
+			<ul>
+				<li>严格模式下('use strict';),没有宿主调用的函数中的this是undefined</li>
+			</ul>
+		</li>
 	</ol>
 </div>
 <div class="mswitch">
@@ -1680,7 +1685,7 @@ $('.elem').on({
 			</div>
 		</div>
 	</div>
-	<div expander="" class="mb10">
+	<div expander class="mb10">
 		<b ng-click="toggleanswer()">click和tap
 			<span ng-show="!answershow"><i class="f-arrow_down"></i></span>
 			<span ng-show="answershow"><i class="f-arrow_up"></i></span>
@@ -1699,7 +1704,7 @@ $('.elem').on({
 			</ol>
 		</div>
 	</div>
-	<div expander="" class="mb10">
+	<div expander class="mb10">
 		<b ng-click="toggleanswer()">swipe和touch
 			<span ng-show="!answershow"><i class="f-arrow_down"></i></span>
 			<span ng-show="answershow"><i class="f-arrow_up"></i></span>
@@ -1717,6 +1722,41 @@ $('.elem').on({
 				</li>
 			</ol>
 		</div>
+	</div>
+	<div expander class="mb10">
+		<b ng-click="toggleanswer()">touch事件中的touches、targetTouches和changedTouches详解
+			<span ng-show="!answershow"><i class="f-arrow_down"></i></span>
+			<span ng-show="answershow"><i class="f-arrow_up"></i></span>
+		</b>
+		<ol class="decimal" ng-show="answershow">
+			<li>touches：当前屏幕上所有触摸点的列表
+			</li>
+			<li>targetTouches：当前对象上所有触摸点的列表
+			</li>
+			<li>changedTouches：涉及当前（引发）事件的触摸点的列表
+			</li>
+			<li><b>区别：</b>
+				<ul>
+					<li>手指离开屏幕后，touches和targetTouches中将不会再有值，changedTouches还会有一个值，此值为最后一个离开屏幕的手指的接触点</li>
+				</ul>
+			</li>
+			<li><b>坐标获取：</b>
+				<ul>
+					<li>touchstart和touchmove使用：e.targetTouches[0].pageX或（jquery）e.originalEvent.targetTouches[0].pageX</li>
+					<li>touchend使用：e.targetTouches[0].pageX或（jquery）e.originalEvent.changedTouches[0].pageX</li>
+				</ul>
+				<div class="html">
+					<pre>var touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+
+if(touch){
+	//js
+	document.addEventListener('touchstart',touchStart,false);
+	//jquery
+	$('body').addEventListener('touchstart',touchStart,false);
+}</pre>
+				</div>
+			</li>
+		</ol>
 	</div>
 </div>
 <div class="mswitch">

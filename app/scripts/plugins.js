@@ -1,5 +1,5 @@
 
-+(function($) {
+(function($) {
     'use strict';
 
     $.fn.extend({
@@ -82,32 +82,52 @@
 			    intervalF = setInterval(typing,options.time);
 		    }
 	    },
-	    sliderLeftRight000:function (options) {
-		    var _cur = 0;
-		    var ele = $('.'+options.className);
-		    var slideprev = ele.find('.arrow-prev');
-		    var slidenext = ele.find('.arrow-next');
-		    var sliderBtns = ele.find('.op-btn span');
-		    var sliderLoopBtn = ele.find('.switch-btn');
-		    var slider = ele.find('.picswitch-itmes');
-		    var sliderlen = ele.find('.picswitch-itmes li').length;
+	    copyLinks:function (options) {
+			var e = document.getElementById(options.id);
+			e.select();
+			try{
+				if(document.execCommand('copy', false, null)){
+					tooltip({msg:"Copy the link successfully"});
+				} else{
+					tooltip({msg:"This function does not support the browser, please manually copy the text box"});
+				}
+			} catch(err){
+				tooltip({msg:"copy failed！"});
+			};
+		    bindClickHide('.PopupLayer','.PopupCon');
+		},
 
-		    var _W = ele.width();
-		    ele.find('.picswitch-itmes li').width(_W);
-		    slider.width(sliderlen*_W);
+	    /* @param:
+	     * speed/loop/etouch/wrapper/pagination/cur/prev/next
+	     * */
+	    sliderLeftRight	: function (options) {
+		    options = $.extend({},options||{});
 
-		    sliderBtns.click(function () {
-			    _cur = $(this).index();
-			    sliderPlay(_cur);
-		    });
-		    slideprev.click(function () {
+		    let ele = $(this);
+		    let slider = ele.find(options.wrapper);
+		    let sliderlen = ele.find(options.item).length;
+		    let sliderBtns = ele.find(options.pagination +' span');
+		    let slideprev = ele.find(options.prev);
+		    let slidenext = ele.find(options.next);
+
+		    let _W = ele.width();
+		    let _cur = options.cur || 0;
+
+		    init();
+		    function init() {
+			    slider.find('li').width(_W);
+			    slider.width(sliderlen*_W);
+			    sliderBtns.eq(_cur).addClass('active');
+		    }
+		    slideprev.click(()=>{
 			    sliderPrev();
 		    });
-		    slidenext.click(function () {
+		    slidenext.click(()=> {
 			    sliderNext();
 		    });
-		    sliderLoopBtn.click(function () {
-			    sliderNext();
+		    sliderBtns.click(()=>{
+			    _cur = $(this).index();
+			    sliderPlay(_cur);
 		    });
 
 		    function sliderPlay(i) {
@@ -129,23 +149,22 @@
 			    sliderPlay(--_cur);
 		    }
 
-		    var startX, startY;
+
+		    let startX;
 		    function touchStart(event) {
 			    try {
-				    var touch = event.touches[0];
-				    var x = Number(touch.pageX);
-				    var y = Number(touch.pageY);
+				    let touch = event.touches[0];
+				    let x = Number(touch.pageX);
 				    startX = x;
-				    startY = y;
 			    } catch (e) {}
 		    }
 		    function touchEnd(event) {
 			    try {
-				    for (var i = 0; i < event.changedTouches.length; i++) {
-					    var ot = event.changedTouches[i];
+				    for (let i = 0; i < event.changedTouches.length; i++) {
+					    let ot = event.changedTouches[i];
 					    if (!ot) return;
 					    _cur = parseInt(Math.abs(slider.position().left/_W));
-					    var dx = startX - ot.clientX;
+					    let dx = startX - ot.clientX;
 					    if(dx>0){
 						    if(_cur<sliderlen-1){
 							    sliderPlay(++_cur);
@@ -160,16 +179,18 @@
 			    } catch (e) {}
 		    }
 
-
-		    var touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
-		    if(touch){
-			    ele.get(0).addEventListener('touchstart',touchStart,false);
-			    ele.get(0).addEventListener('touchend',touchEnd,false);
+		    let touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+		    if(touch && options.etouch){
+			    // ele.touchX(options);
+			    console.log(ele.get(0))
+			    ele.get(0).addEventListener('touchstart',$.myTouch.touchX(this),false);
+			    ele.get(0).addEventListener('touchend',$.myTouch.touchX(this),false);
 		    }
 
+		    let t=null;
+		    let timer;
 		    if(options.loop){
-			    var t=null;
-			    var timer=function(){
+			    timer=function(){
 				    window.clearInterval(t);
 				    t=window.setInterval(function(){
 					    if(_cur>=sliderlen-1){_cur=-1;}
@@ -177,27 +198,127 @@
 				    },options.speed);
 			    };
 			    timer();
-			    slider.hover(function(){
-				    window.clearInterval(t);
-			    },function(){
-				    timer();
-			    });
+
+			    if(!touch){
+				    slider.onmouseover=function() {window.clearInterval(t);};
+				    slider.onmouseout=function() {timer();};
+			    }
+		    }
+
+	    },
+	    goToPage : function (i) {
+			$('.part'+i).css('display','table-cell').siblings('[class*="part"]').css('display','none');
+			if(i===5){
+				var num = 0;
+				clearInterval(timer);
+				$('.bubble-block').css('top','0px');
+				$('.popupBubble').hide();
+				$('.popupBubble .bubble-item').removeClass('fadeInUp');
+				setTimeout(function () {
+					$('.popupBubble').show();
+					timer = setInterval(function(){
+						if(num<len){
+							scrollPlay('.bubble-block','.bubble-item',num++);
+						}
+					},1000);
+				},3000);
+			}
+		},
+	    scrollPagePlay : function(dom,subdom,i) {
+			var $self = $(dom);
+			var lineHeight = $self.find(subdom).eq(i-1).outerHeight(true);
+
+			$self.find(subdom).eq(i).addClass('fadeInUp');
+			if(i<5){return false;}
+			else{
+				$self.stop(true).animate({
+					top:-(i-4)*lineHeight
+				},600);
+				if(i>=len-1){
+					setTimeout(function () {
+						$('.popupBubble').hide();
+					},4000);
+				}
+			}
+		},
+	    touchY : function (options) {
+		    var startY;
+		    var sliderlen = $('.pagePart').length;
+		    function touchStart(event) {
+			    for (var i = 0; i < event.targetTouches.length; i++) {
+				    var touch = event.targetTouches[i];
+				    startY = touch.pageY;
+			    }
+		    }
+		    function touchEnd(event) {
+			    for (var i = 0; i < event.changedTouches.length; i++) {
+				    var ot = event.changedTouches[i];
+				    if (!ot) return;
+				    var dy = startY - ot.clientY;
+
+				    var mm = $('.pagePart:visible').attr('class').match(/part\d{1,}/g);
+				    var _cur = parseInt(mm[0].replace('part',''));
+				    if(dy>0){
+					    if(_cur<sliderlen){
+						    gotoPage(++_cur);
+					    }
+				    }
+				    else if(dy<0){
+					    if(_cur>1){
+						    gotoPage(--_cur);
+					    }
+				    }
+			    }
+		    }
+		    var touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+		    if(touch){
+			    document.addEventListener('touchstart',touchStart,false);
+			    document.addEventListener('touchend',touchEnd,false);
 		    }
 	    },
-	    copyLinks:function (options) {
-			var e = document.getElementById(options.id);
-			e.select();
-			try{
-				if(document.execCommand('copy', false, null)){
-					tooltip({msg:"Copy the link successfully"});
-				} else{
-					tooltip({msg:"This function does not support the browser, please manually copy the text box"});
-				}
-			} catch(err){
-				tooltip({msg:"copy failed！"});
-			};
-		    bindClickHide('.PopupLayer','.PopupCon');
-		},
+	    marqueeScrollLeft : function (a) {
+		    a = $.extend({}, a || {});
+		    var speed = a.speed;
+
+		    var tab = document.getElementById(a.cArr[0]);
+		    var tab1 = document.getElementById(a.cArr[1]);
+		    var tab2 = document.getElementById(a.cArr[2]);
+
+		    tab2.innerHTML=tab1.innerHTML;
+
+		    function Marquee(){
+			    if(tab2.offsetWidth-tab.scrollLeft<=0)
+				    tab.scrollLeft-=tab1.offsetWidth;
+			    else{
+				    tab.scrollLeft++;
+			    }
+		    }
+		    var MyMar=setInterval(Marquee,speed);
+		    var touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+		    if(!touch){
+			    tab.onmouseover=function() {clearInterval(MyMar)};
+			    tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+		    }
+	    },
+	    eachOneScrollUp : function (ele,time) {
+		    var timeInterval = time;
+		    var _obj = $(ele),scrollTimer;
+		    var $self = _obj.find("ul:first");
+
+		    var lineHeight = $self.find("li:first").outerHeight(true);
+		    _obj.hover(function(){
+			    clearInterval(scrollTimer);
+		    },function(){
+			    scrollTimer = setInterval(function(){
+				    scrollList();
+			    },timeInterval);
+		    }).trigger("mouseout");
+		    function scrollList(){
+			    $self.stop(true).animate({ "top" : -lineHeight +"px" },500 , function(){
+				    $self.css({"top":"0px"}).find("li:first").appendTo($self);
+			    })
+		    }
+	    },
     });
 })(jQuery);
 

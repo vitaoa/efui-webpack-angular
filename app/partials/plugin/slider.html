@@ -28,17 +28,18 @@
 	<div class="mtit"><span>目录</span></div>
 	<div class="mcon">
 		<ol>
-			<li><a href="">左右切换</a></li>
+			<li><a href="">图片内容切换</a></li>
+			<li><a href="">页面切换</a></li>
 			<li><a href="">旋转切换</a></li>
 		</ol>
 	</div>
 </div>
 <div class="mswitch">
-	<div class="pt10 pb10">水平左右切换</div>
+	<div class="pt10 pb10">图片左右切换</div>
 	<div class="example-demo">
 		<div class="example-visualize">
 			<div class="panel-plugin">
-				<div class="picswitch" ng-init="sliderLeftRight({className:'picswitch',speed:3000,loop:true})">
+				<div class="slider sliderLeftRight" ng-init="sliderLeftRight('.sliderLeftRight',{wrapper:'.picswitch-itmes',item:'li',etouch:true,speed:3000,loop:true,prev:'.arrow-prev',next:'.arrow-next'})">
 					<span class="arrow-btn arrow-prev f-arrow_left"></span>
 					<span class="arrow-btn arrow-next f-arrow_right"></span>
 					<div class="picswitch-itmes">
@@ -67,6 +68,14 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+<div class="mswitch">
+	<div class="pt10 pb10">上下翻页</div>
+	<div class="example-demo">
+		<div class="panel-plugin">
+		
 		</div>
 	</div>
 </div>

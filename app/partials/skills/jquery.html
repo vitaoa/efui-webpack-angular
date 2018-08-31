@@ -34,10 +34,19 @@
 });
 $.add(3,4); //return 7 </pre>
 				</div>
-				jQuery.extend主要是用来拓展个全局函数
-			</div>
-			<div class="example-visualize">
-
+				<ul>
+					<li>调用方法：<b class="c-red">$</b>.函数名(参数);</li>
+					<li>jQuery.extend主要是用来拓展个全局函数，用来封装新的全局函数插件。</li>
+					<li>采用命名空间的函数仍然是全局函数，例如：
+						<div class="html">
+							<pre>$.myPlugin = {
+    add:function(a,b){return a+b;}
+}
+//调用方法：
+$.myPlugin.add(3,4);</pre>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</li>
 		<li>
@@ -55,6 +64,9 @@ $.add(3,4); //return 7 </pre>
 				<div class="html">
 					<pre>$("#div").alertWhileClick()</pre>
 				</div>
+				<ul>
+					<li>调用方法：<b class="c-red">$("#id")</b>.函数名(参数);</li>
+				</ul>
 			</div>
 			<div class="example-visualize">
 				<button ng-click="testClick(this)">点击测试</button>

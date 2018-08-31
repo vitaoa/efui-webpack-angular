@@ -37,8 +37,10 @@ var jsEvent = {
 	},
 	//禁用默认行为
 	preventDefault:function(event){
-		if(event.preventDefault){
-			event.preventDefault();//非IE
+		if (event.cancelable) {
+			if (!event.defaultPrevented) {//非IE
+				event.preventDefault();
+			}
 		}else{
 			event.returnValue = false;//针对IE
 		}

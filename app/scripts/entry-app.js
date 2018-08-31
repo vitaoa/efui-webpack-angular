@@ -7,13 +7,13 @@ require("../styles/efui.scss");
 
 
 // js 文件引入
+require('./lib');
 require("./ev-app.routes");
 require("./ev-app.controller");
 require("./jquery.prettify");
 require("./jquery.collapse");
 require("./jquery.slider");
 require('./efui');
-require('./lib/jQueryRotate');
 require('./rotary');
 require('./carousel');
 require('./countTo');
@@ -24,7 +24,6 @@ require('./plugins');
 require('./canvas');
 require('./photoswipe');
 require('./photoswipe-ui-default');
-require('./plugins/picslider');
 require('./browser');
 require('./extend');
 require('./jsEvent');

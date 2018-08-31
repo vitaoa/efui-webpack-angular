@@ -393,9 +393,9 @@
             $scope.TimeCountDown = function (time,id,speed,arr) {
 	            $(id).TimeCountDown(time,speed,arr);
             };
-            $scope.sliderLeftRight =function (a) {
+            $scope.sliderLeftRight =function (obj,a) {
 	            a = $.extend({}, a || {});
-	            $(this).sliderLeftRight(a);
+	            $(obj).sliderLeftRight(a);
             };
             $scope.copyLinks = function (a){
 	            a = $.extend({}, a || {});
