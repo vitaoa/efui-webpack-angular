@@ -393,14 +393,40 @@
             $scope.TimeCountDown = function (time,id,speed,arr) {
 	            $(id).TimeCountDown(time,speed,arr);
             };
+            $scope.copyLinks = function (a){
+                a = $.extend({}, a || {});
+                $(this).copyLinks(a);
+            };
             $scope.sliderLeftRight =function (obj,a) {
 	            a = $.extend({}, a || {});
 	            $(obj).sliderLeftRight(a);
             };
-            $scope.copyLinks = function (a){
-	            a = $.extend({}, a || {});
-	            $(this).copyLinks(a);
-            }
+            $scope.sliderFullPageRL =function (obj,a) {
+                a = $.extend({}, a || {});
+
+                $(obj).Touch({
+                    element:a.wrapper,
+                    wipeLeft:function () {
+                        $(this).goToPage(a.wrapper,a.item,1);
+                    },
+                    wipeRight:function () {
+                        $(this).goToPage(a.wrapper,a.item,0);
+                    }
+                });
+            };
+            $scope.sliderFullPageUD =function (obj,a) {
+                a = $.extend({}, a || {});
+
+                $(obj).Touch({
+                    element:a.wrapper,
+                    wipeUp:function () {
+                        $(this).goToPage(a.wrapper,a.item,1);
+                    },
+                    wipeDown:function () {
+                        $(this).goToPage(a.wrapper,a.item,0);
+                    }
+                });
+            };
         }])
         .controller('componentController', ['$scope' ,function($scope) {
             $scope.docsTit = "组件";

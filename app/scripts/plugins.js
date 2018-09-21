@@ -3,6 +3,16 @@
     'use strict';
 
     $.fn.extend({
+        timeToUTC:function () {
+			return this.each(function () {
+				var _dt = $(this).data('time');
+				var _time = new Date(_dt);
+				if(!!_dt){
+					var _t0 =[[_time.getUTCMonth() + 1,_time.getUTCDate()].join('-'),[_time.getUTCHours(),_time.getUTCMinutes()].join(":")].join(' ').replace(/(?=\b\d\b)/g,"0");
+					$(this).text(_t0 + " (GMT+0)")
+				}
+			});
+		},
 	    DownTime:function (d) {
             var EndTime = new Date(d);
             var NowTime = new Date();
@@ -101,130 +111,189 @@
 	     * speed/loop/etouch/wrapper/pagination/cur/prev/next
 	     * */
 	    sliderLeftRight	: function (options) {
-		    options = $.extend({},options||{});
+            options = $.extend({}, options || {});
 
-		    let ele = $(this);
-		    let slider = ele.find(options.wrapper);
-		    let sliderlen = ele.find(options.item).length;
-		    let sliderBtns = ele.find(options.pagination +' span');
-		    let slideprev = ele.find(options.prev);
-		    let slidenext = ele.find(options.next);
+            let ele = $(this);
+            let slider = ele.find(options.wrapper);
+            let sliderlen = ele.find(options.item).length;
+            let sliderBtns = ele.find(options.pagination + ' span');
+            let slideprev = ele.find(options.prev);
+            let slidenext = ele.find(options.next);
 
-		    let _W = ele.width();
-		    let _cur = options.cur || 0;
+            let _W = slider.parent().width();
+            let _cur = options.cur || 0;
 
-		    init();
-		    function init() {
-			    slider.find('li').width(_W);
-			    slider.width(sliderlen*_W);
-			    sliderBtns.eq(_cur).addClass('active');
-		    }
-		    slideprev.click(()=>{
-			    sliderPrev();
-		    });
-		    slidenext.click(()=> {
-			    sliderNext();
-		    });
-		    sliderBtns.click(()=>{
-			    _cur = $(this).index();
-			    sliderPlay(_cur);
-		    });
+            init();
+            function init() {
+                slider.find('li').width(_W);
+                slider.width(sliderlen * _W);
+                if(options.paginationClass){
+                    sliderBtns.eq(_cur).addClass(options.paginationClass);
+                }else{
+                    sliderBtns.eq(_cur).addClass('active');
+                }
+            }
 
-		    function sliderPlay(i) {
-			    sliderBtns.eq(i).addClass('active').siblings().removeClass('active');
-			    slider.stop(true).animate({
-				    left:-i*_W
-			    },300);
-		    }
-		    function sliderNext() {
-			    if(_cur>=sliderlen-1){
-				    _cur = -1;
-			    }
-			    sliderPlay(++_cur);
-		    }
-		    function sliderPrev() {
-			    if(_cur<=0){
-				    _cur = sliderlen;
-			    }
-			    sliderPlay(--_cur);
-		    }
+            if(options.arrowPrevClass){
+                slideprev.mouseover(function () {
+                    $(this).children().addClass(options.arrowPrevClass)
+                });
+                slideprev.mouseout(function () {
+                    $(this).children().removeClass(options.arrowPrevClass)
+                });
+            }
+            if(options.arrowNextClass){
+                slidenext.hover(function () {
+                    $(this).children().addClass(options.arrowNextClass)
+                },function () {
+                    $(this).children().removeClass(options.arrowNextClass)
+                })
+            }
+
+            slideprev.click(function () {
+                sliderPrev();
+            });
+            slidenext.click(function () {
+                sliderNext();
+            })
+            sliderBtns.click(function () {
+                _cur = $(this).index();
+                sliderPlay(_cur);
+            });
+
+            function sliderPlay(i) {
+                if(options.paginationClass){
+                    sliderBtns.eq(i).addClass(options.paginationClass).siblings().removeClass(options.paginationClass);
+                }else{
+                    sliderBtns.eq(i).addClass('active').siblings().removeClass('active');
+                }
+                slider.stop(true).animate({
+                    left: -i * _W
+                }, 300);
+            }
+
+            function sliderNext() {
+                if (_cur >= sliderlen - 1) {
+                    _cur = -1;
+                }
+                sliderPlay(++_cur);
+            }
+
+            function sliderPrev() {
+                if (_cur <= 0) {
+                    _cur = sliderlen;
+                }
+                sliderPlay(--_cur);
+            }
 
 
-		    let startX;
-		    function touchStart(event) {
-			    try {
-				    let touch = event.touches[0];
-				    let x = Number(touch.pageX);
-				    startX = x;
-			    } catch (e) {}
-		    }
-		    function touchEnd(event) {
-			    try {
-				    for (let i = 0; i < event.changedTouches.length; i++) {
-					    let ot = event.changedTouches[i];
-					    if (!ot) return;
-					    _cur = parseInt(Math.abs(slider.position().left/_W));
-					    let dx = startX - ot.clientX;
-					    if(dx>0){
-						    if(_cur<sliderlen-1){
-							    sliderPlay(++_cur);
-						    }
-					    }
-					    else{
-						    if(_cur>0){
-							    sliderPlay(--_cur);
-						    }
-					    }
-				    }
-			    } catch (e) {}
-		    }
+            let startX;
 
-		    let touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
-		    if(touch && options.etouch){
-			    // ele.touchX(options);
-			    console.log(ele.get(0))
-			    ele.get(0).addEventListener('touchstart',$.myTouch.touchX(this),false);
-			    ele.get(0).addEventListener('touchend',$.myTouch.touchX(this),false);
-		    }
+            function touchStart(event) {
+                try {
+                    let touch = event.originalEvent.touches[0];
+                    let x = Number(touch.pageX);
+                    startX = x;
+                } catch (e) {
+                    console.log(e.message);
+                }
+            }
 
-		    let t=null;
-		    let timer;
-		    if(options.loop){
-			    timer=function(){
-				    window.clearInterval(t);
-				    t=window.setInterval(function(){
-					    if(_cur>=sliderlen-1){_cur=-1;}
-					    sliderPlay(++_cur);
-				    },options.speed);
-			    };
-			    timer();
+            function touchEnd(event) {
+                try {
+                    for (let i = 0; i < event.originalEvent.changedTouches.length; i++) {
+                        let ot = event.originalEvent.changedTouches[i];
+                        if (!ot) return;
+                        _cur = parseInt(Math.abs(slider.position().left / _W));
+                        let dx = startX - ot.clientX;
+                        if (dx > 0) {
+                            if (_cur < sliderlen - 1) {
+                                sliderPlay(++_cur);
+                            }
+                        }
+                        else {
+                            if (_cur > 0) {
+                                sliderPlay(--_cur);
+                            }
+                        }
+                    }
+                } catch (e) {
+                }
+            }
 
-			    if(!touch){
-				    slider.onmouseover=function() {window.clearInterval(t);};
-				    slider.onmouseout=function() {timer();};
-			    }
-		    }
+            let touch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+            if (touch && options.etouch) {
+                slider.find('li').on('touchstart',touchStart);
+                slider.find('li').on('touchend',touchEnd);
+            }
 
-	    },
-	    goToPage : function (i) {
-			$('.part'+i).css('display','table-cell').siblings('[class*="part"]').css('display','none');
-			if(i===5){
-				var num = 0;
-				clearInterval(timer);
-				$('.bubble-block').css('top','0px');
-				$('.popupBubble').hide();
-				$('.popupBubble .bubble-item').removeClass('fadeInUp');
-				setTimeout(function () {
-					$('.popupBubble').show();
-					timer = setInterval(function(){
-						if(num<len){
-							scrollPlay('.bubble-block','.bubble-item',num++);
-						}
-					},1000);
-				},3000);
-			}
+            let t = null;
+            let timer;
+            if (options.loop) {
+                timer = function () {
+                    window.clearInterval(t);
+                    t = window.setInterval(function () {
+                        if (_cur >= sliderlen - 1) {
+                            _cur = -1;
+                        }
+                        sliderPlay(++_cur);
+                    }, options.speed);
+                };
+                timer();
+
+                if (!touch) {
+                    slider.mouseover(function () {
+                        window.clearInterval(t);
+                    });
+                    slider.mouseout(function () {
+                        timer();
+                    });
+                }
+            }
+        },
+	    goToPage : function (wrap,item,dir) {
+	    	var _len = $(wrap).find(item).length;
+            var _index = 0;
+            var _cur_index = 0;
+            console.log(dir);
+            $(wrap).find(item).each(function(){
+                if($(this).is(':visible')){
+                    _cur_index = $(this).index();
+                    console.log(_cur_index)
+				}
+			});
+            if(dir>0){
+                if(_cur_index>=_len){
+                    _index = _cur_index;
+                }else{
+                    _index = _cur_index+1;
+				}
+            }else{
+                if(_cur_index<=0){
+                    _index = _cur_index;
+                }else{
+                    _index = _cur_index-1;
+                }
+            };
+
+            $(wrap).find(item).eq(_index).css('display','table-cell').siblings(item).css('display','none');
+			// if(i===5){
+			// 	var num = 0;
+			// 	clearInterval(timer);
+			// 	$('.bubble-block').css('top','0px');
+			// 	$('.popupBubble').hide();
+			// 	$('.popupBubble .bubble-item').removeClass('fadeInUp');
+			// 	setTimeout(function () {
+			// 		$('.popupBubble').show();
+			// 		// timer = setInterval(function(){
+			// 		// 	if(num<len){
+			// 		// 		scrollPlay('.bubble-block','.bubble-item',num++);
+			// 		// 	}
+			// 		// },1000);
+			// 	},3000);
+			// }
 		},
-	    scrollPagePlay : function(dom,subdom,i) {
+        scrollPlay : function(dom,subdom,i) {
 			var $self = $(dom);
 			var lineHeight = $self.find(subdom).eq(i-1).outerHeight(true);
 
@@ -241,41 +310,6 @@
 				}
 			}
 		},
-	    touchY : function (options) {
-		    var startY;
-		    var sliderlen = $('.pagePart').length;
-		    function touchStart(event) {
-			    for (var i = 0; i < event.targetTouches.length; i++) {
-				    var touch = event.targetTouches[i];
-				    startY = touch.pageY;
-			    }
-		    }
-		    function touchEnd(event) {
-			    for (var i = 0; i < event.changedTouches.length; i++) {
-				    var ot = event.changedTouches[i];
-				    if (!ot) return;
-				    var dy = startY - ot.clientY;
-
-				    var mm = $('.pagePart:visible').attr('class').match(/part\d{1,}/g);
-				    var _cur = parseInt(mm[0].replace('part',''));
-				    if(dy>0){
-					    if(_cur<sliderlen){
-						    gotoPage(++_cur);
-					    }
-				    }
-				    else if(dy<0){
-					    if(_cur>1){
-						    gotoPage(--_cur);
-					    }
-				    }
-			    }
-		    }
-		    var touch=('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
-		    if(touch){
-			    document.addEventListener('touchstart',touchStart,false);
-			    document.addEventListener('touchend',touchEnd,false);
-		    }
-	    },
 	    marqueeScrollLeft : function (a) {
 		    a = $.extend({}, a || {});
 		    var speed = a.speed;

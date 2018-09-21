@@ -36,46 +36,62 @@
 </div>
 <div class="mswitch">
 	<div class="pt10 pb10">图片左右切换</div>
-	<div class="example-demo">
-		<div class="example-visualize">
-			<div class="panel-plugin">
-				<div class="slider sliderLeftRight" ng-init="sliderLeftRight('.sliderLeftRight',{wrapper:'.picswitch-itmes',item:'li',etouch:true,speed:3000,loop:true,prev:'.arrow-prev',next:'.arrow-next'})">
-					<span class="arrow-btn arrow-prev f-arrow_left"></span>
-					<span class="arrow-btn arrow-next f-arrow_right"></span>
-					<div class="picswitch-itmes">
-						<ul>
-							<li>
-								<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
-									<use xlink:href="#imgdemo1" href="#imgdemo1" />
-								</svg>
-							</li>
-							<li>
-								<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
-									<use xlink:href="#imgdemo2" href="#imgdemo2" />
-								</svg>
-							</li>
-							<li>
-								<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
-									<use xlink:href="#imgdemo3" href="#imgdemo3" />
-								</svg>
-							</li>
-							<li>
-								<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
-									<use xlink:href="#imgdemo4" href="#imgdemo4" />
-								</svg>
-							</li>
-						</ul>
-					</div>
+	<div class="example-visualize">
+		<div class="panel-plugin">
+			<div class="slider sliderLeftRight" ng-init="sliderLeftRight('.sliderLeftRight',{wrapper:'.picswitch-itmes ul',item:'li',etouch:true,speed:30000,loop:true,prev:'.btn-prev',next:'.btn-next'})">
+				<span class="arrow-btn btn-prev f-arrow_left"></span>
+				<span class="arrow-btn btn-next f-arrow_right"></span>
+				<div class="picswitch-itmes">
+					<ul>
+						<li>
+							<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
+								<use xlink:href="#imgdemo1" href="#imgdemo1" />
+							</svg>
+						</li>
+						<li>
+							<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
+								<use xlink:href="#imgdemo2" href="#imgdemo2" />
+							</svg>
+						</li>
+						<li>
+							<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
+								<use xlink:href="#imgdemo3" href="#imgdemo3" />
+							</svg>
+						</li>
+						<li>
+							<svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 640 640">
+								<use xlink:href="#imgdemo4" href="#imgdemo4" />
+							</svg>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="mswitch">
+	<div class="pt10 pb10">左右翻页</div>
+	<div class="example-demo">
+		<div class="panel-plugin">
+			<div class="slider fullpage" id="fullpageX" ng-init="sliderFullPageRL('#fullpageX',{wrapper:'#fullpageX',item:'.pagePart'})">
+				<div class="pagePart">1</div>
+				<div class="pagePart">2</div>
+				<div class="pagePart">3</div>
+				<div class="pagePart">4</div>
+				<div class="pagePart">5</div>
+			</div>
+		</div>
+	</div>
 	<div class="pt10 pb10">上下翻页</div>
 	<div class="example-demo">
 		<div class="panel-plugin">
-		
+			<div class="slider fullpage" id="fullpageY" ng-init="sliderFullPageUD('#fullpageY',{wrapper:'#fullpageY',item:'.pagePart'})">
+				<div class="pagePart">1</div>
+				<div class="pagePart">2</div>
+				<div class="pagePart">3</div>
+				<div class="pagePart">4</div>
+				<div class="pagePart">5</div>
+			</div>
 		</div>
 	</div>
 </div>

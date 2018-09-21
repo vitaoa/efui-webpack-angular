@@ -1,15 +1,14 @@
 
-/* slider */
 .slider-container{
   .slider-wrapper{
     .slider-slide{}
   }
   .slider-pagination{}
   .slider-arrow{
-    &.arrow-prev {}
-    &.arrow-next {}
-    &.arrow-up {}
-    &.arrow-down {}
+    &.btn-prev {}
+    &.btn-next {}
+    &.btn-up {}
+    &.btn-down {}
   }
 }
 .slider-container{margin-left: auto;margin-right: auto;position: relative;overflow: hidden;z-index: 1;
@@ -29,30 +28,47 @@
   }
 }
 .slider-arrow{display: block;text-align: center;position: absolute;top: 0;cursor: pointer;
-  &.arrow-prev {left: 0;}
-  &.arrow-next {right: 0;}
-  &.arrow-up {top:0;}
-  &.arrow-down {bottom:0;}
+  &.btn-prev {left: 0;}
+  &.btn-next {right: 0;}
+  &.btn-up {top:0;}
+  &.btn-down {bottom:0;}
 }
 
-.slider{position: relative;overflow: hidden;
+/* slider */
+.slider{position: relative;width:100%;margin: 0 auto;
   .arrow-btn {display: block;text-align: center;position: absolute;top: 0;cursor: pointer;
-    &.arrow-prev {left: 0;}
-    &.arrow-next {right: 0;}
+    &.btn-prev {left: 0;}
+    &.btn-next {right: 0;}
+    i{@include inline-block;}
   }
-  .picswitch-itmes {width: 100%;height: 100%;overflow: hidden;position: relative;
-    ul {position: relative;padding: 0;margin: 0;height: 100%;}
-    li {overflow: hidden;background: #fff;margin: 0;float: left;height: 100%;
+  .dot-btn{position: absolute;bottom:0;left:0;right:0;text-align: center;
+    span{@include inline-block;cursor: pointer;
+      &.active{}
+    }
+  }
+  .picswitch-itmes {width: 100%;height: 100%;margin: 0 auto;overflow: hidden;position: relative;
+    ul {position: relative;padding: 0;margin: 0;height: 100%;width:510%;}
+    li {float: left;height: 100%;
       & > img {width: 100%;height: 100%;}
     }
   }
-}
-.slider{width:410px;max-width:100%;height: 273px;margin: 0 auto;
-  .arrow-btn {width: 26px;height: 271px;line-height: 271px;font-size: 2em;z-index: 9;}
-  .picswitch-itmes{
-    li{width:410px;}
+
+
+  /* fullpage */
+  &.fullpage{/*height:100vh;*/height:30vh;overflow: hidden;position: relative;display: table;width:100%;text-align: center;
+    .pagePart{display: table-cell;vertical-align: middle;
+      & + .pagePart{display: none;}
+    }
   }
 }
+.slider{width:420px;
+  .arrow-btn {width: 26px;height: 271px;line-height: 271px;font-size: 2em;z-index: 9;}
+  .picswitch-itmes{@include size(340px,273px);
+    li{width:340px;}
+  }
+}
+
+
 
 
 

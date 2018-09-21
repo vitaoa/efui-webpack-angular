@@ -51,4 +51,7 @@ $.extend(
 			$(this).closest(options.wrap).find(options.panel).eq(_index).addClass('active').siblings(options.panel).removeClass('active');
 		});
 	},
+    isFunction = function(func){
+        return type(func)=='function';
+    },
 );

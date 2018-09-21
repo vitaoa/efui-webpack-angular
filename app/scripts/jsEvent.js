@@ -25,7 +25,7 @@ var jsEvent = {
 	},
 	//获取事件对象
 	getEvent:function(event){
-		return event?evt:window.event;
+		return event?event:window.event;
 	},
 	//获取事件类型
 	getType:function(event){
