@@ -122,8 +122,9 @@
                 var Events = [];
                 var moveEvent = supportTouch ? "touchmove" : "mousemove",
                     startEvent = supportTouch ? "touchstart" : "mousedown",
-                    endEvent = supportTouch ? "touchend" : "mouseup";
-                Events.push(moveEvent,startEvent,endEvent);
+                    endEvent = supportTouch ? "touchend" : "mouseup",
+                    cancelEvent = supportTouch ? "touchcancel" : "mouseout";
+                Events.push(moveEvent,startEvent,endEvent,cancelEvent);
 
                 Events.forEach(function(eventName) {
                     addEventHandle($(defaults.element).get(0),eventName,function (event) {

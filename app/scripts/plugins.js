@@ -172,59 +172,37 @@
                 }, 300);
             }
 
-            function sliderNext() {
+            function sliderNext(wipe) {
                 if (_cur >= sliderlen - 1) {
+                    if(wipe){
+                        return false;
+                    }
                     _cur = -1;
                 }
                 sliderPlay(++_cur);
             }
 
-            function sliderPrev() {
+            function sliderPrev(wipe) {
                 if (_cur <= 0) {
+                    if(wipe){
+                        return false;
+                    }
                     _cur = sliderlen;
                 }
                 sliderPlay(--_cur);
             }
 
-
-            let startX;
-
-            function touchStart(event) {
-                try {
-                    let touch = event.originalEvent.touches[0];
-                    let x = Number(touch.pageX);
-                    startX = x;
-                } catch (e) {
-                    console.log(e.message);
-                }
-            }
-
-            function touchEnd(event) {
-                try {
-                    for (let i = 0; i < event.originalEvent.changedTouches.length; i++) {
-                        let ot = event.originalEvent.changedTouches[i];
-                        if (!ot) return;
-                        _cur = parseInt(Math.abs(slider.position().left / _W));
-                        let dx = startX - ot.clientX;
-                        if (dx > 0) {
-                            if (_cur < sliderlen - 1) {
-                                sliderPlay(++_cur);
-                            }
-                        }
-                        else {
-                            if (_cur > 0) {
-                                sliderPlay(--_cur);
-                            }
-                        }
-                    }
-                } catch (e) {
-                }
-            }
-
             let touch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
             if (touch && options.etouch) {
-                slider.find('li').on('touchstart',touchStart);
-                slider.find('li').on('touchend',touchEnd);
+                $(this).Touch({
+                    element:slider,
+                    wipeLeft:function () {
+                        sliderNext(true);
+                    },
+                    wipeRight:function () {
+                        sliderPrev(true);
+                    }
+                });
             }
 
             let t = null;
@@ -255,7 +233,7 @@
 	    	var _len = $(wrap).find(item).length;
             var _index = 0;
             var _cur_index = 0;
-            console.log(dir);
+
             $(wrap).find(item).each(function(){
                 if($(this).is(':visible')){
                     _cur_index = $(this).index();
