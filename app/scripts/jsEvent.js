@@ -72,3 +72,7 @@ jsEvent.addEventHandle(a,'click',function(e){
 	jsEvent.preventDefault(e);//禁止默认行为
 	jsEvent.stopPropagation(e);//停止传播冒泡
 });
+jsEvent.addEventHandle(window,'load', function(){
+    orientationChange();
+    window.onorientationchange = orientationChange;
+});

@@ -419,6 +419,7 @@
 
                 $(obj).Touch({
                     element:a.wrapper,
+                    mouseEvents:false,
                     wipeUp:function () {
                         $(this).goToPage(a.wrapper,a.item,1);
                     },

@@ -108,7 +108,7 @@
 		},
 
 	    /* @param:
-	     * speed/loop/etouch/wrapper/pagination/cur/prev/next
+	     * speed/loop/wrapper/pagination/cur/prev/next
 	     * */
 	    sliderLeftRight	: function (options) {
             options = $.extend({}, options || {});
@@ -123,16 +123,6 @@
             let _W = slider.parent().width();
             let _cur = options.cur || 0;
 
-            init();
-            function init() {
-                slider.find('li').width(_W);
-                slider.width(sliderlen * _W);
-                if(options.paginationClass){
-                    sliderBtns.eq(_cur).addClass(options.paginationClass);
-                }else{
-                    sliderBtns.eq(_cur).addClass('active');
-                }
-            }
 
             if(options.arrowPrevClass){
                 slideprev.mouseover(function () {
@@ -192,18 +182,16 @@
                 sliderPlay(--_cur);
             }
 
-            let touch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
-            if (touch && options.etouch) {
-                $(this).Touch({
-                    element:slider,
-                    wipeLeft:function () {
-                        sliderNext(true);
-                    },
-                    wipeRight:function () {
-                        sliderPrev(true);
-                    }
-                });
-            }
+            $(this).Touch({
+                element:slider.parent(),
+                mouseEvents:true,
+                wipeLeft:function () {
+                    sliderNext(true);
+                },
+                wipeRight:function () {
+                    sliderPrev(true);
+                }
+            });
 
             let t = null;
             let timer;
@@ -219,13 +207,24 @@
                 };
                 timer();
 
-                if (!touch) {
+                if (!isTouch) {
                     slider.mouseover(function () {
                         window.clearInterval(t);
                     });
                     slider.mouseout(function () {
                         timer();
                     });
+                }
+            }
+
+            init();
+            function init() {
+                slider.find('li').width(_W);
+                slider.width(sliderlen * _W);
+                if(options.paginationClass){
+                    sliderBtns.eq(_cur).addClass(options.paginationClass);
+                }else{
+                    sliderBtns.eq(_cur).addClass('active');
                 }
             }
         },
@@ -237,7 +236,6 @@
             $(wrap).find(item).each(function(){
                 if($(this).is(':visible')){
                     _cur_index = $(this).index();
-                    console.log(_cur_index)
 				}
 			});
             if(dir>0){
@@ -255,38 +253,26 @@
             };
 
             $(wrap).find(item).eq(_index).css('display','table-cell').siblings(item).css('display','none');
-			// if(i===5){
-			// 	var num = 0;
-			// 	clearInterval(timer);
-			// 	$('.bubble-block').css('top','0px');
-			// 	$('.popupBubble').hide();
-			// 	$('.popupBubble .bubble-item').removeClass('fadeInUp');
-			// 	setTimeout(function () {
-			// 		$('.popupBubble').show();
-			// 		// timer = setInterval(function(){
-			// 		// 	if(num<len){
-			// 		// 		scrollPlay('.bubble-block','.bubble-item',num++);
-			// 		// 	}
-			// 		// },1000);
-			// 	},3000);
-			// }
+			if(_index>=_len-1){
+				var num = 0;
+				var speed = 1000;
+				clearInterval(timer);
+				var _dom = $('.bubble-block');
+                _dom.css('top','0px');
+				var timer = setInterval(function(){
+					if(num<_dom.find('.bubble-item').length){
+                        _dom.scrollPlay('.bubble-item',num++,speed);
+					}
+				},speed);
+			}
 		},
-        scrollPlay : function(dom,subdom,i) {
-			var $self = $(dom);
+        scrollPlay : function(subdom,i,speed) {
+			var $self = $(this);
 			var lineHeight = $self.find(subdom).eq(i-1).outerHeight(true);
 
-			$self.find(subdom).eq(i).addClass('fadeInUp');
-			if(i<5){return false;}
-			else{
-				$self.stop(true).animate({
-					top:-(i-4)*lineHeight
-				},600);
-				if(i>=len-1){
-					setTimeout(function () {
-						$('.popupBubble').hide();
-					},4000);
-				}
-			}
+            $self.stop(true).animate({
+                top:-i*lineHeight
+            },speed);
 		},
 	    marqueeScrollLeft : function (a) {
 		    a = $.extend({}, a || {});

@@ -178,6 +178,7 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
         });
         $rootScope.loginFlag = false;
         $rootScope.$on("$viewContentLoaded", function(event, next) {
+            // changeOrientation($('body'));
             if (window.sessionStorage.getItem("loginSessionState")) {
                 $rootScope.loginFlag = window.sessionStorage.getItem("loginSessionState");
             }
@@ -211,6 +212,76 @@ angular.module('evApp', ['evApp.routes','evApp.controller'])
 		        options = $.extend({},options || {});
 		        toggle(options);
 	        }
+
+
+	        //lp_bottom
+
+            var _awardsList = $('.m-awardsList');
+
+            var _awardsListTimer = setInterval(function(){
+                awardsList(_awardsList);
+            },3000);
+            function awardsList(ele){
+                var _cur = ele.find('li.current').index() || 0;
+                ele.find('li').eq(_cur).next().trigger('click');
+            }
+
+            _awardsList.each(function () {
+                var _self = $(this);
+                var _liWidthFirst = _self.find("li:first").outerWidth(true);
+                var _liWidthLast = _self.find("li:last").outerWidth(true);
+
+                _self.css({"position":"relative","left":-_liWidthFirst});
+                _self.find('li').on('click',function () {
+                    clearInterval(_awardsListTimer);
+                    _awardsListTimer = setInterval(function(){
+                        awardsList(_awardsList);
+                    },3000);
+                    var _sibingsObj = $(this).siblings();
+                    $(this).addClass('current').siblings().removeClass('current');
+                    ClassReplace($(this),false);
+                    ClassReplace(_sibingsObj,true);
+                    var _cur = $(this).index();
+                    _liWidthFirst = _self.find("li:first").next().outerWidth(true);
+                    _liWidthLast = _self.find("li:last").outerWidth(true);
+                    var lineWidth = $(this).outerWidth(true)+_liWidthFirst;
+                    var lineWidth2 = _liWidthFirst-$(this).outerWidth(true);
+                    if(_cur ===1){
+                        _self.stop(true).animate({ "left" : -lineWidth2},500 , function(){
+                            _self.css({"left":-_liWidthLast}).find("li:last").prependTo(_self);
+                        });
+                    }else if(_cur ===3){
+                        _self.stop(true).animate({ "left" : -lineWidth},500 , function(){
+                            _self.css({"left":-_liWidthFirst}).find("li:first").appendTo(_self);
+                        });
+                    }
+                });
+            });
+            $('.fxg-awards-list .flexbox li').each(function (e) {
+                $(this).mouseenter(function () {
+                    var _this = $(this);
+                    var _rootObj = _this.parent();
+                    var _sibingsObj = _this.siblings();
+
+                    var _cur = _rootObj.find('.active').index();
+                    var _curObj = _rootObj.find('li').eq(_cur);
+                    if(_this.index()===_cur){
+                        return null;
+                    }else{
+                        _curObj.find('p').stop(true).animate({ "width" : 0},100,function () {
+                            _this.find('p').css({ "width" : '100%','opacity':0});
+                            _this.find('p').stop(true).animate({ "opacity" : 1},300);
+                            _this.addClass('active').siblings().removeClass('active');
+
+                            ClassReplace(_this,false);
+                            ClassReplace(_sibingsObj,true);
+                        });
+                    }
+                });
+            });
         })
+
+
+
     });
 

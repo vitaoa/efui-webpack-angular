@@ -4,3 +4,4 @@
 
 require('./lib/jQueryRotate');
 require('./lib/touch');
+require('./lib/rem');

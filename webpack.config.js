@@ -209,7 +209,7 @@ if (!isDev) {
             contentBase:"./", // 本地服务器在哪个目录搭建页面
             inline:true, // 用来支持webpack-dev-server自动刷新的配置
             hot:true, // 启动webpack热模块替换特性
-            port:8888 //端口号(默认8080)
+            port:8889 //端口号(默认8080)
         }
     }
 }

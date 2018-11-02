@@ -172,9 +172,3 @@ var client = function(){
         };
 }();
 console.log(client);
-
-if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-    console.log('手机端')
-}else {
-    console.log('PC端')
-}

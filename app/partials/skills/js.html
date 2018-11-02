@@ -7,6 +7,7 @@
 	<div class="mcon">
 		<ol ng-show="answershow">
 			<li><a href="">宿主环境</a></li>
+			<li><a href="">$(document).ready()和window.onload事件</a></li>
 			<li>
 				<a href="">函数调用</a>
 			</li>
@@ -86,6 +87,19 @@
 	</ol>
 </div>
 <div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<p>$(document).ready()方法调用时机比window.onload提前</p>
+			<ul>
+				<li>window.onload要等待页面中的资源(图像)加载完成,而ready()在DOM树建立好之后就调用了</li>
+			</ul>
+		</li>
+		<li>
+			<p>ready()方法调用后,传入的方法是追加的形式,所以两个方法都调用了;而window.onload是赋值的形式,所以后面的方法覆盖了前面的方法.</p>
+		</li>
+	</ol>
+</div>
+<div class="mswitch">
 	<div class="pt10 pb10">函数调用</div>
 	<div class="example-desc">
 		<div class="exm-t2">
@@ -142,51 +156,62 @@ alert(o.b);    // 5</pre>
 	</div>
 </div>
 <div class="mswitch">
-	<h3 class="mb10">一、立即执行函数 </h3>
-	<div class="example-demo">
-		<pre>(function(){…}) ()
-(function(){…} ())</pre>
-	</div>
+	<h3 class="mb10">立即执行函数 </h3>
 	<div class="example-desc">
 		<div class="exm-t1"><b>要理解立即执行函数，需要先理解一些函数的基本概念。</b></div>
-		<ul>
-			<li><b>函数声明</b>
+		<ol class="decimal">
+			<li><b>函数声明：</b>
 				<ul>
-					<li>函数声明：function fnName () {…};使用function关键字声明一个函数，再指定一个函数名，叫函数声明。</li>
+					<li>语法：function name([param[, param[, ... param]]]) { statements }</li>
+					<li>使用function关键字声明一个函数，再<span class="c-red">指定一个函数名</span>，叫函数声明。</li>
 				</ul>
 			</li>
-			<li><b>函数表达式</b>
+			<li><b>函数表达式：</b>
 				<ul>
-					<li>函数表达式 var fnName = function () {…};使用function关键字声明一个函数，但未给函数命名，最后将匿名函数赋予一个变量，叫函数表达式，这是最常见的函数表达式语法形式。</li>
+					<li>语法：var myFunction = function [name]([param[, param[, ... param]]]) { statements }</li>
+					<li>使用function关键字声明一个函数，但未给函数命名，最后将匿名函数<span class="c-red">赋予一个变量</span>，叫函数表达式，这是最常见的函数表达式语法形式。</li>
+					<li>匿名函数属于函数表达式，匿名函数有很多作用，赋予一个变量则创建函数，赋予一个事件则成为事件处理程序或创建闭包等等。</li>
 				</ul>
 			</li>
-			<li><b>匿名函数</b>
+			<li><b>函数声明和函数表达式的区别：</b>
 				<ul>
-					<li>匿名函数：function () {}; 使用function关键字声明一个函数，但未给函数命名，所以叫匿名函数，匿名函数属于函数表达式，匿名函数有很多作用，赋予一个变量则创建函数，赋予一个事件则成为事件处理程序或创建闭包等等。</li>
+					<li>辨别：<span class="c-red">不以function开头</span>的函数语句就是函数表达式。</li>
+					<li>立即执行：函数表达式后面可以加括号立即调用该函数，函数声明不可以，只能以fnName()形式调用。</li>
+					<li>声明提升：Js代码的编译阶段会找到所有的声明。
+						<ul>
+							<li>函数表达式：其实就是变量声明的一种，声明操作会被提升到执行环境顶部，并赋值undefined，赋值操作被留在原地等到执行。</li>
+							<li>变量声明：声明操作(var a)和赋值操作(a=2)，声明操作在编译阶段进行，声明操作会被提升到执行环境的顶部，值是undefined(表示未初始化)，赋值操作会被留在原地等待执行阶段</li>
+							<li>函数声明：会在编译阶段把声明和函数体整体都提前到执行环境顶部，所以我们可以在函数声明之前调用这个函数</li>
+							<li>提升顺序：
+								<ul>
+									<li>找到所有的函数声明，<span class="c-red">初始化函数体</span>，如有同名的函数则会进行覆盖</li>
+									<li>查找变量声明，<span class="c-red">初始化为undefined</span>，如果已经存在同名的变量，就什么也不做直接略过</li>
+								</ul>
+								<div class="html">
+									<pre>// 1
+foo(); //200
+function foo() {
+    console.log(100);
+}
+function foo() {
+    console.log(200);
+}
+
+// 2
+console.log(foo); //function foo(){...}
+function foo(){
+    console.log(200);
+}
+var foo = 100;</pre>
+								</div>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</li>
-		</ul>
-		<div class="exm-t2"><b>函数声明和函数表达式的不同之处：</b></div>
-		<ol>
-			<li>Javascript引擎在解析javascript代码时会“函数声明提升”（Function declaration Hoisting）当前执行环境（作用域）上的函数声明，而函数表达式必须等到Javascirtp引擎执行到它所在行时，才会从上而下一行一行地解析函数表达式；</li>
-			<li>函数表达式后面可以加括号立即调用该函数，函数声明不可以，只能以fnName()形式调用。</li>
-			<li>函数调用可在函数声明之前，但是必须在函数表达式之后</li>
 		</ol>
-		<pre>var fnName=function(){
-    alert('Hello World');
-}();
-//函数表达式后面加括号，当javascript引擎解析到此处时能立即调用函数
-function fnName(){
-    alert('Hello World');
-}();
-//不会报错，但是javascript引擎只解析函数声明，忽略后面的括号，函数声明不会被调用
-function(){
-    console.log('Hello World');    
-}();
-//语法错误，虽然匿名函数属于函数表达式，但是未进行赋值操作，
-//所以javascript引擎将开头的function关键字当做函数声明，报错：要求需要一个函数名</pre>
-		<div class="exm-t2"><b>总结：</b></div>
-		<ol>
+		<div class="exm-t2 mt15"><b>总结：</b></div>
+		<ol class="decimal">
 			<li><span class="red">要在函数体后面加括号就能立即调用，则这个函数必须是函数表达式</span>，不能是函数声明；</li>
 			<li><span class="c-red">（）、！、+、-、=等运算符，都将函数声明转换成函数表达式</span>，消除了javascript引擎识别函数表达式和函数声明的歧义，告诉javascript引擎这是一个函数表达式，不是函数声明，可以在后面加括号，并立即执行函数的代码；</li>
 			<li><span class="red">加括号是最安全的做法</span>，因为！、+、-等运算符还会和函数的返回值进行运算，有时造成不必要的麻烦。</li>
@@ -267,7 +292,16 @@ console.log(typeof a == String) ---------------> false</pre>
 							<!--</script>-->
 						</div>
 					</li>
-					<li>可以判断function的类型，在<span class="c-red">判断<b>除Object类型</b>的对象时比较方便</span></li>
+					<li>缺点：
+						<ul>
+							<li><span class="c-red">引用类型：</span>
+								<p>只能检测function，返回"function"，其它引用类型都返回"object"。</p>
+							</li>
+							<li><span class="c-red">检测null会检测出object：</span>
+								<p>在 JavaScript 最初的实现中，JavaScript 中的值是由一个表示类型的标签和实际数据值表示的。对象的类型标签是 0。由于 null 代表的是空指针（大多数平台下值为 0x00），因此，null的类型标签也成为了 0，typeof null就错误的返回了"object"。</p>
+							</li>
+						</ul>
+					</li>
 				</ol>
 			</li>
 			<li>instanceof：
@@ -278,19 +312,14 @@ console.log(typeof a == String) ---------------> false</pre>
 console.log(d instanceof Date)
 console.log(f instanceof Function) ------------> true
 console.log(f instanceof function) ------------> false</pre>
-							<!--<script>-->
-                                <!--var a = "iamstring.";-->
-                                <!--var b = 222;-->
-                                <!--var c= [1,2,3];-->
-                                <!--var d = new Date();-->
-                                <!--var e = function(){alert(111);};-->
-                                <!--var f = function(){this.name="22";};-->
-                                <!--console.log(c instanceof Array);-->
-                                <!--console.log(d instanceof Date);-->
-                                <!--console.log(f instanceof Function);-->
-<!--//                                console.log(f instanceof function);-->
-							<!--</script>-->
 						</div>
+					</li>
+					<li>能检测出引用类型的具体类型，不像typeof一样只能检测出object, 而是检测出更加具体的类型如Array， RegExp等</li>
+					<li>缺点：
+						<ul>
+							<li><span class="c-red">返回布尔值，形式不够灵活</span></li>
+							<li><span class="c-red">不能检测基本类型，只能检测引用类型</span></li>
+						</ul>
 					</li>
 				</ol>
 			</li>
@@ -442,7 +471,7 @@ scrollWidth scrollHeight scrollLeft scrollTop</pre>
 </div>
 
 <div class="mswitch">
-	<h3 class="mb10">二、namespace命名空间 </h3>
+	<h3 class="mb10">namespace命名空间 </h3>
 	<div class="example-demo">
 		<pre>/**
 * 创建全局对象MYAPP
@@ -1761,10 +1790,8 @@ if(touch){
 </div>
 <div class="mswitch">
 	<h3 class="mb10">JavaScript继承</h3>
-	<div class="example-demo">
-	</div>
 	<div class="example-desc">
-		<ol>
+		<ol class="decimal">
 			<li>
 				<h5>基于对象的继承</h5>
 				<div class="html">
