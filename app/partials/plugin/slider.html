@@ -28,10 +28,24 @@
 	<div class="mtit"><span>目录</span></div>
 	<div class="mcon">
 		<ol>
+			<li><a href="">显示隐藏切换（原生js）</a></li>
 			<li><a href="">图片内容切换</a></li>
 			<li><a href="">页面切换</a></li>
 			<li><a href="">旋转切换</a></li>
 		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<div class="example-visualize">
+		<div class="courses hideshow-toggle" ng-init="toggleClassPanel('.hideshow-toggle',{className:'toggleNav',classTag:'h3',toggleParent:false,toggleClass:'active',childElementTag:'i',classReg:'\b(i-panel-)([\w]+?)\b',classActive:'add',classDefault:'minus'})">
+			<h3 class='toggleNav'>
+				<b class="num-badge">1</b><i class="i-panel-minus"></i>
+				<span class='name'>Support and Resistance Levels</span>
+			</h3>
+			<div class="togglePanel">
+				<p class='description'>To start your education on technical analysis, let&#39;s begin with the basics: support and resistance!</p>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="mswitch">
