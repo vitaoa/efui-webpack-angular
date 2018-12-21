@@ -1,5 +1,8 @@
 const rollup = require('rollup');
-const watcher = rollup.watch();
+const watcher = rollup.watch({
+    include:"app/scripts/module/**/*.js",
+    exclude:"*.js"
+});
 
 watcher.on('event', event => {
     console.log(event.code)
@@ -20,8 +23,6 @@ export default {
         strict: true
     },
     watch: {
-        include:"app/scripts/module/**/*.js",
-        exclude:"*.js"
     },
     plugins: []
 };

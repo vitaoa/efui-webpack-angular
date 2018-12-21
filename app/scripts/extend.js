@@ -32,13 +32,15 @@ $.extend(
 			$(a.dom).show().find('.copyMsg').html(a.msg);
 		}
 	},
-	bindClickHide = function (e1,e2) {
-		$(e1 +' *').bind('click',function(e){
-			if (e.stopPropagation) e.stopPropagation();
-			else e.cancelBubble = true;
-			$(this).closest(e1).length>0 && $(this).closest(e2).length<=0 && $(this).closest(e1).hide();
-		});
-	},
+    bindClickHide = function (e1,e2) {//点击e2以外的任意位置->关闭e1
+        $('body>*').bind('click',function(e){
+            //单个元素点击，要停止冒泡到body
+            if (e.stopPropagation) e.stopPropagation();
+            else e.cancelBubble = true;
+            var _target = $(e.target);
+            _target.closest(e1).length>0 && _target.closest(e2).length<=0 && _target.closest(e1).hide();
+        });
+    },
 	tabSwitch = function (options) {
 		/* *
 		* @wrap:parent
@@ -158,6 +160,21 @@ $.extend(
         }, false);
     },
 
+    /**
+     * 去请求url后的参数
+     */
+    getRequest2 = function (){
+        var url = window.location.search; //获取url中"?"符及其后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    },
 
     ClassReplace = function (ele,cur) {
         var _regExp = /\b(i-awards0\d)\b/g;
@@ -176,4 +193,5 @@ $.extend(
         }
         !_classActive && !cur && ele.find('i').attr('class',_classh);
     }
+
 );

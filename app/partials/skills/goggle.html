@@ -1,0 +1,126 @@
+<div class="mlist">
+	<div class="mtit"><span>目录</span></div>
+	<div class="mcon">
+		<ol>
+			<li><a href="">Google Analytics</a></li>
+			<li><a href="">Measurement Protocol</a></li>
+		</ol>
+	</div>
+</div>
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<h3>接收数据</h3>
+			<ul>
+				<li>Google Analytics 提供了一个接收数据的地址：http://www.google-analytics.com/collect（或者 https://ssl.google-analytics.com/collect）。</li>
+				<li>向这个地址发送一段有效的结构化数据，就可以做到和传统 Analytics 一样的效果。这段数据大致是这个样子的：
+					<div class="html">
+						<pre>v=1             // 版本，目前一定是 1
+&tid=UA-XXXX-Y  // Analytics Tracking ID
+&cid=555        // 访客标识，一般是一个随机值
+
+&t=pageview     // 页面访问类型
+&dh=leonax.net  // 域名
+&dp=/           // 路径
+&dt=Leona+      // 网页标题</pre>
+					</div>
+					<div class="html">
+						<pre>/* 统计页面浏览量 */
+var pageview_parameters='page_title:window.document.title,page_path: window.location.href,page_location: window.location.href';
+gtag('config', 'UA-127311750-1', {"+pageview_parameters+"})						</pre>
+					</div>
+					<b class="c-red">在着陆页查看：</b>
+					<div class="html">
+								<pre>例如下面这个地址：
+http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?isLoginUser=1&utm_content=ccccc5&utm_medium=mmmmm5#utm_source=sssss5
+在着陆页显示：
+www.gwfxglobal.com/http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?isLoginUser=1#utm_source=sssss5
+多了一个location.host								</pre>
+					</div>
+					<p><b class="c-red">解决方法：(已测试)</b></p>
+					<ul>
+						<li>常规页面：全部还原不用page_时的状态，utm_开头的参数第一个用#。
+							<div class="html">
+								<pre>例如：
+http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?utm_source=sssss5
+应该写成：
+http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?#utm_source=sssss5</pre>
+							</div>
+						</li>
+						<li><b class="c-red">如果是单页面，如vue，url里面会有#号，UTM参数就不能用#号了，而且要加在#之前</b>
+							<div class="html">
+								<pre>例如：
+https://deposit.gwfxglobal.com/static/mobile.html#/bonus/RVT?utm_source=app1_1&utm_medium=banner
+应该写成：
+https://deposit.gwfxglobal.com/static/mobile.html?utm_source=app1_1&utm_medium=banner#/bonus/RVT</pre>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<h3>UTM参数</h3>
+			<ul>
+				<li>
+					<b>实例：utm_source=来源&utm_medium=媒介&utm_campaign=广告系列</b>
+					<ul>
+						<li><b>utm_source：</b>一般用来标识来源，在GA 使用UTM参数时该参数是必选的</li>
+						<li><b>utm_medium：</b>一般用来标识媒介，在GA 使用UTM参数时该参数也是必选的，通常这里会用付费方式（如cpc、cpm）或者渠道所属类别（比如email、social）</li>
+						<li><b>utm_campaign：</b>一般用来标识营销活动名称，GA 推荐使用该参数</li>
+						<li><b>utm_term：</b>一般用来标识关键词，在GA 中并非必须使用，在SEM活动中这个参数通常来放投放词</li>
+						<li><b>utm_content：</b>一般用来标识创意的版本，在GA中并非必须使用，实际广告投放中如果以上四个参数不能满足区分流量的需求，可以考虑下使用这个参数，比如用来标识A版本和B版本，或者用来标识是在顶部banner还是右侧广告等等</li>
+					</ul>
+					<p class="mt20"><b>GA中查看：</b></p>
+					<ul>
+						<li>utm_source/utm_medium/utm_campaign查看：Real-Time（实时）->Traffic Sources（流量来源）</li>
+						<li>utm_content和utm_term查看：
+							<ul>
+								<li>Acquisition（流量获取） -> All Traffic（所有流量） -> Source/Medium（来源/媒介）</li>
+								<li>或 Acquisition（流量获取） -> Campaigns（广告系列） -> All campaigns（所有广告系列）</li>
+								<li>然后在次级维度输入Ad Content（广告内容） 或 Keywords</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<b class="c-red">在着陆页查看：</b>
+					<ul>
+						<li>有的cms加UTM参数时，必须用#，而且之前一定有?，否则追踪不到来源。
+							<div class="html">
+								<pre>1.http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?utm_source=sssss11&utm_content=ccccc1&utm_medium=mmmmm1
+2.http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?isLoginUser=1#utm_source=sssss2&utm_content=ccccc2&utm_medium=mmmmm2
+
+result:
+1没有追踪到来源utm_source，2追踪到了来源utm_source。								</pre>
+							</div>
+						</li>
+						<li>而且utm_开头的参数第一个必须用#，否则着陆页不会显示前面&utm_content之类的。
+							<div class="html">
+								<pre>3.http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?#utm_source=sssss3&utm_content=ccccc3&utm_medium=mmmmm3
+4.http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html?&utm_content=ccccc4&utm_medium=mmmmm4#utm_source=sssss4
+
+result:
+3的着陆页显示：http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html#utm_source=sssss3&utm_content=ccccc3&utm_medium=mmmmm3
+4的着陆页显示：http://www.gwfxglobal.com/lp1_c_hw_lltj_201804app_v4.html#utm_source=sssss4								</pre>
+							</div>
+						</li>
+					</ul>
+					<p class="c-red">如果网站是CMS使用问号来显示特定的内容，使用UTM跟踪需要注意：</p>
+					<ul>
+						<li>如: store.com/?category=furniture&product=chair，那么你不能在后面直接添加&utm_source=………，这会阻止CMS打开对应的页面。
+							<br>
+							在这个案例中，如果你使用的是统一版跟踪代码，你可以用添加“#”后再加UTM参数，这样就不会影响页面的打开，例如：store.com/?category=furniture&product=chair <span class="c-red">#utm_source=…&utm_medium=…&utm_campaign=…</span></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ol>
+</div>
+<div class="mswitch">
+	<h3>Measurement Protocol：Google的一个工具，可用于自己实现 Analytics 功能。</h3>
+	<ol class="decimal">
+		<li>Measurement Protocol 定义了一个向 Google Analytics 发送数据的格式。</li>
+		<li>Measurement Protocol 的强大之处在于，它不仅可以在网页中发，还可以在服务器上发。可以用于统计一些服务器的状态信息，比如每天服务器发出多少流量，接收到多少请求，有多少条垃圾评论。</li>
+	</ol>
+</div>

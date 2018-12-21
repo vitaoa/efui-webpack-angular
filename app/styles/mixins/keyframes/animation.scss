@@ -271,10 +271,10 @@
 
 @include keyframes(wordsplay,("webkit","ms","moz","o")) {
   0%{width:0;}
-  30%{width:3em;}
-  60%{width:6em;}
-  90%{width:9em;}
-  100%{width:9em;}
+  30%{width:30%;}
+  60%{width:60%;}
+  90%{width:90%;}
+  100%{width:100%;}
 }
 
 @include keyframes(coinStep3-1,("webkit","ms","moz","o")){

@@ -43,12 +43,20 @@
 			    };
 
 			    var timeout = function () {
-				    t = EndTime.getTime() - new Date().getTime();
-				    o.ms && o.ms.html($.fn.countNumber(t , 1000,true));
-				    o.sec && o.sec.html($.fn.countNumber(t / 1000,60,true));
-				    o.mini && o.mini.html($.fn.countNumber(t / 1000 / 60,60,true));
-				    o.hour && o.hour.html($.fn.countNumber(t / 1000 / 60 / 60,60,true));
-				    o.day && o.day.html($.fn.countNumber(t / 1000 / 86400,0,true));
+                    t = EndTime.getTime() - new Date().getTime();
+                    var totalSeconds = t/1000;
+                    var _day = Math.floor(totalSeconds / (60 * 60 * 24));
+                    var leftTime = totalSeconds % (60 * 60 * 24);
+                    var _hour = Math.floor(leftTime / (60 * 60));
+                    leftTime = leftTime % (60 * 60);
+                    var _mini = Math.floor(leftTime / 60);
+                    var _sec = Math.floor(leftTime % 60);
+
+                    o.ms && (o.ms.html(Math.floor(t % 1000)));
+                    o.sec && (o.sec.html(_sec));
+                    o.mini && (o.mini.html(_mini));
+                    o.hour && (o.hour.html(_hour));
+                    o.day && (o.day.html(_day));
 			    };
 			    if(t > 0){
 				    setInterval(timeout, s);
