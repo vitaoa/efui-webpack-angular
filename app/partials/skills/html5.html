@@ -5,6 +5,9 @@
 			<li>
 				<a href="">WebSocket</a>
 			</li>
+			<li>
+				<a href="">浏览器缓存</a>
+			</li>
 		</ol>
 	</div>
 </div>
@@ -140,6 +143,141 @@ socket.onclose = function(event) {
 	</div>
 </div>
 
+<div class="mswitch">
+	<ol class="decimal">
+		<li>
+			<p>缓存分类：</p>
+			<ul>
+				<li><b>强缓存：</b> 直接从本地缓存中取资源，不会和服务器通信，返回的http状态码是200（from cache）；
+					<ul>
+						<li>强缓存是由Response Headers（F12->NetWork->Headers）中的Expires和cache-control决定的，后者优先级高于前者。
+							<ul>
+								<li>Expries是http1.0提出的，表示失效时间（GMT格式），只有在这个时间之前的请求才可以用强缓存。</li>
+								<li>cache-control可以有多个值：
+									<ul>
+										<li>cache-control: max-age=111000  -->表示自第一次收到响应后的111000ms以后可以用缓存</li>
+										<li>cache-control: no-cache   -->禁止使用强缓存</li>
+										<li>cache-control: no-store  -->禁止使用缓存，每次都要去服务器重新请求</li>
+										<li>cache-control: private  -->只允许被终端用户的浏览器端缓存</li>
+										<li>cache-control: public -->可以被所有用户缓存，保存终端用户和CDN等代理服务器</li>
+									</ul>
+								</li>
+								<li>Expries是个绝对时间，cache-control是个相对时间，在第二次发请求时取到缓存中的max-age和第一次的请求时间计算出资源过期时间，与当前的请求时间对比决定是否使用缓存。</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><b>协商缓存：</b>通过服务器来告知是否能用本地缓存。先和服务器通信，如果返回可以使用本地缓存的指示，再从本地缓存中取（服务器不会返回被请求资源，返回的状态码是403（Not Modified））；如果不可以使用本地缓存就会返回最新的资源；浏览器发起第二次相同的请求时会先判断能不能使用强缓存，不行的话，再判断能不能使用协商缓存（如果没有设置强缓存，协商缓存也不会生效）。
+					<ul>
+						<li>有两组headers值：Last-Modified / If-Modified-Since 和 Etag / If-None-Match，后者优先级高于前者。
+							<ul>
+								<li><b>Last-Modified / If-Modified-Since：</b>
+									<ul>
+										<li>第一次请求时返回的Response Headers中用Last-Modified表示请求的资源在服务器上最新的修改时间，第二次请求时在Request Headers中用If-Modified-Since带上这个值发到服务器，服务器对比这个值和这个资源市价上的最新修改时间决定是否直接返回403还是返回资源。当返回403时，表示资源没有更新，所以浏览器缓存中的Last-Modified也就不用更新了。</li>
+										<li>但是Last-Modified的问题在于有时服务器上资源其实有变化，但是最后修改时间却没有变化，所以有了Etag / If-None-Match来管理协商缓存。</li>
+									</ul>
+								</li>
+								<li><b>Etag / If-None-Match：</b>
+									<ul>
+										<li>Etag是服务器根据被请求资源生成的一个唯一标识字符串，只要资源发生变化，Etag就会变，跟资源的最新修改时间没有关系，能弥补Last-Modified的不足。与Last-Modified类似，第二次请求时请求头会带上If-None-Match标识的Etag值，区别是由于服务器每次会根据资源重新生成一个Etag，再拿它跟浏览器传过来的Etag对比，如果一致则返回403，所以由于每次Etag都会重新生成，所以浏览器缓存中的Etag也必须每次都更新。</li>
+										<li>一般Last-Modified和Etag是同时启用的，但是对于分布式系统多同机器间文件的Last-Modified必须一致，以免因为负载均衡到不同机器导致比对不一致，分布式系统尽量关闭Etag,因为每台机器生成的Etag也不一致。</li>
+										<li><b class="c-red">使用F5刷新时会跳过强缓存，当强制刷新时，强缓存和协商缓存都会跳过。</b>其他操作行为如前进后退，地址栏回车都会按正常流程走。</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>浏览器默认都会缓存图片，js，css等静态文件，也可以通过待会再响应头中设置是否要启用缓存，或是通过服务器专门的配置文件统一设置Expires, Cache-control等。</li>
+				<li>发布更新时，为了避免缓存，采用覆盖式发布（如a.css?v1.1）。</li>
+			</ul>
+		</li>
+		<li>
+			<p>cookie与session的区别：</p>
+			<ul>
+				<li><b>cookie：</b>
+					<ul>
+						<li>客户端第一次正常访问服务器，服务器在response headers中返回与用户信息相关的cookie，客户端收到后把cookie保存在本地，下次再发请求时会在request headers中带上这个cookie，服务器收到这个cookie就知道用户状态了。</li>
+						<li>cookie可以设置过期时间，默认值是-1，表示关闭浏览器时cookie就会失效，值为0时表示立马失效，相当于删除cookie（cookie没有删除的方法），服务器和客户端都可以设置cookie，但不可以操作另一个域名下的cookie。</li>
+					</ul>
+				</li>
+				<li>
+					<b>session:</b>
+					<ul>
+						<li>客户端第一次正常访问服务器，服务器生成一个sessionid来标识用户并保存用户信息（服务器有一个专门的地方来保存所有用户的sessionId），在response headers中作为cookie的一个值返回，客户端收到后把cookie保存在本地，下次再发请求时会在request headers中带上这个sessionId，服务器通过查找这个sessionId就知道用户状态了，并更新sessionId的最后访问时间。sessionId也会可以设置失效时间，比如如果60分钟内某个session都没有被更新，服务器就会删除这个它。</li>
+						<li>关于session的失效时间和过期：
+							<ul>
+								<li></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>总结：
+					<ul>
+						<li>cookie是保存在客户端，session是存在服务器，session依赖于cookie</li>
+						<li>session中保存的是对象，cookie中保存的是字符串 </li>
+						<li>session不能区分路径，同一个用户在访问一个网站期间，所有的session在任何一个地方都可以访问到，而cookie中如果设置了路径参数，那么同一个网站中不同路径下的cookie互相是访问不到的</li>
+						<li>cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session </li>
+						<li>session会在一定时间内保存在服务器上，当访问增多，会比较占用你服务器的性能，考虑到减轻服务器性能方面，应当使用cookie </li>
+						<li>单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie </li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<p>本地存储：</p>
+			<ul>
+				<li>HTML5 定义了本地存储规范 Web Storage ， 提供了两种存储类型 API：  sessionStorage 和 localStorage，二者的差异主要是数据的保存时长及数据的共享方式。
+					<ul>
+						<li><b>localStorage：</b>一直存储在本地，数据存储是永久的，除非用户或程序对其进行删除操作
+							<ul>
+								<li>域内安全、永久保存。即客户端或浏览器中来自同一域名的所有页面都可访问localStorage数据且数据除了删除否则永久保存，但客户端或浏览器之间的数据相互独立。</li>
+								<li>数据不会随着Http请求发送到后台服务器；</li>
+								<li>存储数据的大小机会不用考虑，因为在HTML5的标准中要求浏览器至少要支持到4MB。</li>
+							</ul>
+							<div class="html">
+								<pre>function clickCounter(){
+	if(typeof(Storage)!=="undefined"){
+		if(localStorage.clickcount){
+			localStorage.clickcount=Number(localStorage.clickcount)+1;
+		}else{
+			localStorage.clickcount=1;
+		}
+		document.getElementById("result").innerHTML=" 你已经点击了按钮 " + localStorage.clickcount + " 次 ";
+	}else{
+		document.getElementById("result").innerHTML="对不起，您的浏览器不支持 web 存储。";
+	}
+}</pre>
+							</div>
+						</li>
+						<li><b>sessionStorage：</b>在会话期内有效，数据在浏览器关闭后自动删除
+							<ul>
+								<li>会话控制、短期保存。会话概念与服务器端的session概念相似，短期保存指窗口或浏览器或客户端关闭后自动消除数据。 </li>
+							</ul>
+							<div class="html">
+				<pre>$('.closeNoticeBlock').click(function () {
+	$(this).closest('.notice-block').slideToggle(200);
+	if (window.sessionStorage) {// 浏览器支持 sessionStorage
+		window.sessionStorage.setItem("noticeClose",3)
+	}
+});
+if (window.sessionStorage.getItem("noticeClose")){
+	$('.notice-block').hide();
+}</pre>
+							</div>
+						</li>
+						<li>
+							<b>总结：</b>
+							<ul>
+								<li>区别：sessionStorage 在关闭页面后即被清空，而 localStorage 则会一直保存。</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ol>
+</div>
 <div class="mswitch">
 	<h3 class="mb10"></h3>
 	<div class="example-demo"></div>
