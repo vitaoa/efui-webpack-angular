@@ -114,3 +114,24 @@
     &.hanja{margin:0 1em;padding-left: 2.5em;}
   }
 }
+.notebook-desc{
+  padding: 15px;background: #fff3d4;
+  border-color: #f6b73c;border-left-width: 5px;
+  border-left-style: solid;
+  color: #333;
+  margin-bottom: 35px;
+  line-height:1.8;
+  & > ul {padding-left: 15px;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    background: #fefefe;
+    & > li {
+      &:first-child{margin-top: 0;}
+      margin-bottom: .5em
+    }
+  }
+  & > li {
+    &:first-child{margin-top: 0;}
+    margin-bottom: .5em
+  }
+}

@@ -50,6 +50,7 @@
                     }
                     break;
                 case "touchmove":
+                    event.preventDefault();
                     break;
                 case "mousedown":
                     try {

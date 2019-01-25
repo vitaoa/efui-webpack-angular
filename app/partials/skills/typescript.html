@@ -1,0 +1,158 @@
+
+<!--div.mlist>((div.mtit>span)+div.mcon>ol>li>a)-->
+<!--div.mswitch>(div.pt10.pb10+div.example-visualize)-->
+
+<div class="mlist">
+    <div class="mtit"><span>目录</span></div>
+    <div class="mcon">
+        <ol>
+            <li><a href="">模块</a></li>
+            <li><a href="">疑难杂症</a></li>
+            <li><a href="">常用语句</a></li>
+        </ol>
+    </div>
+</div>
+<div class="mswitch">
+    <ol class="decimal">
+        <li>
+
+        </li>
+    </ol>
+</div>
+<div class="mswitch">
+    <ol class="decimal">
+        <li>
+            <p>块级作用域与函数作用域：</p>
+            <ul>
+                <li>函数作用域：变量在定义的环境中以及嵌套的子函数中处处可见
+                    <ul>
+                        <li>在ES6之前，js的作用域只有两种：函数作用域和全局作用域。使用var声明的变量，都存在变量提升的过程。</li>
+                    </ul>
+                </li>
+                <li>块级作用域：变量在离开定义的块级代码后立即被回收
+                    <ul>
+                        <li>ES6中定义了块级作用域，使用let声明的变量只能在块级作用域里访问，有“暂时性死区”的特性（也就是说声明前不可用）。</li>
+                        <li>块作用域变量在包含它们的块之外是不能访问的，块作用域由 { } 包括起来，if语句和for语句里面的{ }也属于块作用域。</li>
+                        <li>不能在被声明之前读或写</li>
+                        <li>不能在1个作用域里多次声明</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><p>获取input值：</p>
+            做类型转换，如：var veritoken = ( <b class="c-red">document.getElementById('searchVal') as HTMLInputElement</b> ).value
+        </li>
+        <li><p>读取json文件：</p>
+            <div class="html">
+                <pre>let _searchKeywords:any='';
+var request = new XMLHttpRequest();
+request.onload = levelRequestListener;
+request.open("get", "./app/data/route.json", true);
+request.send();
+
+function levelRequestListener () {
+    _searchKeywords = JSON.parse(this.responseText);
+}
+</pre>
+            </div>
+        </li>
+        <li><p>搜索JSON的简单方法：</p>
+            <div class="html">
+                <pre>let _url = JsonQuery(_searchKeywords,{"keywords":"JS"});
+function JsonQuery(arr:Array&lt;any>,obj:any):any{
+    let _arr:any = [];
+    for(let _jsonObj of arr){
+        let _b:boolean = true;
+        for(let prop in obj){
+            var _TEST = new RegExp(obj[prop],"i");
+            if(!_TEST.test(_jsonObj[prop])){
+                _b = false;
+                break;
+            }
+        }
+        if(_b) _arr.push(_jsonObj)
+    }
+    return _arr;
+}</pre>
+            </div>
+        </li>
+    </ol>
+</div>
+<div class="mswitch">
+    <ol class="decimal">
+        <li>
+            <p>循环：for..of和for..in语句</p>
+            <ul>
+                <li>
+                    <p>for..of和for..in均可迭代一个列表；但是用于迭代的值却不同，for..in迭代的是对象的键的列表，而for..of则迭代对象数字键对应的值。</p>
+                    <div class="html">
+                <pre>let list = [4, 5, 6];
+
+for (let i in list) {
+console.log(i); // "0", "1", "2",
+}
+
+for (let i of list) {
+console.log(i); // "4", "5", "6"</pre>
+                    </div>
+                </li>
+                <li>
+                    <p>for..in可以操作任何对象；它提供了查看对象属性的一种方法。 但是for..in关注于迭代对象的值。内置对象Map和Set已经实现了Symbol.iterator属性，让我们可以访问它们保存的值。</p>
+                    <div class="html">
+                        <pre>let pets = new Set(["Cat", "Dog", "Hamster"]);
+pets["species"] = "mammals";
+
+for (let pet in pets) {
+console.log(pet); // "species"
+}
+
+for (let pet of pets) {
+console.log(pet); // "Cat", "Dog", "Hamster"
+}</pre>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>模版字符串：可以定义多行文本和内嵌表达式。 这种字符串是被反引号包围（ `），并且以${ expr }这种形式嵌入表达式</p>
+            <div class="html">
+                <pre>let name: string = `Gene`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${ name }. I'll be ${ age + 1 } years old next month.`;</pre>
+            </div>
+        </li>
+        <li>
+            <p>数组定义：</p>
+            <ul>
+                <li>在元素类型后面接上 []，表示由此类型元素组成的一个数组：
+                    <div class="html">
+                        <pre>let list: number[] = [1, 2, 3];</pre>
+                    </div>
+                </li>
+                <li>使用数组泛型，Array&lt;元素类型&gt;：
+                    <div class="html">
+                        <pre>let list: Array&lt;number> = [1, 2, 3];</pre>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>类型断言：</p>
+            <ul>
+                <li>“尖括号”语法：
+                    <div class="html">
+                        <pre>let someValue: any = "this is a string";
+let strLength: number = (&lt;string>someValue).length;</pre>
+                    </div>
+                </li>
+                <li>as语法：
+                    <div class="html">
+                        <pre>let someValue: any = "this is a string";
+let strLength: number = (someValue as string).length;</pre>
+                    </div>
+                </li>
+            </ul>
+            <p>两种形式是等价的，然而，当你在TypeScript里使用JSX时，只有 as语法断言是被允许的。</p>
+        </li>
+    </ol>
+</div>

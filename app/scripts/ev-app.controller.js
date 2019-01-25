@@ -517,6 +517,9 @@
                             'title':"javascript","url":"js"
                         },
                         {
+                            'title':"typescript","url":"typescript"
+                        },
+                        {
                             'title':"模块化开发","url":"module"
                         },
                         {

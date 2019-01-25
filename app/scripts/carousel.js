@@ -8,7 +8,6 @@
     $.fn.carouselLeftRight = function (options) {
         return this.each(function () {
             var option = $.extend({},$.fn.carouselLeftRight.defaults,options || {});
-            var $this = $(this);
 
             var objName = option.objName;
             var cArr = option.cArr;
